@@ -4,6 +4,6 @@ public class CommandType {
 
     CommandType commandType;
     static String get;
-    static String post;
+    String post;
 
 }
