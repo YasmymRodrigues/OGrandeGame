@@ -4,6 +4,8 @@ public class Ferramenta {
     int idFerramenta;
     String titulo;
 
+    Ferramenta(){}
+
     Ferramenta(int idFerramenta, String titulo){
         this.idFerramenta = idFerramenta;
         this.titulo = titulo;

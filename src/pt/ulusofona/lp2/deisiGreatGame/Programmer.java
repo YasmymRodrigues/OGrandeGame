@@ -1,6 +1,9 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import org.w3c.dom.stylesheets.LinkStyle;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Programmer {
     String nome;
@@ -8,6 +11,7 @@ public class Programmer {
     ArrayList<Language> linguagens;
     ProgrammerColor color;
     int pos;
+    List<Ferramenta> ferramentas;
 
     Programmer(){}
     Programmer(String nome, int id, ProgrammerColor color){
@@ -17,11 +21,12 @@ public class Programmer {
         this.linguagens = new ArrayList<>();
     }
 
-    public Programmer(String nome, int id, ArrayList<Language> languages, ProgrammerColor cor) {
+    public Programmer(String nome, int id, ArrayList<Language> languages, ProgrammerColor cor, List<Ferramenta> ferramentas) {
         this.nome = nome;
         this.id = id;
         this.linguagens = languages;
         this.color = cor;
+        this.ferramentas = ferramentas;
     }
     /*Programmer(String nome, int id, ProgrammerColor color, int pos){
         this.nome = nome;
@@ -60,6 +65,7 @@ public class Programmer {
                 ", id=" + id +
                 ", color=" + color +
                 ", pos=" + pos +
+                ", ferramentas=" +ferramentas+
                 '}';
     }
 }

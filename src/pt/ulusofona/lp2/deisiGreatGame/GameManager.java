@@ -4,8 +4,8 @@ import javax.sql.rowset.BaseRowSet;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
+
 
 public class GameManager {
     String[][] playerInfo;
@@ -23,7 +23,10 @@ public class GameManager {
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
 
-        ArrayList<Programmer> programmers = new ArrayList<Programmer>();
+        List<Programmer> programmers = new ArrayList<Programmer>();
+        List<Ferramenta> ferramenta = new ArrayList<Ferramenta>();
+        //List<Ferramenta> ferramenta = new ArrayList<Abismo>();
+
 
         for(String[] arr: playerInfo) {
             int id = Integer.parseInt(arr[0]);
@@ -44,7 +47,7 @@ public class GameManager {
 
             this.boardSize = boardSize;
 
-            Programmer programmerF = new Programmer(nome, id, languages,cor);
+            Programmer programmerF = new Programmer(nome, id, languages,cor, ferramenta);
             programmers.add(programmerF);
 
         /*    if (id > 4 || id < 0){
@@ -61,7 +64,9 @@ public class GameManager {
         return true;
     }
 
-  
+    //boolean createInitialBoard(String[][] playerInfo, int worldSize){ return true;}
+
+
     public String getImagePng(int position){
         return "";
     }
@@ -75,7 +80,7 @@ public class GameManager {
     }
 
     public List<Programmer> getProgrammers(int position){
-        ArrayList<Programmer> programmers = new ArrayList<Programmer>();
+        List<Programmer> programmers = new ArrayList<Programmer>();
 
 
         return programmers;
@@ -95,8 +100,8 @@ public class GameManager {
     }
 
 
-    public ArrayList<String> getGameResults(){
-        ArrayList<String> results = new ArrayList<String>();
+    public List<String> getGameResults(){
+        List<String> results = new ArrayList<String>();
 
         return results;
     }
@@ -107,6 +112,10 @@ public class GameManager {
     }
 
     String getProgrammersInfo(){
-        return null;
+        return "";
+    }
+
+    String reactToAbyssOrTool(){
+        return "";
     }
 }
