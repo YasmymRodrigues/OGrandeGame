@@ -2,6 +2,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 
 import javax.sql.rowset.BaseRowSet;
 import javax.swing.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
@@ -21,7 +22,7 @@ public class GameManager {
         this.position = position;
     }
 
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
+    void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException{
 
         List<Programmer> programmers = new ArrayList<Programmer>();
         List<Ferramenta> ferramenta = new ArrayList<Ferramenta>();
@@ -61,10 +62,10 @@ public class GameManager {
            }*/
 
         }
-        return true;
+        //return true;
     }
 
-    //boolean createInitialBoard(String[][] playerInfo, int worldSize){ return true;}
+    //void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{ }
 
 
     public String getImagePng(int position){
@@ -115,7 +116,19 @@ public class GameManager {
         return "";
     }
 
-    String reactToAbyssOrTool(){
+    /*String reactToAbyssOrTool(){
+        return "";
+    }*/
+
+
+
+
+    String getTitle(int position){
         return "";
     }
+    public boolean saveGame(File file){return true;}
+    public boolean loadGame(File file){return true;}
+
+
+
 }
