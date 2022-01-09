@@ -3,6 +3,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import javax.sql.rowset.BaseRowSet;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
@@ -20,7 +21,7 @@ public class GameManager {
         this.position = position;
     }
 
-    public boolean createInitialBoard(String[][] playerInfo, int boardSize){
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
 
         ArrayList<Programmer> programmers = new ArrayList<Programmer>();
 
@@ -65,7 +66,7 @@ public class GameManager {
         return "";
     }
 
-    public ArrayList<Programmer> getProgrammers(){
+    public List<Programmer> getProgrammers(boolean includeDefeated){
         //ArrayList<Programmer> programmers = createInitialBoard(playerInfo, boardSize);
 
 
@@ -73,7 +74,7 @@ public class GameManager {
        return new ArrayList<>();
     }
 
-    public ArrayList<Programmer> getProgrammers(int position){
+    public List<Programmer> getProgrammers(int position){
         ArrayList<Programmer> programmers = new ArrayList<Programmer>();
 
 
@@ -102,6 +103,10 @@ public class GameManager {
 
     public JPanel getAuthorsPanel(){
 
+        return null;
+    }
+
+    String getProgrammersInfo(){
         return null;
     }
 }

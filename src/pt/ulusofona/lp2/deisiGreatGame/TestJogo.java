@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,13 +15,14 @@ public class TestJogo {
         GameManager game = new GameManager();
         String[][] board = new String[][]{{"145", "Ole", "java, c", "Purple"}, {"126", "Hello", "python, kotlin", "Blue"}};
 
-        //game.createInitialBoard(board, 5);
-        assertEquals("Deveria ser true", true, game.createInitialBoard(board, 5));
 
-        ArrayList<Programmer> programmers = game.getProgrammers();
+        //game.createInitialBoard(board, 5);
+        assertEquals("Deveria ser true", true, game.createInitialBoard(board, 5, board));
+
+        List<Programmer> programmers = game.getProgrammers(2);
         System.out.println(programmers);
 
-        ArrayList<Programmer> programmerInPosition = game.getProgrammers(1);
+        List<Programmer> programmerInPosition = game.getProgrammers(1);
         System.out.println(programmerInPosition);
 
 
