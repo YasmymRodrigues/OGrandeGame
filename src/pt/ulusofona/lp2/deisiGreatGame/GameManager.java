@@ -10,18 +10,18 @@ import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
 public class GameManager {
     String[][] playerInfo;
-    String[][] abyssesAndTools;
+    //String[][] abyssesAndTools;
     int boardSize;
     int position;
 
     public GameManager() {
     }
 
-    public GameManager(String[][] playerInfo, int boardSize, int position, String[][] abyssesAndTools) {
+    public GameManager(String[][] playerInfo, int boardSize, int position) {
         this.playerInfo = playerInfo;
         this.boardSize = boardSize;
         this.position = position;
-        this.abyssesAndTools = abyssesAndTools;
+        //this.abyssesAndTools = abyssesAndTools;
     }
 
     void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException{
@@ -67,7 +67,7 @@ public class GameManager {
         //return true;
     }
 
-    //void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{ }
+    void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{ }
 
 
     public String getImagePng(int position){
