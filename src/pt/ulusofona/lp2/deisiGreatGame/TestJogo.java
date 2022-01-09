@@ -11,13 +11,13 @@ import static org.junit.Assert.assertEquals;
 public class TestJogo {
 
     @Test
-    public void teste01criarTabuleiro(){
+    public void teste01criarTabuleiro() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
         String[][] board = new String[][]{{"145", "Ole", "java, c", "Purple"}, {"126", "Hello", "python, kotlin", "Blue"}};
 
 
         //game.createInitialBoard(board, 5);
-        assertEquals("Deveria ser true", true, game.createInitialBoard(board, 5, board));
+        //assertEquals("Deveria ser true", true, game.createInitialBoard(board, 5, board));
 
         List<Programmer> programmers = game.getProgrammers(2);
         System.out.println(programmers);

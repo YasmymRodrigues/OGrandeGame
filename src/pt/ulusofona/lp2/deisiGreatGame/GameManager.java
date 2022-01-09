@@ -116,9 +116,9 @@ public class GameManager {
         return "";
     }
 
-    /*String reactToAbyssOrTool(){
+    String reactToAbyssOrTool(){
         return "";
-    }*/
+    }
 
 
 
