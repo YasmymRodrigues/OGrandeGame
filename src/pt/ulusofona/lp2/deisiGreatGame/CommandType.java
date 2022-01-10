@@ -1,9 +1,9 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class CommandType {
+/*public class CommandType {
 
     CommandType commandType;
     String get;
     String post;
 
-}
+}*/
