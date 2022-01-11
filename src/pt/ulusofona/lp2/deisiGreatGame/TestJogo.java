@@ -17,13 +17,24 @@ public class TestJogo {
 
 
         game.createInitialBoard(board, 5);
-        assertEquals("Deveria ser true", true, game.createInitialBoard(board, 5, board));
+        //assertEquals(,game.createInitialBoard(board, 5, board));
 
         List<Programmer> programmers = game.getProgrammers(2);
         System.out.println(programmers);
 
         List<Programmer> programmerInPosition = game.getProgrammers(1);
         System.out.println(programmerInPosition);
+
+
+    }
+
+    @Test
+    public void teste02getImagepng()throws  InvalidInitialBoardException{
+        GameManager game = new GameManager();
+        String noValue = "";
+
+        game.getImagePng(2);
+        assertEquals("",game.getImagePng(2));
 
 
     }
