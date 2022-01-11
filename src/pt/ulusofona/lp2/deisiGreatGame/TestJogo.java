@@ -16,8 +16,8 @@ public class TestJogo {
         String[][] board = new String[][]{{"145", "Ole", "java, c", "Purple"}, {"126", "Hello", "python, kotlin", "Blue"}};
 
 
-        //game.createInitialBoard(board, 5);
-        //assertEquals("Deveria ser true", true, game.createInitialBoard(board, 5, board));
+        game.createInitialBoard(board, 5);
+        assertEquals("Deveria ser true", true, game.createInitialBoard(board, 5, board));
 
         List<Programmer> programmers = game.getProgrammers(2);
         System.out.println(programmers);

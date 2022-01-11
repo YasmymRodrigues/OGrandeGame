@@ -13,6 +13,7 @@ fun router(): (CommandType) -> Array<String> {
 
 fun teste(type: CommandType):Array<String>{
 
+    return arrayOf()
 }
 val f1 = router()
 val f2 = f1.invoke(CommandType.GET)

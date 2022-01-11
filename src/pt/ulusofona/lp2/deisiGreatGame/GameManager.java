@@ -1,6 +1,5 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import javax.sql.rowset.BaseRowSet;
 import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -65,6 +64,7 @@ public class GameManager {
 
         }
         //return true;
+        //return 0;
     }
 
     void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{ }
