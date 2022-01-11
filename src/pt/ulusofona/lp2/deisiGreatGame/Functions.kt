@@ -6,11 +6,15 @@ enum class CommandType{GET, POST}
 
 fun getPlayer(manager: GameManager, args: List<String>): String? {return ""}
 
-fun router(): String {
+fun router(): (CommandType) -> Array<String> {
 
-    return ""
+    return ::teste
 }
-//val f1 = router()
-//val f2 = f1.invoke(GameManager)
+
+fun teste(type: CommandType):Array<String>{
+
+}
+val f1 = router()
+val f2 = f1.invoke(CommandType.GET)
 //val result = f2.invoke(manager, listOf("PLAYER", "Joshua"))
 
