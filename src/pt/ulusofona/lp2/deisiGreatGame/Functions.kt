@@ -1,19 +1,20 @@
 package pt.ulusofona.lp2.deisiGreatGame
 
+import com.sun.source.tree.LiteralTree
 
 
 enum class CommandType{GET, POST}
 
-fun getPlayer(manager: GameManager, args: List<String>): String? {return ""}
+fun getPlayer(manager: GameManager, args: List<String>): String? {return null}
 
-fun router(): (CommandType) -> Array<String> {
+fun router(): (CommandType) -> (GameManager, List<String>) -> String?{
 
     return ::teste
 }
 
-fun teste(type: CommandType):Array<String>{
+fun teste(type: CommandType):(GameManager, List<String>) -> String? {
 
-return arrayOf()
+return ::getPlayer
 }
 val f1 = router()
 val f2 = f1.invoke(CommandType.GET)
