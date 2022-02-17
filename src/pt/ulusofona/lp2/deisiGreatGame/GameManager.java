@@ -105,8 +105,8 @@ public class GameManager {
                     Ferramenta progF = new ProgramacaoFuncional();
                     ferramentas.add(progF);
                 }else if (idDoTipo == 2){
-                    Ferramenta testU = new Unitarios();
-                    ferramentas.add(testU);
+                    Ferramenta unitarios = new Unitarios();
+                    ferramentas.add(unitarios);
                 }else if (idDoTipo == 3){
                     Ferramenta tratEx = new TratamentoDeExcepcoes();
                     ferramentas.add(tratEx);
