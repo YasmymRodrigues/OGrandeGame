@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TestJogo {
 
-    @Test
+    /*@Test
     public void teste01criarTabuleiro() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
         String playInfo [][] = {{"Pedro"}};
@@ -26,7 +26,7 @@ public class TestJogo {
 
         List<Programmer> programmerInPosition = game.getProgrammers(1);
         System.out.println(programmerInPosition);
-    }
+    }*/
 
     @Test
     public void teste02getImagepng()throws  InvalidInitialBoardException{
