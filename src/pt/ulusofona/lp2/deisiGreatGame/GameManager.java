@@ -5,8 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
-import static pt.ulusofona.lp2.deisiGreatGame.TestesUnitarios.*;
-import static pt.ulusofona.lp2.deisiGreatGame.TestJogo.*;
+
 
 
 public class GameManager {
@@ -106,7 +105,7 @@ public class GameManager {
                     Ferramenta progF = new ProgramacaoFuncional();
                     ferramentas.add(progF);
                 }else if (idDoTipo == 2){
-                    Ferramenta testU = new TestesUnitarios();
+                    Ferramenta testU = new Unitarios();
                     ferramentas.add(testU);
                 }else if (idDoTipo == 3){
                     Ferramenta tratEx = new TratamentoDeExcepcoes();
