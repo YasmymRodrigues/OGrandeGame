@@ -65,33 +65,63 @@ public class GameManager {
             if (type == 0){
                 if (idDoTipo == 0){
                     Abismo erroDeSintaxe = new ErroDeSintaxe();
+                    abismos.add(erroDeSintaxe);
                 }else if(idDoTipo == 1){
                     Abismo erroDeLogica = new ErroDeLogica();
+                    abismos.add(erroDeLogica);
                 }else if(idDoTipo == 2){
-                    Abismo exception = new
+                    Abismo exception = new Exception();
+                    abismos.add(exception);
+                }else if (idDoTipo == 3){
+                    Abismo fileNotFoundException = new FileNotFoundException();
+                    abismos.add(fileNotFoundException);
+                }else if (idDoTipo == 4){
+                    Abismo crash = new Crash();
+                    abismos.add(crash);
+                }else if (idDoTipo == 5){
+                    Abismo duplicatedCode = new DuplicatedCode();
+                    abismos.add(duplicatedCode);
+                }else if (idDoTipo == 6){
+                    Abismo efeitosSecundarios = new EfeitosSecundarios();
+                    abismos.add(efeitosSecundarios);
+                }else if (idDoTipo == 7){
+                    Abismo bsod = new BlueScreenOfDeath();
+                    abismos.add(bsod);
+                }else if (idDoTipo == 8){
+                    Abismo cicloInfinito = new CicloInfinito();
+                    abismos.add(cicloInfinito);
+                }else if (idDoTipo == 9){
+                    Abismo segF = new SegmentationFault();
+                    abismos.add(segF);
+                }else{
+                    System.out.println("Not an abismo");
                 }
-
-
-
-
-
-
-
-
-                ferramenta.idFerramenta = type;
-                ferramentas.add(ferramenta);
-                programmer.ferramentas = ferramentas;
             }else{
-                abismo.idAbismo= type;
-                abismos.add(abismo);
+                if (idDoTipo == 0){
+                    Ferramenta heranca = new Heranca();
+                    ferramentas.add(heranca);
+                }else if (idDoTipo == 1){
+                    Ferramenta progF = new ProgramacaoFuncional();
+                    ferramentas.add(progF);
+                }else if (idDoTipo == 2){
+                    Ferramenta testU = new TestesUnitarios();
+                    ferramentas.add(testU);
+                }else if (idDoTipo == 3){
+                    Ferramenta tratEx = new TratamentoDeExcepcoes();
+                    ferramentas.add(tratEx);
+                }else if (idDoTipo == 4){
+                    Ferramenta ide = new IDE();
+                    ferramentas.add(ide);
+                }else if (idDoTipo == 5){
+                    Ferramenta helpProf = new AjudaDoProfessor();
+                    ferramentas.add(helpProf);
+                }
+                programmer.ferramentas = ferramentas;
             }
-
-
             int position = Integer.parseInt(arr[2]);
             programmer.pos = position;
         }
         programmers.add(programmer);
-
            if (id > 4 || id < 0){
                 return false;
             }
