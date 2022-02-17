@@ -139,22 +139,24 @@ public class GameManager {
                 return false;
             }
             if (type == 0){
-                if (idDoTipo < 0 && idDoTipo > 9){
+                if (idDoTipo < 0 || idDoTipo > 9){
                     return false;
             }else {
-                if (idDoTipo < 0 && idDoTipo > 5){
+                if (idDoTipo < 0 || idDoTipo > 5){
                     return false;
                 }
             }
                 // todo posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
-
+                if ((worldSize < position) || (arr[2] == null) || (position < 0)){
+                    return false;
+                }
 
             }
 
         }
         programmers.add(programmer);
         for (Programmer pro : programmers) {
-            if (!progId.add(pro.id) && (pro.id > 4 || pro.id < 0)) { //todo I am not sure about this range
+            if (!progId.add(pro.id) || (pro.id > 4 || pro.id < 0)) { //todo I am not sure about this range
                 return false;
             }
             if ((pro.nome == null) || (pro.nome.isEmpty())) {
@@ -166,7 +168,7 @@ public class GameManager {
             if (!progColor.add(pro.color)){
                 return false;
             }
-            if ((programmers.size() > 4) && (worldSize >= programmers.size() * 2)){
+            if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)){
                 return false;
             }
         }
