@@ -36,6 +36,7 @@ public class GameManager {
         int id = 0;
         String nome = "";
         ProgrammerColor cor = null;
+        TestesUnitarios testesUnitarios = new TestesUnitarios();
 
         for(String[] arr: playerInfo) {
             id = Integer.parseInt(arr[0]);
