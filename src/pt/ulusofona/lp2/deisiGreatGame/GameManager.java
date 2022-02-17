@@ -5,6 +5,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
+import static pt.ulusofona.lp2.deisiGreatGame.TestesUnitarios.*;
+import static pt.ulusofona.lp2.deisiGreatGame.TestJogo.*;
 
 
 public class GameManager {
@@ -36,7 +38,6 @@ public class GameManager {
         int id = 0;
         String nome = "";
         ProgrammerColor cor = null;
-        TestesUnitarios testesUnitarios = new TestesUnitarios();
 
         for(String[] arr: playerInfo) {
             id = Integer.parseInt(arr[0]);
