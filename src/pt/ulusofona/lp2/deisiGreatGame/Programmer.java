@@ -50,7 +50,7 @@ public class Programmer {
     }
 
     public ArrayList<Language> getLinguagens() {
-        return linguagens;
+        return new ArrayList<Language>();
     }
 
     public int getId(){return this.id;}

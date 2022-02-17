@@ -9,50 +9,90 @@ import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
 public class GameManager {
     String[][] playerInfo;
-    //String[][] abyssesAndTools;
-    int boardSize;
-    int position;
+    String[][] abyssesAndTools;
+    int worldSize;
+    int pos;
+    List<Ferramenta> ferramentas = new ArrayList<>() {};
 
     public GameManager() {
     }
 
-    public GameManager(String[][] playerInfo, int boardSize, int position) {
+    public GameManager(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) {
         this.playerInfo = playerInfo;
-        this.boardSize = boardSize;
-        this.position = position;
-        //this.abyssesAndTools = abyssesAndTools;
+        this.worldSize = worldSize;
+        this.abyssesAndTools = abyssesAndTools;
     }
 
-    void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException{
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException{
 
         List<Programmer> programmers = new ArrayList<Programmer>();
-        List<Ferramenta> ferramenta = new ArrayList<Ferramenta>();
-        //List<Ferramenta> ferramenta = new ArrayList<Abismo>();
-
+        List<Abismo> abismos = new ArrayList<Abismo>();
+        List<Ferramenta> ferramentas = new ArrayList<Ferramenta>();
+        Programmer programmer = new Programmer();
+        Language language = new Language();
+        ArrayList<Language> languages = programmer.getLinguagens();
+        Ferramenta ferramenta = new Ferramenta();
+        Abismo abismo = new Abismo();
+        int id = 0;
+        String nome = "";
+        ProgrammerColor cor = null;
 
         for(String[] arr: playerInfo) {
-            int id = Integer.parseInt(arr[0]);
-            String nome = arr[1];
-            Programmer programmer = new Programmer();
-            arr[2].getClass();
-            ArrayList<Language> languages = programmer.getLinguagens();
-            ProgrammerColor cor = null;
-            if (arr[3].equals("BLUE")){
+            id = Integer.parseInt(arr[0]);
+            nome = arr[1];
+            programmer.id = id;
+            programmer.nome = nome;
+            language.nome = arr[2];
+            languages.add(language);
+            programmer.linguagens = languages;
+
+            if (arr[3].equals("Blue")) {
                 cor = BLUE;
-            }else if (arr[3].equals("PURPLE")){
+            } else if (arr[3].equals("Purple")) {
                 cor = PURPLE;
-            }else if(arr[3].equals("BROWN")){
+            } else if (arr[3].equals("Brown")) {
                 cor = BROWN;
-            }else if(arr[3].equals("GREEN")){
+            } else if (arr[3].equals("Green")) {
                 cor = GREEN;
             }
+        }
+            this.worldSize = worldSize;
 
-            this.boardSize = boardSize;
+        for (String[] arr: abyssesAndTools) {
+            int type = Integer.parseInt(arr[0]);
+            int idDoTipo = Integer.parseInt(arr[1]); // todo: ver se é F ou A e depois ver o tipo de cada
+            // todo: Classes Abismo e Ferramentas.
+            if (type == 0){
+                if (idDoTipo == 0){
+                    Abismo erroDeSintaxe = new ErroDeSintaxe();
+                }else if(idDoTipo == 1){
+                    Abismo erroDeLogica = new ErroDeLogica();
+                }else if(idDoTipo == 2){
+                    Abismo exception = new
+                }
 
-            Programmer programmerF = new Programmer(nome, id, languages,cor, ferramenta);
-            programmers.add(programmerF);
 
-        /*    if (id > 4 || id < 0){
+
+
+
+
+
+
+                ferramenta.idFerramenta = type;
+                ferramentas.add(ferramenta);
+                programmer.ferramentas = ferramentas;
+            }else{
+                abismo.idAbismo= type;
+                abismos.add(abismo);
+            }
+
+
+            int position = Integer.parseInt(arr[2]);
+            programmer.pos = position;
+        }
+        programmers.add(programmer);
+
+           if (id > 4 || id < 0){
                 return false;
             }
             if(nome == null){
@@ -60,14 +100,11 @@ public class GameManager {
             }
            if(cor != BLUE || cor != PURPLE || cor != BROWN || cor != GREEN){
                return false;
-           }*/
-
-        }
-        //return true;
-        //return 0;
+           }
+        return true;
     }
 
-    void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{ }
+    public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{ }
 
 
     public String getImagePng(int position){
@@ -112,15 +149,15 @@ public class GameManager {
         return null;
     }
 
-    String getProgrammersInfo(){
+    public String getProgrammersInfo(){
         return "";
     }
 
-    String reactToAbyssOrTool(){
+    public String reactToAbyssOrTool(){
         return "";
     }
 
-    String getTitle(int position){
+    public String getTitle(int position){
         return "";
     }
     public boolean saveGame(File file){return true;}
