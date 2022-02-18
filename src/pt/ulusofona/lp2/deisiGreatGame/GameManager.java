@@ -16,8 +16,9 @@ public class GameManager {
     String[][] abyssesAndTools;
     int worldSize;
     int pos;
-    int boardSize;
-    List<Ferramenta> ferramentas = new ArrayList<>() {};
+    List<Ferramenta> ferramentas = new ArrayList<>();
+    List<Programmer> programmers = new ArrayList<>();
+    List<Abismo> abismos = new ArrayList<>();
 
     public GameManager() {
     }
@@ -45,7 +46,7 @@ public class GameManager {
         int id = 0;
         String nome = "";
         ProgrammerColor cor = null;
-
+        //Programmer Info
         for (String[] arr : playerInfo) {
             id = Integer.parseInt(arr[0]);
             progId.add(id);
@@ -66,11 +67,11 @@ public class GameManager {
                 cor = GREEN;
             }
         }
-        this.worldSize = worldSize;
 
         for (String[] arr : abyssesAndTools) {
             int type = Integer.parseInt(arr[0]);
             int idDoTipo = Integer.parseInt(arr[1]);
+            int position = Integer.parseInt(arr[2]);
             if (type == 0) {
                 if (idDoTipo == 0) {
                     Abismo erroDeSintaxe = new ErroDeSintaxe();
@@ -125,10 +126,8 @@ public class GameManager {
                     Ferramenta helpProf = new AjudaDoProfessor();
                     ferramentas.add(helpProf);
                 }
-                programmer.ferramentas = ferramentas;
+
             }
-            int position = Integer.parseInt(arr[2]);
-            programmer.pos = position;
 
             //DONE: Validation ofAoA
             if ((arr[0] == null)){
@@ -149,10 +148,12 @@ public class GameManager {
                 if ((worldSize < position) || (arr[2] == null) || (position < 0)){
                     return false;
                 }
+                this.pos = position;
+
             }
 
         }
-       programmers.add(programmer);
+
         for (Programmer pro : programmers) {
             if (!progId.add(pro.id) || (pro.id > 4 || pro.id < 0)) { //todo I am not sure about this range
                 return false;
@@ -170,68 +171,18 @@ public class GameManager {
                 return false;
             }
         }
+        programmers.add(programmer);
+        this.programmers = programmers;
+        this.worldSize = worldSize;
+        programmer.ferramentas = ferramentas;
+        this.ferramentas = ferramentas;
+
+
         return true;
     }
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{
-        boolean value = createInitialBoard(playerInfo, worldSize, null);
-
-        /*int id;
-        String nome;
-        Programmer programmer = new Programmer();
-        Language language = new Language();
-        ArrayList<Language> languages = new ArrayList<>();
-        List<Programmer> programmers = new ArrayList<>();
-        Set<Integer> progId = new HashSet<>();
-        Set<ProgrammerColor> progColor = new HashSet<>();
-        ProgrammerColor cor = null;
-
-        for (String[] arr : playerInfo) {
-            id = Integer.parseInt(arr[0]);
-            if (id != 0 && id != 1){
-                return false;
-            }
-            progId.add(id);
-            nome = arr[1];
-            programmer.id = id;
-            programmer.nome = nome;
-            language.nome = arr[2];
-            languages.add(language);
-            programmer.linguagens = languages;
-
-            if (arr[3].equals("Blue")) {
-                cor = BLUE;
-            } else if (arr[3].equals("Purple")) {
-                cor = PURPLE;
-            } else if (arr[3].equals("Brown")) {
-                cor = BROWN;
-            } else if (arr[3].equals("Green")) {
-                cor = GREEN;
-            }
-
-            this.worldSize = worldSize;
-        }
-        programmers.add(programmer);
-        for (Programmer pro : programmers) {
-            if (!progId.add(pro.id) || (pro.id > 4 || pro.id < 0)) { //todo I am not sure about this range
-                return false;
-            }
-            if ((pro.nome == null) || (pro.nome.isEmpty())) {
-                return false;
-            }
-            if (pro.color != BLUE || cor != PURPLE || cor != BROWN || cor != GREEN) {
-                return false;
-
-            }
-            if (!progColor.add(pro.color)){
-                return false;
-
-            }
-            if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)){
-                return false;
-            }
-        }*/
-        return true;
+        return createInitialBoard(playerInfo, worldSize, null);
     }
 
 
