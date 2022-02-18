@@ -131,7 +131,7 @@ public class GameManager {
             int position = Integer.parseInt(arr[2]);
             programmer.pos = position;
 
-            //todo Validar abyssesAndTools
+            //DONE: Validation ofAoA
             if ((arr[0] == null) || (id != 0 && id != 1)){
                 return false;
             }
@@ -172,8 +172,6 @@ public class GameManager {
                 return false;
             }
         }
-        //todo Validar abyssesAndTools
-        //if (abyssesAndTools)
         return true;
     }
 
