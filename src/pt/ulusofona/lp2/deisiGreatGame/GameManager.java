@@ -150,7 +150,6 @@ public class GameManager {
                 if ((worldSize < position) || (arr[2] == null) || (position < 0)){
                     return false;
                 }
-
             }
 
         }
