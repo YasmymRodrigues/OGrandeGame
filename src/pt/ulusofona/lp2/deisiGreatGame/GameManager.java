@@ -11,13 +11,12 @@ import java.util.Set;
 
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
-
-
 public class GameManager {
     String[][] playerInfo;
     String[][] abyssesAndTools;
     int worldSize;
     int pos;
+    int boardSize;
     List<Ferramenta> ferramentas = new ArrayList<>() {};
 
     public GameManager() {
@@ -32,18 +31,20 @@ public class GameManager {
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
 
-        List<Programmer> programmers = new ArrayList<>();
-        Set<Integer> progId = new HashSet<>();
-        Set<ProgrammerColor> progColor = new HashSet<>();
-        List<Abismo> abismos = new ArrayList<Abismo>();
-        List<Ferramenta> ferramentas = new ArrayList<Ferramenta>();
         Programmer programmer = new Programmer();
         Language language = new Language();
-        ArrayList<Language> languages = programmer.getLinguagens();
         Ferramenta ferramenta = new Ferramenta();
         Abismo abismo = new Abismo();
+        List<Programmer> programmers = new ArrayList<>();
+        List<Abismo> abismos = new ArrayList<Abismo>();
+        List<Ferramenta> ferramentas = new ArrayList<Ferramenta>();
+        ArrayList<Language> languages = programmer.getLinguagens();
+        Set<Integer> progId = new HashSet<>();
+        Set<ProgrammerColor> progColor = new HashSet<>();
+        boolean value = createInitialBoard(playerInfo, worldSize);
 
-        int id = 0;
+
+        /*int id = 0;
         String nome = "";
         ProgrammerColor cor = null;
 
@@ -67,7 +68,7 @@ public class GameManager {
                 cor = GREEN;
             }
         }
-        this.worldSize = worldSize;
+        this.worldSize = worldSize;*/
 
         for (String[] arr : abyssesAndTools) {
             int type = Integer.parseInt(arr[0]);
@@ -132,7 +133,7 @@ public class GameManager {
             programmer.pos = position;
 
             //DONE: Validation ofAoA
-            if ((arr[0] == null) || (id != 0 && id != 1)){
+            if ((arr[0] == null)){
                 return false;
             }
             if (type != 0 && type != 1){
@@ -146,12 +147,69 @@ public class GameManager {
                     return false;
                 }
             }
-                // todo posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
+                // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
                 if ((worldSize < position) || (arr[2] == null) || (position < 0)){
                     return false;
                 }
             }
 
+        }
+       /* programmers.add(programmer);
+        for (Programmer pro : programmers) {
+            if (!progId.add(pro.id) || (pro.id > 4 || pro.id < 0)) { //todo I am not sure about this range
+                return false;
+            }
+            if ((pro.nome == null) || (pro.nome.isEmpty())) {
+                return false;
+            }
+            if (pro.color != BLUE || pro.color != PURPLE || pro.color != BROWN || pro.color != GREEN) {
+                return false;
+            }
+            if (!progColor.add(pro.color)){
+                return false;
+            }
+            if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)){
+                return false;
+            }
+        }*/
+        return true;
+    }
+
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{
+        int id;
+        String nome;
+        Programmer programmer = new Programmer();
+        Language language = new Language();
+        ArrayList<Language> languages = new ArrayList<>();
+        List<Programmer> programmers = new ArrayList<>();
+        Set<Integer> progId = new HashSet<>();
+        Set<ProgrammerColor> progColor = new HashSet<>();
+        ProgrammerColor cor = null;
+
+        for (String[] arr : playerInfo) {
+            id = Integer.parseInt(arr[0]);
+            if (id != 0 && id != 1){
+                return false;
+            }
+            progId.add(id);
+            nome = arr[1];
+            programmer.id = id;
+            programmer.nome = nome;
+            language.nome = arr[2];
+            languages.add(language);
+            programmer.linguagens = languages;
+
+            if (arr[3].equals("Blue")) {
+                cor = BLUE;
+            } else if (arr[3].equals("Purple")) {
+                cor = PURPLE;
+            } else if (arr[3].equals("Brown")) {
+                cor = BROWN;
+            } else if (arr[3].equals("Green")) {
+                cor = GREEN;
+            }
+
+            this.worldSize = worldSize;
         }
         programmers.add(programmer);
         for (Programmer pro : programmers) {
@@ -163,9 +221,11 @@ public class GameManager {
             }
             if (pro.color != BLUE || cor != PURPLE || cor != BROWN || cor != GREEN) {
                 return false;
+
             }
             if (!progColor.add(pro.color)){
                 return false;
+
             }
             if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)){
                 return false;
@@ -173,8 +233,6 @@ public class GameManager {
         }
         return true;
     }
-
-    public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{ }
 
 
     public String getImagePng(int position){
