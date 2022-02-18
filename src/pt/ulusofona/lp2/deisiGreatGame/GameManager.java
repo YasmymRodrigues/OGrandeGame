@@ -41,10 +41,8 @@ public class GameManager {
         ArrayList<Language> languages = programmer.getLinguagens();
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
-        boolean value = createInitialBoard(playerInfo, worldSize);
 
-
-        /*int id = 0;
+        int id = 0;
         String nome = "";
         ProgrammerColor cor = null;
 
@@ -68,7 +66,7 @@ public class GameManager {
                 cor = GREEN;
             }
         }
-        this.worldSize = worldSize;*/
+        this.worldSize = worldSize;
 
         for (String[] arr : abyssesAndTools) {
             int type = Integer.parseInt(arr[0]);
@@ -154,7 +152,7 @@ public class GameManager {
             }
 
         }
-       /* programmers.add(programmer);
+       programmers.add(programmer);
         for (Programmer pro : programmers) {
             if (!progId.add(pro.id) || (pro.id > 4 || pro.id < 0)) { //todo I am not sure about this range
                 return false;
@@ -171,12 +169,14 @@ public class GameManager {
             if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)){
                 return false;
             }
-        }*/
+        }
         return true;
     }
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{
-        int id;
+        boolean value = createInitialBoard(playerInfo, worldSize, null);
+
+        /*int id;
         String nome;
         Programmer programmer = new Programmer();
         Language language = new Language();
@@ -230,7 +230,7 @@ public class GameManager {
             if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)){
                 return false;
             }
-        }
+        }*/
         return true;
     }
 
