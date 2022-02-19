@@ -48,16 +48,16 @@ public class GameManager {
         ProgrammerColor cor = null;
         //Programmer Info
         for (String[] arr : playerInfo) {
-            id = Integer.parseInt(arr[0]);
+            id = Integer.parseInt(arr[0]); //Id do jogador
             progId.add(id);
-            nome = arr[1];
+            nome = arr[1]; // nome do jogador
             programmer.id = id;
             programmer.nome = nome;
-            language.nome = arr[2];
+            language.nome = arr[2]; //List of languages
             languages.add(language);
             programmer.linguagens = languages;
 
-            if (arr[3].equals("Blue")) {
+            /*if (arr[3].equals("Blue")) {
                 cor = BLUE;
             } else if (arr[3].equals("Purple")) {
                 cor = PURPLE;
@@ -65,7 +65,7 @@ public class GameManager {
                 cor = BROWN;
             } else if (arr[3].equals("Green")) {
                 cor = GREEN;
-            }
+            }*/
         }
 
         for (String[] arr : abyssesAndTools) {
@@ -176,7 +176,6 @@ public class GameManager {
         this.worldSize = worldSize;
         programmer.ferramentas = ferramentas;
         this.ferramentas = ferramentas;
-
 
         return true;
     }

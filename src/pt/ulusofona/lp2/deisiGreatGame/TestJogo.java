@@ -10,23 +10,24 @@ import static org.junit.Assert.assertEquals;
 
 public class TestJogo {
 
-    /*@Test
+    @Test
     public void teste01criarTabuleiro() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
-        String playInfo [][] = {{"Pedro"}};
-        String[][] board = new String[][]{{"145", "Ole", "java, c", "Purple"}, {"126", "Hello", "python, kotlin", "Blue"}};
+        String playInfo [][] = {{"1", "Marcos", "Python; Java"}};
+        //String[][] board = new String[][]{{"1123", "Ole", "java, c", "Purple"}, {"126", "Hello", "python, kotlin", "Blue"}};
+        String abT[][] = {{"0", "1", "5"}};
         int worldSize = 10;
 
 
-        game.createInitialBoard(playInfo, worldSize, board);
-        assertEquals(Boolean.TRUE,game.createInitialBoard(playInfo, 10, board));
+        game.createInitialBoard(playInfo, worldSize, abT);
+        assertEquals(Boolean.TRUE,game.createInitialBoard(playInfo, 10, abT));
 
         List<Programmer> programmers = game.getProgrammers(2);
         System.out.println(programmers);
 
         List<Programmer> programmerInPosition = game.getProgrammers(1);
         System.out.println(programmerInPosition);
-    }*/
+    }
 
     @Test
     public void teste02getImagepng()throws  InvalidInitialBoardException{
