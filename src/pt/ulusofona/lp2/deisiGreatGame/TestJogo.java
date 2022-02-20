@@ -22,7 +22,7 @@ public class TestJogo {
         game.createInitialBoard(playInfo, worldSize, abT);
         assertEquals(Boolean.TRUE,game.createInitialBoard(playInfo, 10, abT));
 
-        List<Programmer> programmers = game.getProgrammers(2);
+        List<Programmer> programmers = game.getProgrammers(5);
         System.out.println(programmers);
 
         List<Programmer> programmerInPosition = game.getProgrammers(1);

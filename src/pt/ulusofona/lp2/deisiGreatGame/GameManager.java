@@ -190,8 +190,7 @@ public class GameManager {
     }
 
     public List<Programmer> getProgrammers(boolean includeDefeated){
-
-       return new ArrayList<>();
+        return programmers;
     }
 
     public List<Programmer> getProgrammers(int position){
