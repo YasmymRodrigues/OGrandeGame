@@ -194,8 +194,6 @@ public class GameManager {
     }
 
     public List<Programmer> getProgrammers(int position){
-        List<Programmer> programmers = new ArrayList<Programmer>();
-
 
         return programmers;
     }
