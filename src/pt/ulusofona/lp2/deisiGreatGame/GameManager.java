@@ -190,8 +190,16 @@ public class GameManager {
     }
 
     public List<Programmer> getProgrammers(int position) {
-
-        return programmers;
+        List<Programmer> programmersList = new ArrayList<>();
+        for (Programmer programmer: programmers){
+            if(programmer.pos == position){
+                programmersList.add(programmer);
+            }else{
+                return null;
+                //todo verificação position is invalid OR não existe programadores na posicao indicada
+            }
+        }
+        return programmersList;
     }
 
     public int getCurrentPlayerID() {
