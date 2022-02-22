@@ -19,6 +19,7 @@ public class GameManager {
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Programmer> programmers = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
+    ProgrammerColor programmerColor;
 
     public GameManager() {
     }
@@ -56,13 +57,13 @@ public class GameManager {
             programmer.linguagens = languages;
 
             if (arr[3].equals("Blue")) {
-                cor = BLUE;
+                programmerColor = BLUE;
             } else if (arr[3].equals("Purple")) {
-                cor = PURPLE;
+                programmerColor = PURPLE;
             } else if (arr[3].equals("Brown")) {
-                cor = BROWN;
+                programmerColor = BROWN;
             } else if (arr[3].equals("Green")) {
-                cor = GREEN;
+                programmerColor = GREEN;
             }
         }
 
@@ -170,6 +171,7 @@ public class GameManager {
         this.worldSize = worldSize;
         programmer.ferramentas = ferramentas;
         this.ferramentas = ferramentas;
+        programmer.color = programmerColor;
 
         return true;
     }
@@ -193,8 +195,11 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID(){
-
-        return 0;
+        int id = 0;
+        for (Programmer programmer: programmers){
+                id = programmer.getId();
+        }
+        return id;
     }
 
     public boolean moveCurrentPlayer(int position){
@@ -219,14 +224,21 @@ public class GameManager {
     }
 
     public String getProgrammersInfo(){
-        return "";
-    }
+        for (Programmer programmer: programmers){
+            if(programmer.ferramentas == null){
+                return ""+programmer.nome +" : No tools";
+            }
+          return ""+programmer.nome+" | "+programmer.ferramentas;
+        }
 
     public String reactToAbyssOrTool(){
         return "";
     }
 
     public String getTitle(int position){
+
+
+        }
         return "";
     }
     public boolean saveGame(File file){return true;}
