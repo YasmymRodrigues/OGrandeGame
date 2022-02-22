@@ -34,8 +34,6 @@ public class GameManager {
 
         Programmer programmer = new Programmer();
         Language language = new Language();
-        Ferramenta ferramenta = new Ferramenta();
-        Abismo abismo = new Abismo();
         List<Programmer> programmers = new ArrayList<>();
         List<Abismo> abismos = new ArrayList<Abismo>();
         List<Ferramenta> ferramentas = new ArrayList<Ferramenta>();
@@ -57,7 +55,7 @@ public class GameManager {
             languages.add(language);
             programmer.linguagens = languages;
 
-            /*if (arr[3].equals("Blue")) {
+            if (arr[3].equals("Blue")) {
                 cor = BLUE;
             } else if (arr[3].equals("Purple")) {
                 cor = PURPLE;
@@ -65,7 +63,7 @@ public class GameManager {
                 cor = BROWN;
             } else if (arr[3].equals("Green")) {
                 cor = GREEN;
-            }*/
+            }
         }
 
         for (String[] arr : abyssesAndTools) {
@@ -126,9 +124,7 @@ public class GameManager {
                     Ferramenta helpProf = new AjudaDoProfessor();
                     ferramentas.add(helpProf);
                 }
-
             }
-
             //DONE: Validation ofAoA
             if ((arr[0] == null)){
                 return false;
@@ -149,9 +145,7 @@ public class GameManager {
                     return false;
                 }
                 this.pos = position;
-
             }
-
         }
 
         for (Programmer pro : programmers) {

@@ -13,9 +13,9 @@ public class TestJogo {
     @Test
     public void teste01criarTabuleiro() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
-        String playInfo [][] = {{"1", "Marcos", "Python; Java"}};
+        String playInfo [][] = {{"1", "Marcos", "Python; Java", "Purple"}};
         //String[][] board = new String[][]{{"1123", "Ole", "java, c", "Purple"}, {"126", "Hello", "python, kotlin", "Blue"}};
-        String abT[][] = {{"0", "1", "5"}};
+        String abT[][] = {{"1", "1", "5"}};
         int worldSize = 10;
 
 

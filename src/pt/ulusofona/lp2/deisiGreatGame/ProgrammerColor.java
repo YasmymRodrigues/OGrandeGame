@@ -6,9 +6,9 @@ public enum ProgrammerColor {
     GREEN,
     BROWN;
 
-    ProgrammerColor(){
+    ProgrammerColor(){}
 
-    }
+
     @Override
     public String toString() {
         return super.toString();

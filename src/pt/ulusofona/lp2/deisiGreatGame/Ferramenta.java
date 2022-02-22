@@ -1,13 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class Ferramenta {
-    int idFerramenta;
-    String titulo;
+abstract class Ferramenta {
 
-    Ferramenta(){}
-
-    Ferramenta(int idFerramenta, String titulo){
-        this.idFerramenta = idFerramenta;
-        this.titulo = titulo;
-    }
+     abstract public String toolName();
 }
