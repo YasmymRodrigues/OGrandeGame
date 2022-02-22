@@ -127,22 +127,22 @@ public class GameManager {
                 }
             }
             //DONE: Validation ofAoA
-            if ((arr[0] == null)){
+            if ((arr[0] == null)) {
                 return false;
             }
-            if (type != 0 && type != 1){
+            if (type != 0 && type != 1) {
                 return false;
             }
-            if (type == 0){
-                if (idDoTipo < 0 || idDoTipo > 9){
+            if (type == 0) {
+                if (idDoTipo < 0 || idDoTipo > 9) {
                     return false;
-            }else {
-                if (idDoTipo < 0 || idDoTipo > 5){
-                    return false;
+                } else {
+                    if (idDoTipo < 0 || idDoTipo > 5) {
+                        return false;
+                    }
                 }
-            }
                 // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
-                if ((worldSize < position) || (arr[2] == null) || (position < 0)){
+                if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
                     return false;
                 }
                 this.pos = position;
@@ -159,10 +159,10 @@ public class GameManager {
             if (pro.color != BLUE || pro.color != PURPLE || pro.color != BROWN || pro.color != GREEN) {
                 return false;
             }
-            if (!progColor.add(pro.color)){
+            if (!progColor.add(pro.color)) {
                 return false;
             }
-            if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)){
+            if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)) {
                 return false;
             }
         }
@@ -176,72 +176,80 @@ public class GameManager {
         return true;
     }
 
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException{
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
         return createInitialBoard(playerInfo, worldSize, null);
     }
 
 
-    public String getImagePng(int position){
+    public String getImagePng(int position) {
         return "";
     }
 
-    public List<Programmer> getProgrammers(boolean includeDefeated){
+    public List<Programmer> getProgrammers(boolean includeDefeated) {
         return programmers;
     }
 
-    public List<Programmer> getProgrammers(int position){
+    public List<Programmer> getProgrammers(int position) {
 
         return programmers;
     }
 
-    public int getCurrentPlayerID(){
+    public int getCurrentPlayerID() {
         int id = 0;
-        for (Programmer programmer: programmers){
-                id = programmer.getId();
+        for (Programmer programmer : programmers) {
+            id = programmer.getId();
         }
         return id;
     }
 
-    public boolean moveCurrentPlayer(int position){
+    public boolean moveCurrentPlayer(int position) {
 
         return true;
     }
 
-    public boolean gameIsOver(){
+    public boolean gameIsOver() {
         return true;
     }
 
 
-    public List<String> getGameResults(){
+    public List<String> getGameResults() {
         List<String> results = new ArrayList<String>();
 
         return results;
     }
 
-    public JPanel getAuthorsPanel(){
+    public JPanel getAuthorsPanel() {
 
         return null;
     }
 
-    public String getProgrammersInfo(){
-        for (Programmer programmer: programmers){
-            if(programmer.ferramentas == null){
-                return ""+programmer.nome +" : No tools";
+    public String getProgrammersInfo() {
+        List<Integer> progIdsSorted = new ArrayList<>();
+        for (Programmer programmer : programmers) {
+            //progIdsSorted.sort(programmer.id);
+            if (programmer.ferramentas == null) {
+                return "" + programmer.nome + " : No tools";
             }
-          return ""+programmer.nome+" | "+programmer.ferramentas;
+            return "" + programmer.nome + " | " + programmer.ferramentas;
         }
 
-    public String reactToAbyssOrTool(){
-        return "";
+        return null;
     }
 
-    public String getTitle(int position){
-
-
+        public String reactToAbyssOrTool () {
+            return "";
         }
-        return "";
-    }
-    public boolean saveGame(File file){return true;}
-    public boolean loadGame(File file){return true;}
 
-}
+        public String getTitle ( int position){
+
+            return "";
+        }
+        public boolean saveGame (File file){
+            return true;
+        }
+        public boolean loadGame (File file){
+            return true;
+        }
+
+    }
+
