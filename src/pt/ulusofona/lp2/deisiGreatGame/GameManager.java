@@ -197,7 +197,7 @@ public class GameManager {
         File file = new File("images");
         String abs = file.getAbsolutePath();
 
-        return (checkPosition(position)) ? abs : null;
+        return (checkPosition(position)) ? abs : "";
     }
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
