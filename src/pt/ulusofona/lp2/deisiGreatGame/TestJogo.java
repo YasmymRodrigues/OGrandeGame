@@ -3,6 +3,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import org.junit.Test;
 import org.junit.experimental.theories.suppliers.TestedOn;
 
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +34,12 @@ public class TestJogo {
     @Test
     public void teste02getImagepng()throws  InvalidInitialBoardException{
         GameManager game = new GameManager();
-        String noValue = "";
+        File file = new File("images");
+        String noValue = "src/images";
 
         game.getImagePng(2);
-        assertEquals("",game.getImagePng(2));
-
+        assertEquals(noValue,game.getImagePng(2));
+        //C:\Users\Asus\IdeaProjects\OGrandeGame\lib\LP2-GuiViewer2122-p2-1.0.2.jar!\images
     }
 
     @Test

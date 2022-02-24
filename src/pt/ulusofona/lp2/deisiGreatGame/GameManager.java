@@ -23,6 +23,7 @@ public class GameManager {
     List<Abismo> abismos = new ArrayList<>();
     ProgrammerColor programmerColor;
     int currentPlayerID;
+    File file = new File("src/images");
 
     public GameManager() {
     }
@@ -197,7 +198,11 @@ public class GameManager {
         File file = new File("images");
         String abs = file.getAbsolutePath();
 
-        return (checkPosition(position)) ? abs : "";
+        if (position <= 0 || position > 100){
+            return "Erro";
+        }
+
+        return file.getName();
     }
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
