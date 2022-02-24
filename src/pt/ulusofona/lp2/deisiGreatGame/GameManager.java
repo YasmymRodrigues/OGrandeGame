@@ -195,14 +195,8 @@ public class GameManager {
 
     public String getImagePng(int position) {
 
-        File file = new File("images");
-        String abs = file.getAbsolutePath();
 
-        if (position <= 0 || position > 100){
-            return "Erro";
-        }
-
-        return file.getName();
+        return "blank.png";
     }
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
@@ -271,7 +265,7 @@ public class GameManager {
 
         public String getTitle ( int position){
 
-            return "";
+            return null;
         }
         public boolean saveGame (File file){
             return true;
