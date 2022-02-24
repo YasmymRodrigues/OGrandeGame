@@ -1,12 +1,13 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class TestJogo {
 
@@ -22,10 +23,10 @@ public class TestJogo {
         game.createInitialBoard(playInfo, worldSize, abT);
         assertEquals(Boolean.TRUE,game.createInitialBoard(playInfo, 10, abT));
 
-        List<Programmer> programmers = game.getProgrammers(5);
-        System.out.println(programmers);
+//        List<Programmer> programmers = game.getProgrammers(5);
+//        System.out.println(programmers);
 
-        List<Programmer> programmerInPosition = game.getProgrammers(1);
+        List<Programmer> programmerInPosition = game.getProgrammers(0);
         System.out.println(programmerInPosition);
     }
 
@@ -47,5 +48,13 @@ public class TestJogo {
         assertEquals("",game.getImagePng(2));
 
     }
+    @Test
+    public void teste04getCurrentPlayerID() throws InvalidInitialBoardException {
+        GameManager game = new GameManager();
+        game.getCurrentPlayerID();
+        int res = game.getCurrentPlayerID();
+    }
+    //@Test
+    //public void teste05getImagePng
 
 }

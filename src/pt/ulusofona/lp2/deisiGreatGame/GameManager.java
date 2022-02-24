@@ -1,9 +1,11 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-
+//https://deisi.ulusofona.pt/drop-project/upload/lp2-2122-projecto-especial
 
 import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
+import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +22,7 @@ public class GameManager {
     List<Programmer> programmers = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
     ProgrammerColor programmerColor;
+    int currentPlayerID;
 
     public GameManager() {
     }
@@ -45,7 +48,7 @@ public class GameManager {
         int id = 0;
         String nome = "";
         ProgrammerColor cor = null;
-        //Programmer Info
+        this.worldSize = worldSize;
         for (String[] arr : playerInfo) {
             id = Integer.parseInt(arr[0]); //Id do jogador
             progId.add(id);
@@ -168,7 +171,6 @@ public class GameManager {
         }
         programmers.add(programmer);
         this.programmers = programmers;
-        this.worldSize = worldSize;
         programmer.ferramentas = ferramentas;
         this.ferramentas = ferramentas;
         programmer.color = programmerColor;
@@ -180,9 +182,22 @@ public class GameManager {
         return createInitialBoard(playerInfo, worldSize, null);
     }
 
+    public Boolean checkPosition(int position){
+        if (position <= 0){
+            return false;
+        }
+        if (position > worldSize){
+            return false;
+        }
+        return true;
+    }
 
     public String getImagePng(int position) {
-        return "";
+
+        File file = new File("images");
+        String abs = file.getAbsolutePath();
+
+        return (checkPosition(position)) ? abs : null;
     }
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
@@ -201,6 +216,7 @@ public class GameManager {
         }
         return programmersList;
     }
+
 
     public int getCurrentPlayerID() {
         int id = 0;
