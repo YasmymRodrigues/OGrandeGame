@@ -31,7 +31,7 @@ public class TestJogo {
         System.out.println(programmerInPosition);
     }
 
-    @Test
+   /* @Test
     public void teste02getImagepng()throws  InvalidInitialBoardException{
         GameManager game = new GameManager();
         File file = new File("images");
@@ -49,7 +49,7 @@ public class TestJogo {
         game.getImagePng(2);
         assertEquals("",game.getImagePng(2));
 
-    }
+    }*/
     @Test
     public void teste04getCurrentPlayerID() throws InvalidInitialBoardException {
         GameManager game = new GameManager();

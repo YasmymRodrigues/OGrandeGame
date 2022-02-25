@@ -140,11 +140,11 @@ public class GameManager {
             if (type == 0) {
                 if (idDoTipo < 0 || idDoTipo > 9) {
                     return false;
-                } else {
-                    if (idDoTipo < 0 || idDoTipo > 5) {
-                        return false;
-                    }
+            } else {
+                if (idDoTipo < 0 || idDoTipo > 5) {
+                    return false;
                 }
+            }
                 // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
                 if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
                     return false;
@@ -194,9 +194,7 @@ public class GameManager {
     }
 
     public String getImagePng(int position) {
-
-
-        return "blank.png";
+        return "src/images";
     }
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
