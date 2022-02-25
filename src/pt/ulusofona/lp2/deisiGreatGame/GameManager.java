@@ -138,10 +138,10 @@ public class GameManager {
                 return false;
             }
             if (type == 0) {
-                if (idDoTipo < 0 || idDoTipo > 9) {
+                if (idDoTipo < 0 || idDoTipo > 10) {
                     return false;
             } else {
-                if (idDoTipo < 0 || idDoTipo > 5) {
+                if (idDoTipo < 0 || idDoTipo > 6) {
                     return false;
                 }
             }

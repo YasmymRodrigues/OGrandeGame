@@ -50,13 +50,11 @@ public class TestJogo {
         assertEquals("",game.getImagePng(2));
 
     }*/
-    @Test
+   /* @Test
     public void teste04getCurrentPlayerID() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
         game.getCurrentPlayerID();
         int res = game.getCurrentPlayerID();
-    }
-    //@Test
-    //public void teste05getImagePng
+    }*/
 
 }
