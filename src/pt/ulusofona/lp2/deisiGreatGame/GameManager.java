@@ -140,18 +140,20 @@ public class GameManager {
             if (type == 0) {
                 if (idDoTipo < 0 || idDoTipo > 10) {
                     return false;
+                }
             } else {
                 if (idDoTipo < 0 || idDoTipo > 6) {
                     return false;
                 }
             }
-                // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
-                if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
-                    return false;
-                }
-                this.pos = position;
+            // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
+            if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
+                return false;
             }
+            this.pos = position;
         }
+
+
 
         for (Programmer pro : programmers) {
             if (!progId.add(pro.id) || (pro.id > 4 || pro.id < 0)) { //todo I am not sure about this range
