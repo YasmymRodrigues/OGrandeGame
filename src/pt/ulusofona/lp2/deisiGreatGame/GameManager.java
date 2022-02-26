@@ -17,7 +17,7 @@ public class GameManager {
     String[][] playerInfo;
     String[][] abyssesAndTools;
     int worldSize;
-    int pos;
+    List<Integer> positions = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Programmer> programmers = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
@@ -138,11 +138,11 @@ public class GameManager {
                 return false;
             }
             if (type == 0) {
-                if (idDoTipo < 0 || idDoTipo > 10) {
+                if (idDoTipo < 0 || idDoTipo > 9) {
                     return false;
                 }
             } else {
-                if (idDoTipo < 0 || idDoTipo > 6) {
+                if (idDoTipo < 0 || idDoTipo > 5) {
                     return false;
                 }
             }
@@ -150,7 +150,8 @@ public class GameManager {
             if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
                 return false;
             }
-            this.pos = position;
+
+            this.positions.add(position);
         }
 
 
