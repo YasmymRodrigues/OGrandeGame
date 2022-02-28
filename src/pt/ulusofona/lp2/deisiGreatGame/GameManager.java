@@ -70,9 +70,8 @@ public class GameManager {
                 programmerColor = GREEN;
             }
         }
-
+        if (abyssesAndTools != null) {
         for (String[] arr : abyssesAndTools) {
-            if (abyssesAndTools != null) {
                 int type = Integer.parseInt(arr[0]);
                 int idDoTipo = Integer.parseInt(arr[1]);
                 int position = Integer.parseInt(arr[2]);
