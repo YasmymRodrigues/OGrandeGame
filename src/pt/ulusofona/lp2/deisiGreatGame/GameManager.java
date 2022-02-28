@@ -72,86 +72,88 @@ public class GameManager {
         }
 
         for (String[] arr : abyssesAndTools) {
-            int type = Integer.parseInt(arr[0]);
-            int idDoTipo = Integer.parseInt(arr[1]);
-            int position = Integer.parseInt(arr[2]);
-            if (type == 0) {
-                if (idDoTipo == 0) {
-                    Abismo erroDeSintaxe = new ErroDeSintaxe();
-                    abismos.add(erroDeSintaxe);
-                } else if (idDoTipo == 1) {
-                    Abismo erroDeLogica = new ErroDeLogica();
-                    abismos.add(erroDeLogica);
-                } else if (idDoTipo == 2) {
-                    Abismo exception = new Exception();
-                    abismos.add(exception);
-                } else if (idDoTipo == 3) {
-                    Abismo fileNotFoundException = new FileNotFoundException();
-                    abismos.add(fileNotFoundException);
-                } else if (idDoTipo == 4) {
-                    Abismo crash = new Crash();
-                    abismos.add(crash);
-                } else if (idDoTipo == 5) {
-                    Abismo duplicatedCode = new DuplicatedCode();
-                    abismos.add(duplicatedCode);
-                } else if (idDoTipo == 6) {
-                    Abismo efeitosSecundarios = new EfeitosSecundarios();
-                    abismos.add(efeitosSecundarios);
-                } else if (idDoTipo == 7) {
-                    Abismo bsod = new BlueScreenOfDeath();
-                    abismos.add(bsod);
-                } else if (idDoTipo == 8) {
-                    Abismo cicloInfinito = new CicloInfinito();
-                    abismos.add(cicloInfinito);
-                } else if (idDoTipo == 9) {
-                    Abismo segF = new SegmentationFault();
-                    abismos.add(segF);
+            if (abyssesAndTools != null) {
+                int type = Integer.parseInt(arr[0]);
+                int idDoTipo = Integer.parseInt(arr[1]);
+                int position = Integer.parseInt(arr[2]);
+                if (type == 0) {
+                    if (idDoTipo == 0) {
+                        Abismo erroDeSintaxe = new ErroDeSintaxe();
+                        abismos.add(erroDeSintaxe);
+                    } else if (idDoTipo == 1) {
+                        Abismo erroDeLogica = new ErroDeLogica();
+                        abismos.add(erroDeLogica);
+                    } else if (idDoTipo == 2) {
+                        Abismo exception = new Exception();
+                        abismos.add(exception);
+                    } else if (idDoTipo == 3) {
+                        Abismo fileNotFoundException = new FileNotFoundException();
+                        abismos.add(fileNotFoundException);
+                    } else if (idDoTipo == 4) {
+                        Abismo crash = new Crash();
+                        abismos.add(crash);
+                    } else if (idDoTipo == 5) {
+                        Abismo duplicatedCode = new DuplicatedCode();
+                        abismos.add(duplicatedCode);
+                    } else if (idDoTipo == 6) {
+                        Abismo efeitosSecundarios = new EfeitosSecundarios();
+                        abismos.add(efeitosSecundarios);
+                    } else if (idDoTipo == 7) {
+                        Abismo bsod = new BlueScreenOfDeath();
+                        abismos.add(bsod);
+                    } else if (idDoTipo == 8) {
+                        Abismo cicloInfinito = new CicloInfinito();
+                        abismos.add(cicloInfinito);
+                    } else if (idDoTipo == 9) {
+                        Abismo segF = new SegmentationFault();
+                        abismos.add(segF);
+                    } else {
+                        System.out.println("Not an abismo");
+                    }
                 } else {
-                    System.out.println("Not an abismo");
+                    if (idDoTipo == 0) {
+                        Ferramenta heranca = new Heranca();
+                        ferramentas.add(heranca);
+                    } else if (idDoTipo == 1) {
+                        Ferramenta progF = new ProgramacaoFuncional();
+                        ferramentas.add(progF);
+                    } else if (idDoTipo == 2) {
+                        Ferramenta unitarios = new Unitarios();
+                        ferramentas.add(unitarios);
+                    } else if (idDoTipo == 3) {
+                        Ferramenta tratEx = new TratamentoDeExcepcoes();
+                        ferramentas.add(tratEx);
+                    } else if (idDoTipo == 4) {
+                        Ferramenta ide = new IDE();
+                        ferramentas.add(ide);
+                    } else if (idDoTipo == 5) {
+                        Ferramenta helpProf = new AjudaDoProfessor();
+                        ferramentas.add(helpProf);
+                    }
                 }
-            } else {
-                if (idDoTipo == 0) {
-                    Ferramenta heranca = new Heranca();
-                    ferramentas.add(heranca);
-                } else if (idDoTipo == 1) {
-                    Ferramenta progF = new ProgramacaoFuncional();
-                    ferramentas.add(progF);
-                } else if (idDoTipo == 2) {
-                    Ferramenta unitarios = new Unitarios();
-                    ferramentas.add(unitarios);
-                } else if (idDoTipo == 3) {
-                    Ferramenta tratEx = new TratamentoDeExcepcoes();
-                    ferramentas.add(tratEx);
-                } else if (idDoTipo == 4) {
-                    Ferramenta ide = new IDE();
-                    ferramentas.add(ide);
-                } else if (idDoTipo == 5) {
-                    Ferramenta helpProf = new AjudaDoProfessor();
-                    ferramentas.add(helpProf);
-                }
-            }
-            //DONE: Validation ofAoA
-            if ((arr[0] == null)) {
-                return false;
-            }
-            if (type != 0 && type != 1) {
-                return false;
-            }
-            if (type == 0) {
-                if (idDoTipo < 0 || idDoTipo > 9) {
+                //DONE: Validation ofAoA
+                if ((arr[0] == null)) {
                     return false;
                 }
-            } else {
-                if (idDoTipo < 0 || idDoTipo > 5) {
+                if (type != 0 && type != 1) {
                     return false;
                 }
-            }
-            // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
-            if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
-                return false;
-            }
+                if (type == 0) {
+                    if (idDoTipo < 0 || idDoTipo > 9) {
+                        return false;
+                    }
+                } else {
+                    if (idDoTipo < 0 || idDoTipo > 5) {
+                        return false;
+                    }
+                }
+                // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
+                if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
+                    return false;
+                }
 
-            this.positions.add(position);
+                this.positions.add(position);
+            }
         }
 
 
