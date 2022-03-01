@@ -3,6 +3,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 //https://deisi.ulusofona.pt/drop-project/upload/lp2-2122-projecto-especial
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.io.InvalidObjectException;
@@ -18,12 +19,13 @@ public class GameManager {
     String[][] abyssesAndTools;
     int worldSize;
     List<Integer> positions = new ArrayList<>();
+    ArrayList<Language> linguagens = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Programmer> programmers = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
     ProgrammerColor programmerColor;
     int currentPlayerID;
-    File file = new File("src/images");
+
 
     public GameManager() {
     }
@@ -37,44 +39,72 @@ public class GameManager {
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
 
-        Programmer programmer = new Programmer();
+
         Language language = new Language();
-        List<Programmer> programmers = new ArrayList<>();
-        List<Abismo> abismos = new ArrayList<Abismo>();
-        List<Ferramenta> ferramentas = new ArrayList<Ferramenta>();
-        ArrayList<Language> languages = programmer.getLinguagens();
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
 
         int id = 0;
         String nome = "";
-        ProgrammerColor cor = null;
         this.worldSize = worldSize;
         for (String[] arr : playerInfo) {
             id = Integer.parseInt(arr[0]); //Id do jogador
             progId.add(id);
             nome = arr[1]; // nome do jogador
-            programmer.id = id;
-            programmer.nome = nome;
-            language.nome = arr[2]; //List of languages
-            languages.add(language);
-            programmer.linguagens = languages;
+            Programmer programmer = new Programmer();
+            programmer.setId(id);
+            programmer.setNome(nome);
+            String nomeLanguage = arr[2];
+            language.setNome(nomeLanguage); //List of languages
+            linguagens.add(language);
+            programmer.setLinguagens(linguagens);
+
 
             if (arr[3].equals("Blue")) {
                 programmerColor = BLUE;
+                programmer.setColor(programmerColor);
+
             } else if (arr[3].equals("Purple")) {
                 programmerColor = PURPLE;
+                programmer.setColor(programmerColor);
+
             } else if (arr[3].equals("Brown")) {
                 programmerColor = BROWN;
+                programmer.setColor(programmerColor);
+
             } else if (arr[3].equals("Green")) {
                 programmerColor = GREEN;
+                programmer.setColor(programmerColor);
+
+            }
+            programmers.add(programmer);
+        }
+
+        for (Programmer pro : programmers) {
+            if (!progId.add(pro.id) || (pro.id < 0)) { //todo I am not sure about this range
+                return false;
+            }
+            if ((pro.nome == null) || (pro.nome.isEmpty())) {
+                return false;
+            }
+            if (pro.color != BLUE || pro.color != PURPLE || pro.color != BROWN || pro.color != GREEN) {
+                return false;
+            }
+            if (!progColor.add(pro.color)) {
+                return false;
+            }
+            if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)) {
+                return false;
             }
         }
+
+        //Note: abyssesAndTools
         if (abyssesAndTools != null) {
         for (String[] arr : abyssesAndTools) {
                 int type = Integer.parseInt(arr[0]);
                 int idDoTipo = Integer.parseInt(arr[1]);
                 int position = Integer.parseInt(arr[2]);
+                this.positions.add(position);
                 if (type == 0) {
                     if (idDoTipo == 0) {
                         Abismo erroDeSintaxe = new ErroDeSintaxe();
@@ -129,7 +159,9 @@ public class GameManager {
                         Ferramenta helpProf = new AjudaDoProfessor();
                         ferramentas.add(helpProf);
                     }
+                    this.ferramentas = ferramentas;
                 }
+
                 //DONE: Validation ofAoA
                 if ((arr[0] == null)) {
                     return false;
@@ -150,36 +182,8 @@ public class GameManager {
                 if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
                     return false;
                 }
-
-                this.positions.add(position);
             }
         }
-
-
-
-        for (Programmer pro : programmers) {
-            if (!progId.add(pro.id) || (pro.id > 4 || pro.id < 0)) { //todo I am not sure about this range
-                return false;
-            }
-            if ((pro.nome == null) || (pro.nome.isEmpty())) {
-                return false;
-            }
-            if (pro.color != BLUE || pro.color != PURPLE || pro.color != BROWN || pro.color != GREEN) {
-                return false;
-            }
-            if (!progColor.add(pro.color)) {
-                return false;
-            }
-            if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)) {
-                return false;
-            }
-        }
-        programmers.add(programmer);
-        this.programmers = programmers;
-        programmer.ferramentas = ferramentas;
-        this.ferramentas = ferramentas;
-        programmer.color = programmerColor;
-
         return true;
     }
 

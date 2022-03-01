@@ -1,7 +1,5 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import org.w3c.dom.stylesheets.LinkStyle;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +10,7 @@ public class Programmer {
     ProgrammerColor color;
     int pos;
     List<Ferramenta> ferramentas;
+    String estado;
 
     Programmer(){}
     Programmer(String nome, int id, ProgrammerColor color){
@@ -21,13 +20,13 @@ public class Programmer {
         this.linguagens = new ArrayList<>();
     }
 
-    public Programmer(String nome, int id, ArrayList<Language> languages, ProgrammerColor cor, List<Ferramenta> ferramentas) {
+    /*public Programmer(String nome, int id, ArrayList<Language> languages, ProgrammerColor cor, List<Ferramenta> ferramentas) {
         this.nome = nome;
         this.id = id;
         this.linguagens = languages;
         this.color = cor;
         this.ferramentas = ferramentas;
-    }
+    }*/
     /*Programmer(String nome, int id, ProgrammerColor color, int pos){
         this.nome = nome;
         this.linguagens = new ArrayList<>();
@@ -37,8 +36,8 @@ public class Programmer {
     }*/
 
 
-    public void getProgrammers(String nome){
-        this.nome = nome;
+    public ArrayList<Programmer> programmers(){
+        return new ArrayList<Programmer>();
     }
 
     public void setId(int id) {
@@ -53,19 +52,24 @@ public class Programmer {
         return new ArrayList<Language>();
     }
 
+    public void setLinguagens(ArrayList<Language> linguagens){
+        this.linguagens = linguagens;
+    }
+
     public int getId(){return this.id;}
     public String getName(){ return this.nome;}
     public ProgrammerColor getColor(){ return color;}
+    public void setColor(ProgrammerColor color){
+        this.color = color;
+    }
 
     @Override
     public String toString() {
-        return "Programmer{" +
-                "nome='" + nome + '\'' +
-                ", linguagens=" + linguagens +
-                ", id=" + id +
-                ", color=" + color +
-                ", pos=" + pos +
-                ", ferramentas=" +ferramentas+
-                '}';
+        return "" + id +
+                "|" + nome +
+                "|" + pos +
+                "|" + ferramentas +
+                "|" + linguagens +
+                "|" +estado+"";
     }
 }
