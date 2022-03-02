@@ -159,7 +159,7 @@ public class GameManager {
                         Ferramenta helpProf = new AjudaDoProfessor();
                         ferramentas.add(helpProf);
                     }
-                    this.ferramentas = ferramentas;
+                  //note add ferramentas where ?
                 }
 
                 //DONE: Validation ofAoA

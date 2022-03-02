@@ -10,10 +10,12 @@ public class Programmer {
     ProgrammerColor color;
     int pos;
     List<Ferramenta> ferramentas;
-    String estado;
+    boolean estado;
 
-    Programmer(){}
-    Programmer(String nome, int id, ProgrammerColor color){
+    Programmer() {
+    }
+
+    Programmer(String nome, int id, ProgrammerColor color) {
         this.nome = nome;
         this.id = id;
         this.color = color;
@@ -36,7 +38,7 @@ public class Programmer {
     }*/
 
 
-    public ArrayList<Programmer> programmers(){
+    public ArrayList<Programmer> programmers() {
         return new ArrayList<Programmer>();
     }
 
@@ -52,24 +54,33 @@ public class Programmer {
         return new ArrayList<Language>();
     }
 
-    public void setLinguagens(ArrayList<Language> linguagens){
+    public void setLinguagens(ArrayList<Language> linguagens) {
         this.linguagens = linguagens;
     }
 
-    public int getId(){return this.id;}
-    public String getName(){ return this.nome;}
-    public ProgrammerColor getColor(){ return color;}
-    public void setColor(ProgrammerColor color){
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.nome;
+    }
+
+    public ProgrammerColor getColor() {
+        return color;
+    }
+
+    public void setColor(ProgrammerColor color) {
         this.color = color;
     }
 
     @Override
     public String toString() {
-        return "" + id +
-                "|" + nome +
-                "|" + pos +
-                "|" + ferramentas +
-                "|" + linguagens +
-                "|" +estado+"";
+        if (estado == true && !ferramentas.isEmpty()) {
+            return "" + id + nome + pos + "No tools " + linguagens + "";
+        } else {
+
+            return "" + id + nome + pos + ferramentas + linguagens + "";
+        }
     }
 }
