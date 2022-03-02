@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import javax.xml.namespace.QName;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,11 +77,19 @@ public class Programmer {
 
     @Override
     public String toString() {
+        Ferramenta ferramenta = new Ferramenta() {
+            @Override
+            public String toolName() {
+                return null;
+            }
+        };
+        Language language = new Language();
+
         if (estado == true && !ferramentas.isEmpty()) {
-            return "" + id + nome + pos + "No tools " + linguagens + "";
+            return " | " + id +" | "+ nome +" | "+ pos +" | "+ "No tools " +" | "+ linguagens + "";
         } else {
 
-            return "" + id + nome + pos + ferramentas + linguagens + "";
+            return " | " + id +" | "+ nome +" | "+ pos +" | "+ ferramenta.toolName() +" | "+ language.nome + "";
         }
     }
 }
