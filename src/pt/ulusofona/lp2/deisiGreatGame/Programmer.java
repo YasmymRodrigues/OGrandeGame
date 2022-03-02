@@ -84,12 +84,12 @@ public class Programmer {
             }
         };
         Language language = new Language();
+        Programmer programmer = new Programmer();
 
         if (estado == true && !ferramentas.isEmpty()) {
-            return " | " + id +" | "+ nome +" | "+ pos +" | "+ "No tools " +" | "+ linguagens + "";
+            return "" + id +" | "+ nome +" | "+ programmer.pos +" | "+ "No tools " +" | "+ language.nome + "";
         } else {
-
-            return " | " + id +" | "+ nome +" | "+ pos +" | "+ ferramenta.toolName() +" | "+ language.nome + "";
+            return "" + id +" | "+ nome +" | "+ programmer.pos +" | "+ ferramenta.toolName() +" | "+ language.nome + "";
         }
     }
 }

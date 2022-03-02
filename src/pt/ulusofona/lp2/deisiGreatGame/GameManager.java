@@ -1,7 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 //https://deisi.ulusofona.pt/drop-project/upload/lp2-2122-projecto-especial
-
+//move () + react () + getCurrentPlayerID()
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import java.io.File;
@@ -191,7 +191,7 @@ public class GameManager {
         return createInitialBoard(playerInfo, worldSize, null);
     }
 
-    public Boolean checkPosition(int position){
+    /*public Boolean checkPosition(int position){
         if (position <= 0){
             return false;
         }
@@ -199,7 +199,7 @@ public class GameManager {
             return false;
         }
         return true;
-    }
+    }*/
 
     public String getImagePng(int position) {
         return "src/images";
