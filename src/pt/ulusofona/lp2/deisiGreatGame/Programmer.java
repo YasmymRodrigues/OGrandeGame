@@ -23,13 +23,13 @@ public class Programmer {
         this.linguagens = new ArrayList<>();
     }
 
-    /*public Programmer(String nome, int id, ArrayList<Language> languages, ProgrammerColor cor, List<Ferramenta> ferramentas) {
+    public Programmer(String nome,int id, ArrayList<Language> languages, ProgrammerColor cor, List<Ferramenta> ferramentas) {
         this.nome = nome;
         this.id = id;
         this.linguagens = languages;
         this.color = cor;
         this.ferramentas = ferramentas;
-    }*/
+    }
     /*Programmer(String nome, int id, ProgrammerColor color, int pos){
         this.nome = nome;
         this.linguagens = new ArrayList<>();
