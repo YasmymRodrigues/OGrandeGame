@@ -1,12 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import org.junit.Test;
-import org.junit.experimental.theories.suppliers.TestedOn;
 
-import java.io.File;
 import java.io.InvalidObjectException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -61,6 +57,6 @@ public class TestJogo {
     @Test
     public void test05toStringProgrammers() throws InvalidObjectException{
         Programmer  programmer = new Programmer();
-        assertEquals("" + programmer.id +" | "+ programmer.nome +" | "+ programmer.pos +" | "+ "No tools " +" | "+ programmer.linguagens + "", programmer.toString());
+        assertEquals("" + programmer.id +" | "+ programmer.name +" | "+ programmer.pos +" | "+ "No tools " +" | "+ programmer.linguagens + "", programmer.toString());
     }
 }

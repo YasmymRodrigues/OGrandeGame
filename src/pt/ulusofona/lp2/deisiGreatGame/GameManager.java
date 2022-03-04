@@ -3,10 +3,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 //https://deisi.ulusofona.pt/drop-project/upload/lp2-2122-projecto-especial
 //move () + react () + getCurrentPlayerID()
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
 import java.io.File;
-import java.io.IOException;
-import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,12 +16,10 @@ public class GameManager {
     String[][] abyssesAndTools;
     int worldSize;
     List<Integer> positions = new ArrayList<>();
-    ArrayList<Language> linguagens = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Programmer> programmers = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
-    ProgrammerColor programmerColor;
-    int currentPlayerID;
+
 
 
     public GameManager() {
@@ -40,7 +35,7 @@ public class GameManager {
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
 
 
-        Language language = new Language();
+
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
 
@@ -53,30 +48,33 @@ public class GameManager {
             nome = arr[1]; // nome do jogador
             Programmer programmer = new Programmer();
             programmer.setId(id);
-            programmer.setNome(nome);
-            String nomeLanguage = arr[2];
-            language.setNome(nomeLanguage); //List of languages
-            linguagens.add(language);
-            programmer.setLinguagens(linguagens);
-
+            programmer.setName(nome);
+            String nomesLanguage = arr[2];
+            String[] arrayLanguage = nomesLanguage.split(",");
+            for(String lang: arrayLanguage){
+                Language language1 = new Language(lang);
+                programmer.getLinguagens().add(language1);
+            }
 
             if (arr[3].equals("Blue")) {
-                programmerColor = BLUE;
-                programmer.setColor(programmerColor);
+
+                programmer.setColor(BLUE);
 
             } else if (arr[3].equals("Purple")) {
-                programmerColor = PURPLE;
-                programmer.setColor(programmerColor);
+
+                programmer.setColor(PURPLE);
 
             } else if (arr[3].equals("Brown")) {
-                programmerColor = BROWN;
-                programmer.setColor(programmerColor);
+
+                programmer.setColor(BROWN);
 
             } else if (arr[3].equals("Green")) {
-                programmerColor = GREEN;
-                programmer.setColor(programmerColor);
+
+                programmer.setColor(GREEN);
 
             }
+
+            programmer.setPos(1); // todos os programadores começam na posição 1
             programmers.add(programmer);
         }
 
@@ -84,7 +82,7 @@ public class GameManager {
             if (!progId.add(pro.id) || (pro.id < 0)) { //todo I am not sure about this range
                 return false;
             }
-            if ((pro.nome == null) || (pro.nome.isEmpty())) {
+            if ((pro.name == null) || (pro.name.isEmpty())) {
                 return false;
             }
             if (pro.color != BLUE || pro.color != PURPLE || pro.color != BROWN || pro.color != GREEN) {
@@ -98,7 +96,7 @@ public class GameManager {
             }
         }
 
-        //Note: abyssesAndTools
+        /*//Note: abyssesAndTools
         if (abyssesAndTools != null) {
         for (String[] arr : abyssesAndTools) {
                 int type = Integer.parseInt(arr[0]);
@@ -183,7 +181,7 @@ public class GameManager {
                     return false;
                 }
             }
-        }
+        }*/
         return true;
     }
 
@@ -191,18 +189,8 @@ public class GameManager {
         return createInitialBoard(playerInfo, worldSize, null);
     }
 
-    /*public Boolean checkPosition(int position){
-        if (position <= 0){
-            return false;
-        }
-        if (position > worldSize){
-            return false;
-        }
-        return true;
-    }*/
-
-    public String getImagePng(int position) {
-        return "src/images";
+     public String getImagePng(int position) {
+        return "blank.png";
     }
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
@@ -212,11 +200,11 @@ public class GameManager {
     public List<Programmer> getProgrammers(int position) {
         List<Programmer> programmersList = new ArrayList<>();
         for (Programmer programmer: programmers){
-            if(programmer.pos == position){
+            if(programmer.getPos() == position){
                 programmersList.add(programmer);
             }else{
                 return null;
-                //todo verificação position is invalid OR não existe programadores na posicao indicada
+                //todo: verificação position is invalid OR não existe programadores na posicao indicada
             }
         }
         return programmersList;
@@ -227,6 +215,7 @@ public class GameManager {
         int id = 0;
         for (Programmer programmer : programmers) {
             id = programmer.getId();
+            return id;
         }
         return id;
     }
@@ -257,9 +246,9 @@ public class GameManager {
         for (Programmer programmer : programmers) {
             //progIdsSorted.sort(programmer.id);
             if (programmer.ferramentas == null) {
-                return "" + programmer.nome + " : No tools";
+                return "" + programmer.name + " : No tools";
             }
-            return "" + programmer.nome + " | " + programmer.ferramentas;
+            return "" + programmer.name + " | " + programmer.ferramentas;
         }
 
         return null;

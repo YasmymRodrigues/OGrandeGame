@@ -3,6 +3,9 @@ package pt.ulusofona.lp2.deisiGreatGame;
 public class Language {
     String nome;
 
+    public Language(String nome) {
+        this.nome = nome;
+    }
 
     public void setNome(String nome) {
         this.nome = nome;

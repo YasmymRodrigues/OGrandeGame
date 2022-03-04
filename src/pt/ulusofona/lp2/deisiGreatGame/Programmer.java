@@ -1,11 +1,10 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import javax.xml.namespace.QName;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Programmer {
-    String nome;
+    String name;
     int id;
     ArrayList<Language> linguagens;
     ProgrammerColor color;
@@ -14,22 +13,12 @@ public class Programmer {
     boolean estado;
 
     Programmer() {
-    }
-
-    Programmer(String nome, int id, ProgrammerColor color) {
-        this.nome = nome;
-        this.id = id;
-        this.color = color;
         this.linguagens = new ArrayList<>();
     }
 
-    public Programmer(String nome,int id, ArrayList<Language> languages, ProgrammerColor cor, List<Ferramenta> ferramentas) {
-        this.nome = nome;
-        this.id = id;
-        this.linguagens = languages;
-        this.color = cor;
-        this.ferramentas = ferramentas;
-    }
+
+
+
     /*Programmer(String nome, int id, ProgrammerColor color, int pos){
         this.nome = nome;
         this.linguagens = new ArrayList<>();
@@ -43,28 +32,29 @@ public class Programmer {
         return new ArrayList<Programmer>();
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public ArrayList<Language> getLinguagens() {
-        return new ArrayList<Language>();
+        return linguagens;
     }
 
     public void setLinguagens(ArrayList<Language> linguagens) {
         this.linguagens = linguagens;
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.nome;
     }
 
     public ProgrammerColor getColor() {
@@ -75,6 +65,37 @@ public class Programmer {
         this.color = color;
     }
 
+    public int getPos() {
+        return pos;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
+    }
+
+    public List<Ferramenta> getFerramentas() {
+        return ferramentas;
+    }
+
+    public void setFerramentas(List<Ferramenta> ferramentas) {
+        this.ferramentas = ferramentas;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public String converteArrayParaString(List<Language> languages){
+        String lang = "";
+        for(Language language: languages){
+            lang += language.nome+";";
+        }
+        return lang;
+    }
     @Override
     public String toString() {
         Ferramenta ferramenta = new Ferramenta() {
@@ -83,13 +104,13 @@ public class Programmer {
                 return null;
             }
         };
-        Language language = new Language();
+
         Programmer programmer = new Programmer();
 
         if (estado == true && !ferramentas.isEmpty()) {
-            return "" + id +" | "+ nome +" | "+ programmer.pos +" | "+ "No tools " +" | "+ language.nome + "";
+            return "" + id +" | "+ name +" | "+ programmer.pos +" | "+ "No tools " +" | "+ converteArrayParaString(linguagens) + "";
         } else {
-            return "" + id +" | "+ nome +" | "+ programmer.pos +" | "+ ferramenta.toolName() +" | "+ language.nome + "";
+            return "" + id +" | "+ name +" | "+ programmer.pos +" | "+ ferramenta.toolName() +" | "+ converteArrayParaString(linguagens) + "";
         }
     }
 }
