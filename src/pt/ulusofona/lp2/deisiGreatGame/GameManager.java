@@ -31,10 +31,7 @@ public class GameManager {
         this.abyssesAndTools = abyssesAndTools;
     }
 
-
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
-
-
 
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
@@ -79,7 +76,7 @@ public class GameManager {
         }
 
         for (Programmer pro : programmers) {
-            if (!progId.add(pro.id) || (pro.id < 0)) { //todo I am not sure about this range
+            if ((progId.add(pro.id) ||pro.id < 0)) { //todo I am not sure about this range
                 return false;
             }
             if ((pro.name == null) || (pro.name.isEmpty())) {
@@ -200,12 +197,7 @@ public class GameManager {
     public List<Programmer> getProgrammers(int position) {
         List<Programmer> programmersList = new ArrayList<>();
         for (Programmer programmer: programmers){
-            if(programmer.getPos() == position){
-                programmersList.add(programmer);
-            }else{
-                return null;
-                //todo: verificação position is invalid OR não existe programadores na posicao indicada
-            }
+            System.out.println(programmer.toString());
         }
         return programmersList;
     }

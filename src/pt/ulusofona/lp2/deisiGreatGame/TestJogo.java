@@ -59,4 +59,9 @@ public class TestJogo {
         Programmer  programmer = new Programmer();
         assertEquals("" + programmer.id +" | "+ programmer.name +" | "+ programmer.pos +" | "+ "No tools " +" | "+ programmer.linguagens + "", programmer.toString());
     }
+    @Test
+    public void test06getProgrammers() throws InvalidObjectException{
+        Programmer programmer = new Programmer();
+
+    }
 }

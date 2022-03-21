@@ -16,9 +16,6 @@ public class Programmer {
         this.linguagens = new ArrayList<>();
     }
 
-
-
-
     /*Programmer(String nome, int id, ProgrammerColor color, int pos){
         this.nome = nome;
         this.linguagens = new ArrayList<>();
@@ -92,10 +89,17 @@ public class Programmer {
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
         for(Language language: languages){
-            lang += language.nome+";";
+            if(languages.size() == 1) {
+                lang += language.nome;
+            }else{
+                lang += language.nome + ";";
+            }
         }
         return lang;
     }
+
+
+
     @Override
     public String toString() {
         Ferramenta ferramenta = new Ferramenta() {
@@ -107,10 +111,10 @@ public class Programmer {
 
         Programmer programmer = new Programmer();
 
-        if (estado == true && !ferramentas.isEmpty()) {
-            return "" + id +" | "+ name +" | "+ programmer.pos +" | "+ "No tools " +" | "+ converteArrayParaString(linguagens) + "";
+        if (estado && !ferramentas.isEmpty()) {
+            return "" + id +" | "+ name +" | "+ programmer.pos +" | "+ "No tools " +" | "+ converteArrayParaString(linguagens) + "|" + programmer.color;
         } else {
-            return "" + id +" | "+ name +" | "+ programmer.pos +" | "+ ferramenta.toolName() +" | "+ converteArrayParaString(linguagens) + "";
+            return "" + id +" | "+ name +" | "+ programmer.pos +" | "+ ferramenta.toolName() +" | "+ converteArrayParaString(linguagens) + "|" + programmer.color;
         }
     }
 }
