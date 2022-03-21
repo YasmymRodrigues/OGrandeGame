@@ -215,7 +215,7 @@ public class GameManager {
         int id = 0;
         for (Programmer programmer : programmers) {
             id = programmer.getId();
-            return id;
+            
         }
         return id;
     }
