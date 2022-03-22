@@ -98,8 +98,6 @@ public class Programmer {
         return lang;
     }
 
-
-
     @Override
     public String toString() {
         Ferramenta ferramenta = new Ferramenta() {

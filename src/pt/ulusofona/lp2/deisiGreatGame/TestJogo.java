@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.InvalidObjectException;
@@ -12,14 +13,14 @@ public class TestJogo {
     @Test
     public void teste01criarTabuleiro() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
-        String playInfo [][] = {{"1", "Marcos", "Python; Java", "Purple"}};
+        String playInfo [][] = {{"1", "Marcos", "Python; Java", "Purple"}, {"42", "Hello", "Python; Kotlin", "Blue"}};
         //String[][] board = new String[][]{{"1123", "Ole", "java, c", "Purple"}, {"126", "Hello", "python, kotlin", "Blue"}};
         String abT[][] = {{"1", "1", "5"}};
         int worldSize = 10;
 
 
         game.createInitialBoard(playInfo, worldSize, abT);
-        assertEquals(Boolean.TRUE,game.createInitialBoard(playInfo, 10, abT));
+        Assert.assertEquals(Boolean.TRUE,game.createInitialBoard(playInfo, 10, abT));
 
 //        List<Programmer> programmers = game.getProgrammers(5);
 //        System.out.println(programmers);

@@ -76,19 +76,19 @@ public class GameManager {
         }
 
         for (Programmer pro : programmers) {
-            if ((progId.add(pro.id) ||pro.id < 0)) { //todo I am not sure about this range
+            if (progId.add(pro.id) ||pro.id < 0) { //todo I am not sure about this range
                 return false;
             }
             if ((pro.name == null) || (pro.name.isEmpty())) {
                 return false;
             }
-            if (pro.color != BLUE || pro.color != PURPLE || pro.color != BROWN || pro.color != GREEN) {
+            if (pro.color != BLUE && pro.color != PURPLE && pro.color != BROWN && pro.color != GREEN) {
                 return false;
             }
             if (!progColor.add(pro.color)) {
                 return false;
             }
-            if ((programmers.size() > 4) || (worldSize >= programmers.size() * 2)) {
+            if ((programmers.size() > 4) || (worldSize <= programmers.size() * 2)) {
                 return false;
             }
         }
