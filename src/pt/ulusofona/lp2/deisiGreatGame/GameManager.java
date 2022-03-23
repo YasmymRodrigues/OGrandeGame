@@ -197,7 +197,9 @@ public class GameManager {
     public List<Programmer> getProgrammers(int position) {
         List<Programmer> programmersList = new ArrayList<>();
         for (Programmer programmer: programmers){
-            System.out.println(programmer.toString());
+            if(programmer.getPos() == position ){
+                programmersList.add(programmer);
+            }
         }
         return programmersList;
     }

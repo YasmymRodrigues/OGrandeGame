@@ -6,7 +6,7 @@ import java.util.List;
 public class Programmer {
     String name;
     int id;
-    ArrayList<Language> linguagens;
+    List<Language> linguagens;
     ProgrammerColor color;
     int pos;
     List<Ferramenta> ferramentas;
@@ -46,7 +46,7 @@ public class Programmer {
         this.id = id;
     }
 
-    public ArrayList<Language> getLinguagens() {
+    public List<Language> getLinguagens() {
         return linguagens;
     }
 

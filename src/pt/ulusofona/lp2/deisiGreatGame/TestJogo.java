@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.InvalidObjectException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -13,20 +14,41 @@ public class TestJogo {
     @Test
     public void teste01criarTabuleiro() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
-        String playInfo [][] = {{"1", "Marcos", "Python; Java", "Purple"}, {"42", "Hello", "Python; Kotlin", "Blue"}};
-        //String[][] board = new String[][]{{"1123", "Ole", "java, c", "Purple"}, {"126", "Hello", "python, kotlin", "Blue"}};
+        String playInfo [][] = {{"1", "Marcos", "Python", "Purple"}, {"2", "Lucas", "Python", "Blue"}};
         String abT[][] = {{"1", "1", "5"}};
         int worldSize = 10;
 
+        Language language1 = new Language("Python");
+        Language language1A = new Language("Java");
+        ProgrammerColor programmerColor1 = ProgrammerColor.PURPLE;
+        List<Language> languages1 = new ArrayList<>();
+        languages1.add(language1);
 
-        game.createInitialBoard(playInfo, worldSize, abT);
-        Assert.assertEquals(Boolean.TRUE,game.createInitialBoard(playInfo, 10, abT));
+        Programmer programmer1 = new Programmer();
+        programmer1.id = 1;
+        programmer1.name = "Marcos";
+        programmer1.linguagens = languages1;
+        programmer1.color = programmerColor1;
 
-//        List<Programmer> programmers = game.getProgrammers(5);
-//        System.out.println(programmers);
+        Language language2 = new Language("Python");
+        ProgrammerColor programmerColor2 = ProgrammerColor.BLUE;
+        List<Language> languages2 = new ArrayList<>();
+        languages2.add(language2);
+        Programmer programmer2 = new Programmer();
+        programmer2.id = 2;
+        programmer2.name = "Lucas";
+        programmer2.linguagens = languages2;
+        programmer2.color = programmerColor2;
 
-        List<Programmer> programmerInPosition = game.getProgrammers(0);
-        System.out.println(programmerInPosition);
+        List<Programmer> programmerInThatPosition = new ArrayList<>();
+        programmerInThatPosition.add(programmer1);
+        programmerInThatPosition.add(programmer2);
+
+        boolean results = game.createInitialBoard(playInfo, worldSize, abT);
+        Assert.assertEquals(Boolean.TRUE,results);
+
+        List<Programmer> programmerInPosition = game.getProgrammers(1);
+        Assert.assertEquals(programmerInThatPosition, programmerInPosition);
     }
 
    /* @Test
@@ -64,5 +86,18 @@ public class TestJogo {
     public void test06getProgrammers() throws InvalidObjectException{
         Programmer programmer = new Programmer();
 
+    }
+
+    @Test
+    public void test07converteArrayToString() throws InvalidObjectException{
+
+        Language language1 = new Language("Python");
+        Language language2 = new Language("Java");
+        Language language3 = new Language("Python");
+        List<Language> languages = new ArrayList<>();
+        languages.add(language1);
+        languages.add(language2);
+        languages.add(language3);
+        language.converteArrayParaString();
     }
 }
