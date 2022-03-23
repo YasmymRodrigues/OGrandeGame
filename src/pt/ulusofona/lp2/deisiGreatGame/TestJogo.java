@@ -3,6 +3,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class TestJogo {
         Assert.assertEquals(programmerInThatPosition, programmerInPosition);
     }
 
-   /* @Test
+    @Test
     public void teste02getImagepng()throws  InvalidInitialBoardException{
         GameManager game = new GameManager();
         File file = new File("images");
@@ -69,13 +70,13 @@ public class TestJogo {
         game.getImagePng(2);
         assertEquals("",game.getImagePng(2));
 
-    }*/
-   /* @Test
+    }
+   @Test
     public void teste04getCurrentPlayerID() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
         game.getCurrentPlayerID();
         int res = game.getCurrentPlayerID();
-    }*/
+    }
 
     @Test
     public void test05toStringProgrammers() throws InvalidObjectException{
@@ -84,13 +85,16 @@ public class TestJogo {
     }
     @Test
     public void test06getProgrammers() throws InvalidObjectException{
-        Programmer programmer = new Programmer();
+        GameManager game = new GameManager();
+        List<Programmer> programmers = game.getProgrammers(1);
+        assertEquals("Joaquim", programmers.get(0).name);
 
     }
 
     @Test
     public void test07converteArrayToString() throws InvalidObjectException{
-
+        Programmer programmer = new Programmer();
+        List<Language> lang = programmer.getLinguagens();
         Language language1 = new Language("Python");
         Language language2 = new Language("Java");
         Language language3 = new Language("Python");
@@ -98,6 +102,7 @@ public class TestJogo {
         languages.add(language1);
         languages.add(language2);
         languages.add(language3);
-        language.converteArrayParaString();
+        programmer.converteArrayParaString(languages);
+        assertEquals("Python", languages.get(0).nome);
     }
 }

@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.List;
+
 public class Language {
     String nome;
 
@@ -25,4 +27,6 @@ public class Language {
                 "nome='" + nome + '\'' +
                 '}';
     }
+
+
 }
