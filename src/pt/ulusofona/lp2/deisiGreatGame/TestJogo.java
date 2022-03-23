@@ -22,9 +22,16 @@ public class TestJogo {
         boolean results = game.createInitialBoard(playInfo, worldSize, abT); // Resultado Esperado
         Assert.assertEquals(Boolean.TRUE,results);
 
-        //Note: test function getProgrammers:
+        //Note: test function getProgrammers() class Game Manager:
         List<Programmer> programmerInPosition = game.getProgrammers(1); // Resultado Esperado
         assertEquals("Marcos", programmerInPosition.get(0).name);
+
+        //Note: test toString() class Programmer
+       /* Programmer  programmer = new Programmer();
+        assertEquals("" + programmer.id +" | "+ programmer.name +" | "+ programmer.pos +" | "+ "No tools " +" | "+ programmer.linguagens + "", programmer.toString());
+*/
+        int res = game.getCurrentPlayerID();
+        assertEquals(1, res);
 
     }
 
@@ -38,29 +45,24 @@ public class TestJogo {
    @Test
     public void teste03getCurrentPlayerID() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
-        game.getCurrentPlayerID();
         int res = game.getCurrentPlayerID();
+        assertEquals(1, res);
     }
 
-    @Test
+   @Test
     public void test04toStringProgrammers() throws InvalidObjectException{
-        Programmer  programmer = new Programmer();
-        assertEquals("" + programmer.id +" | "+ programmer.name +" | "+ programmer.pos +" | "+ "No tools " +" | "+ programmer.linguagens + "", programmer.toString());
+        Programmer  programmer = new Programmer("Pedro", 1, ProgrammerColor.PURPLE,1);
+        assertEquals("1 | Pedro | 1 | No tools |", programmer.toString());
     }
 
     @Test
     public void test05converteArrayToString() throws InvalidObjectException{
         Programmer programmer = new Programmer();
-        List<Language> lang = programmer.getLinguagens();
-        Language language1 = new Language("Python");
-        Language language2 = new Language("Java");
-        Language language3 = new Language("Python");
         List<Language> languages = new ArrayList<>();
-        languages.add(language1);
-        languages.add(language2);
-        languages.add(language3);
-        programmer.converteArrayParaString(languages);
-        assertEquals("Python", languages.get(0).nome);
+        languages.add(new Language("Python"));
+        languages.add(new Language("Java"));
+
+        assertEquals("Python;Java;", programmer.converteArrayParaString(languages));
 
 
     }

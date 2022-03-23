@@ -16,13 +16,13 @@ public class Programmer {
         this.linguagens = new ArrayList<>();
     }
 
-    /*Programmer(String nome, int id, ProgrammerColor color, int pos){
-        this.nome = nome;
+    Programmer(String name, int id, ProgrammerColor color, int pos){
+        this.name = name;
         this.linguagens = new ArrayList<>();
         this.id = id;
         this.color = color;
         this.pos = pos;
-    }*/
+    }
 
 
     public ArrayList<Programmer> programmers() {
