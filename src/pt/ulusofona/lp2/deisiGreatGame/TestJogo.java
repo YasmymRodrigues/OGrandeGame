@@ -19,12 +19,12 @@ public class TestJogo {
         String abT[][] = {{"1", "1", "5"}};
         int worldSize = 10;
 
-
         boolean results = game.createInitialBoard(playInfo, worldSize, abT); // Resultado Esperado
         Assert.assertEquals(Boolean.TRUE,results);
 
+        //Note: test function getProgrammers:
         List<Programmer> programmerInPosition = game.getProgrammers(1); // Resultado Esperado
-        assertEquals(1, programmerInPosition.get(0).name);
+        assertEquals("Marcos", programmerInPosition.get(0).name);
 
     }
 
@@ -59,19 +59,9 @@ public class TestJogo {
         Programmer  programmer = new Programmer();
         assertEquals("" + programmer.id +" | "+ programmer.name +" | "+ programmer.pos +" | "+ "No tools " +" | "+ programmer.linguagens + "", programmer.toString());
     }
-    @Test
-    public void test06getProgrammers() throws InvalidObjectException{
-        GameManager game = new GameManager();
-      /*  List<Programmer> programmers = game.getProgrammers(1);
-        assertEquals("Joaquim", programmers.get(0).name);*/
-
-        List<Programmer> programmerInPosition = game.getProgrammers(1); // Resultado Esperado
-        assertEquals(1, programmerInPosition.get(0).name);
-
-    }
 
     @Test
-    public void test07converteArrayToString() throws InvalidObjectException{
+    public void test06converteArrayToString() throws InvalidObjectException{
         Programmer programmer = new Programmer();
         List<Language> lang = programmer.getLinguagens();
         Language language1 = new Language("Python");
@@ -83,5 +73,7 @@ public class TestJogo {
         languages.add(language3);
         programmer.converteArrayParaString(languages);
         assertEquals("Python", languages.get(0).nome);
+
+
     }
 }
