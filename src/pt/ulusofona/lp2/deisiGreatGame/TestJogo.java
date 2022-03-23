@@ -31,37 +31,25 @@ public class TestJogo {
     @Test
     public void teste02getImagepng()throws  InvalidInitialBoardException{
         GameManager game = new GameManager();
-        File file = new File("images");
-        String noValue = "src/images";
-
         game.getImagePng(2);
-        assertEquals(noValue,game.getImagePng(2));
-        //C:\Users\Asus\IdeaProjects\OGrandeGame\lib\LP2-GuiViewer2122-p2-1.0.2.jar!\images
-    }
-
-    @Test
-    public void teste03getImagepng()throws  InvalidInitialBoardException{
-        GameManager game = new GameManager();
-        String noValue = "";
-        game.getImagePng(2);
-        assertEquals("",game.getImagePng(2));
+        assertEquals("blank.png",game.getImagePng(2));
 
     }
    @Test
-    public void teste04getCurrentPlayerID() throws InvalidInitialBoardException {
+    public void teste03getCurrentPlayerID() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
         game.getCurrentPlayerID();
         int res = game.getCurrentPlayerID();
     }
 
     @Test
-    public void test05toStringProgrammers() throws InvalidObjectException{
+    public void test04toStringProgrammers() throws InvalidObjectException{
         Programmer  programmer = new Programmer();
         assertEquals("" + programmer.id +" | "+ programmer.name +" | "+ programmer.pos +" | "+ "No tools " +" | "+ programmer.linguagens + "", programmer.toString());
     }
 
     @Test
-    public void test06converteArrayToString() throws InvalidObjectException{
+    public void test05converteArrayToString() throws InvalidObjectException{
         Programmer programmer = new Programmer();
         List<Language> lang = programmer.getLinguagens();
         Language language1 = new Language("Python");
