@@ -19,37 +19,13 @@ public class TestJogo {
         String abT[][] = {{"1", "1", "5"}};
         int worldSize = 10;
 
-        Language language1 = new Language("Python");
-        Language language1A = new Language("Java");
-        ProgrammerColor programmerColor1 = ProgrammerColor.PURPLE;
-        List<Language> languages1 = new ArrayList<>();
-        languages1.add(language1);
 
-        Programmer programmer1 = new Programmer();
-        programmer1.id = 1;
-        programmer1.name = "Marcos";
-        programmer1.linguagens = languages1;
-        programmer1.color = programmerColor1;
-
-        Language language2 = new Language("Python");
-        ProgrammerColor programmerColor2 = ProgrammerColor.BLUE;
-        List<Language> languages2 = new ArrayList<>();
-        languages2.add(language2);
-        Programmer programmer2 = new Programmer();
-        programmer2.id = 2;
-        programmer2.name = "Lucas";
-        programmer2.linguagens = languages2;
-        programmer2.color = programmerColor2;
-
-        List<Programmer> programmerInThatPosition = new ArrayList<>();
-        programmerInThatPosition.add(programmer1);
-        programmerInThatPosition.add(programmer2);
-
-        boolean results = game.createInitialBoard(playInfo, worldSize, abT);
+        boolean results = game.createInitialBoard(playInfo, worldSize, abT); // Resultado Esperado
         Assert.assertEquals(Boolean.TRUE,results);
 
-        List<Programmer> programmerInPosition = game.getProgrammers(1);
-        Assert.assertEquals(programmerInThatPosition, programmerInPosition);
+        List<Programmer> programmerInPosition = game.getProgrammers(1); // Resultado Esperado
+        assertEquals(1, programmerInPosition.get(0).name);
+
     }
 
     @Test
@@ -86,8 +62,11 @@ public class TestJogo {
     @Test
     public void test06getProgrammers() throws InvalidObjectException{
         GameManager game = new GameManager();
-        List<Programmer> programmers = game.getProgrammers(1);
-        assertEquals("Joaquim", programmers.get(0).name);
+      /*  List<Programmer> programmers = game.getProgrammers(1);
+        assertEquals("Joaquim", programmers.get(0).name);*/
+
+        List<Programmer> programmerInPosition = game.getProgrammers(1); // Resultado Esperado
+        assertEquals(1, programmerInPosition.get(0).name);
 
     }
 
