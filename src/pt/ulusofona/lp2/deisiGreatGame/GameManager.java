@@ -15,20 +15,13 @@ public class GameManager {
     String[][] playerInfo;
     String[][] abyssesAndTools;
     int worldSize;
-    List<Integer> positions = new ArrayList<>();
-    List<Ferramenta> ferramentas = new ArrayList<>();
     List<Programmer> programmers = new ArrayList<>();
+    List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
 
 
 
     public GameManager() {
-    }
-
-    public GameManager(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) {
-        this.playerInfo = playerInfo;
-        this.worldSize = worldSize;
-        this.abyssesAndTools = abyssesAndTools;
     }
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
@@ -93,16 +86,15 @@ public class GameManager {
             }
         }
 
-        /*//Note: abyssesAndTools
+        //Note: abyssesAndTools
         if (abyssesAndTools != null) {
         for (String[] arr : abyssesAndTools) {
                 int type = Integer.parseInt(arr[0]);
                 int idDoTipo = Integer.parseInt(arr[1]);
                 int position = Integer.parseInt(arr[2]);
-                this.positions.add(position);
                 if (type == 0) {
                     if (idDoTipo == 0) {
-                        Abismo erroDeSintaxe = new ErroDeSintaxe();
+                        Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de Sintaxe");
                         abismos.add(erroDeSintaxe);
                     } else if (idDoTipo == 1) {
                         Abismo erroDeLogica = new ErroDeLogica();
@@ -134,12 +126,13 @@ public class GameManager {
                     } else {
                         System.out.println("Not an abismo");
                     }
-                } else {
+                }
+                if(type == 1) {
                     if (idDoTipo == 0) {
-                        Ferramenta heranca = new Heranca();
+                        Ferramenta heranca = new Heranca("Herança");
                         ferramentas.add(heranca);
                     } else if (idDoTipo == 1) {
-                        Ferramenta progF = new ProgramacaoFuncional();
+                        Ferramenta progF = new ProgramacaoFuncional("Prog Funtional");
                         ferramentas.add(progF);
                     } else if (idDoTipo == 2) {
                         Ferramenta unitarios = new Unitarios();
@@ -154,7 +147,6 @@ public class GameManager {
                         Ferramenta helpProf = new AjudaDoProfessor();
                         ferramentas.add(helpProf);
                     }
-                  //note add ferramentas where ?
                 }
 
                 //DONE: Validation ofAoA
@@ -178,7 +170,7 @@ public class GameManager {
                     return false;
                 }
             }
-        }*/
+        }
         return true;
     }
 
@@ -206,17 +198,21 @@ public class GameManager {
 
 
     public int getCurrentPlayerID() {
-        int id = 0;
-        for (Programmer programmer : programmers) {
-            id = programmer.getId();
-            
-        }
-        return id;
+        return 0;
     }
 
-    public boolean moveCurrentPlayer(int position) {
-
+    public boolean moveCurrentPlayer(int nrSpaces) {
+        if(nrSpaces < 1 && nrSpaces > 6){
+            return false;
+        }
+        if(abismos.isEmpty()){
+            return false;
+        }
         return true;
+    }
+
+    public String reactToAbyssOrTool () {
+        return "";
     }
 
     public boolean gameIsOver() {
@@ -248,9 +244,6 @@ public class GameManager {
         return null;
     }
 
-        public String reactToAbyssOrTool () {
-            return "";
-        }
 
         public String getTitle ( int position){
 

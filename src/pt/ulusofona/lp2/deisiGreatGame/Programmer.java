@@ -14,14 +14,17 @@ public class Programmer {
 
     Programmer() {
         this.linguagens = new ArrayList<>();
+        this.ferramentas = new ArrayList<>();
     }
 
-    Programmer(String name, int id, ProgrammerColor color, int pos){
-        this.name = name;
-        this.linguagens = new ArrayList<>();
+    Programmer(int id, String name, int pos, List<Ferramenta> ferramentas, List<Language> linguagens, ProgrammerColor color){
         this.id = id;
+        this.name = name;
+        this.ferramentas = ferramentas;
+        this.linguagens = linguagens;
         this.color = color;
         this.pos = pos;
+
     }
 
 
@@ -88,7 +91,7 @@ public class Programmer {
 
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
-        for(Language language: languages){
+        for(Language language: linguagens){
             if(languages.size() == 1) {
                 lang += language.nome;
             }else{
@@ -100,19 +103,11 @@ public class Programmer {
 
     @Override
     public String toString() {
-        Ferramenta ferramenta = new Ferramenta() {
-            @Override
-            public String toolName() {
-                return null;
-            }
-        };
-
-        Programmer programmer = new Programmer();
-
-        if (estado && !ferramentas.isEmpty()) {
-            return "" + id +" | "+ name +" | "+ programmer.pos +" | "+ "No tools " +" | "+ converteArrayParaString(linguagens) + "|" + programmer.color;
+        //TODO: Ferramentas are now Null, not instantiated
+        if (ferramentas == null) {
+            return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +" | "+ converteArrayParaString(linguagens) + "|" + estado;
         } else {
-            return "" + id +" | "+ name +" | "+ programmer.pos +" | "+ ferramenta.toolName() +" | "+ converteArrayParaString(linguagens) + "|" + programmer.color;
+            return "" + id +" | "+ name +" | "+ pos +" | "+ ferramentas +" | "+ converteArrayParaString(linguagens) + "|" + estado;
         }
     }
 }
