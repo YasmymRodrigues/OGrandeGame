@@ -12,8 +12,6 @@ import java.util.Set;
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
 public class GameManager {
-    String[][] playerInfo;
-    String[][] abyssesAndTools;
     int worldSize;
     List<Programmer> programmers = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
@@ -47,21 +45,13 @@ public class GameManager {
             }
 
             if (arr[3].equals("Blue")) {
-
                 programmer.setColor(BLUE);
-
             } else if (arr[3].equals("Purple")) {
-
                 programmer.setColor(PURPLE);
-
             } else if (arr[3].equals("Brown")) {
-
                 programmer.setColor(BROWN);
-
             } else if (arr[3].equals("Green")) {
-
                 programmer.setColor(GREEN);
-
             }
 
             programmer.setPos(1); // todos os programadores começam na posição 1
@@ -97,34 +87,34 @@ public class GameManager {
                         Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de Sintaxe");
                         abismos.add(erroDeSintaxe);
                     } else if (idDoTipo == 1) {
-                        Abismo erroDeLogica = new ErroDeLogica();
+                        Abismo erroDeLogica = new ErroDeLogica("Erro de Logica");
                         abismos.add(erroDeLogica);
                     } else if (idDoTipo == 2) {
-                        Abismo exception = new Exception();
+                        Abismo exception = new Exception("Exception");
                         abismos.add(exception);
                     } else if (idDoTipo == 3) {
-                        Abismo fileNotFoundException = new FileNotFoundException();
+                        Abismo fileNotFoundException = new FileNotFoundException("FileNotFoundException");
                         abismos.add(fileNotFoundException);
                     } else if (idDoTipo == 4) {
-                        Abismo crash = new Crash();
+                        Abismo crash = new Crash("Crash");
                         abismos.add(crash);
                     } else if (idDoTipo == 5) {
-                        Abismo duplicatedCode = new DuplicatedCode();
+                        Abismo duplicatedCode = new DuplicatedCode("DulicatedCode");
                         abismos.add(duplicatedCode);
                     } else if (idDoTipo == 6) {
-                        Abismo efeitosSecundarios = new EfeitosSecundarios();
+                        Abismo efeitosSecundarios = new EfeitosSecundarios("EfeitosSecundarios");
                         abismos.add(efeitosSecundarios);
                     } else if (idDoTipo == 7) {
-                        Abismo bsod = new BlueScreenOfDeath();
+                        Abismo bsod = new BlueScreenOfDeath("BlueScreenOfDeath");
                         abismos.add(bsod);
                     } else if (idDoTipo == 8) {
-                        Abismo cicloInfinito = new CicloInfinito();
+                        Abismo cicloInfinito = new CicloInfinito("CicloInfinito");
                         abismos.add(cicloInfinito);
                     } else if (idDoTipo == 9) {
-                        Abismo segF = new SegmentationFault();
+                        Abismo segF = new SegmentationFault("SegmentationFault");
                         abismos.add(segF);
                     } else {
-                        System.out.println("Not an abismo");
+                        System.out.println("Not an abismo found");
                     }
                 }
                 if(type == 1) {
@@ -135,17 +125,19 @@ public class GameManager {
                         Ferramenta progF = new ProgramacaoFuncional("Prog Funtional");
                         ferramentas.add(progF);
                     } else if (idDoTipo == 2) {
-                        Ferramenta unitarios = new Unitarios();
+                        Ferramenta unitarios = new Unitarios("Unitarios");
                         ferramentas.add(unitarios);
                     } else if (idDoTipo == 3) {
-                        Ferramenta tratEx = new TratamentoDeExcepcoes();
+                        Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExcepcoes");
                         ferramentas.add(tratEx);
                     } else if (idDoTipo == 4) {
-                        Ferramenta ide = new IDE();
+                        Ferramenta ide = new IDE("IDE");
                         ferramentas.add(ide);
                     } else if (idDoTipo == 5) {
-                        Ferramenta helpProf = new AjudaDoProfessor();
+                        Ferramenta helpProf = new AjudaDoProfessor("AjudaDoProfessor");
                         ferramentas.add(helpProf);
+                    }else {
+                        System.out.println("Not a tool found");
                     }
                 }
 

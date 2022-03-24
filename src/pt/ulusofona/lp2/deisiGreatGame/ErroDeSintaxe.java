@@ -11,10 +11,6 @@ public class ErroDeSintaxe extends Abismo{
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     @Override
     public String abisName() {
         return nome;

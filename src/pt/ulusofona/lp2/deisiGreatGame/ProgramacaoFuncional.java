@@ -7,6 +7,10 @@ public class ProgramacaoFuncional extends Ferramenta{
         this.nome = nome;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     @Override
     public String toolName() {
         return nome;

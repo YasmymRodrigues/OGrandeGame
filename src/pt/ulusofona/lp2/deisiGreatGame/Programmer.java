@@ -27,11 +27,9 @@ public class Programmer {
 
     }
 
-
     public ArrayList<Programmer> programmers() {
         return new ArrayList<Programmer>();
     }
-
 
     public String getName() {
         return name;
@@ -57,8 +55,8 @@ public class Programmer {
         this.linguagens = linguagens;
     }
 
-    public ProgrammerColor getColor() {
-        return color;
+    public ProgrammerColor getColor(){
+            return color;
     }
 
     public void setColor(ProgrammerColor color) {

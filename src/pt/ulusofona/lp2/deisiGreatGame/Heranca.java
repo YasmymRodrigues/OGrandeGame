@@ -11,12 +11,9 @@ public class Heranca extends Ferramenta {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     @Override
     public String toolName() {
-        return "Herança";
+        return nome;
     }
 }
