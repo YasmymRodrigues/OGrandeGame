@@ -44,12 +44,15 @@ public class TestJogo {
         boolean move = game.moveCurrentPlayer(1);
         assertEquals(Boolean.TRUE, move);
 
+        //Note: test reactToAbyssOrTool() class GM
+        String react = game.reactToAbyssOrTool();
+        assertEquals("It is a tool", react);
 
         //Note: test toString() class Programmer
         //Programmer  programmer = new Programmer("Pedro", 1, languages, ProgrammerColor.PURPLE,1);
        //assertEquals("1 | Pedro | 1 | No tools | Python;Java | false", programmer.toString());
 
-        //Note: Test getCurrentPlayerID()
+        //Note: Test getCurrentPlayerID() class GM
         //int res = game.getCurrentPlayerID();
         //assertEquals(1, res);
 
