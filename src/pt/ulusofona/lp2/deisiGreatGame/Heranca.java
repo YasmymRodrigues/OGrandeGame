@@ -1,16 +1,9 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class Heranca extends Ferramenta {
-    String nome;
-
-    public Heranca(String nome) {
-        this.nome = nome;
+    public Heranca(String nome, int idFerramenta) {
+        super(nome, idFerramenta);
     }
-
-    public String getNome() {
-        return nome;
-    }
-
 
     @Override
     public String toolName() {

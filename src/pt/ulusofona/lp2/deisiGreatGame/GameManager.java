@@ -75,7 +75,6 @@ public class GameManager {
                 return false;
             }
         }
-
         //Note: abyssesAndTools
         if (abyssesAndTools != null) {
         for (String[] arr : abyssesAndTools) {
@@ -84,34 +83,34 @@ public class GameManager {
                 int position = Integer.parseInt(arr[2]);
                 if (type == 0) {
                     if (idDoTipo == 0) {
-                        Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de Sintaxe");
+                        Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de Sintaxe", 0);
                         abismos.add(erroDeSintaxe);
                     } else if (idDoTipo == 1) {
-                        Abismo erroDeLogica = new ErroDeLogica("Erro de Logica");
+                        Abismo erroDeLogica = new ErroDeLogica("Erro de Logica", 1);
                         abismos.add(erroDeLogica);
                     } else if (idDoTipo == 2) {
-                        Abismo exception = new Exception("Exception");
+                        Abismo exception = new Exception("Exception", 2);
                         abismos.add(exception);
                     } else if (idDoTipo == 3) {
-                        Abismo fileNotFoundException = new FileNotFoundException("FileNotFoundException");
+                        Abismo fileNotFoundException = new FileNotFoundException("FileNotFoundException", 3);
                         abismos.add(fileNotFoundException);
                     } else if (idDoTipo == 4) {
-                        Abismo crash = new Crash("Crash");
+                        Abismo crash = new Crash("Crash", 4);
                         abismos.add(crash);
                     } else if (idDoTipo == 5) {
-                        Abismo duplicatedCode = new DuplicatedCode("DulicatedCode");
+                        Abismo duplicatedCode = new DuplicatedCode("DulicatedCode", 5);
                         abismos.add(duplicatedCode);
                     } else if (idDoTipo == 6) {
-                        Abismo efeitosSecundarios = new EfeitosSecundarios("EfeitosSecundarios");
+                        Abismo efeitosSecundarios = new EfeitosSecundarios("EfeitosSecundarios", 6);
                         abismos.add(efeitosSecundarios);
                     } else if (idDoTipo == 7) {
-                        Abismo bsod = new BlueScreenOfDeath("BlueScreenOfDeath");
+                        Abismo bsod = new BlueScreenOfDeath("BlueScreenOfDeath", 7);
                         abismos.add(bsod);
                     } else if (idDoTipo == 8) {
-                        Abismo cicloInfinito = new CicloInfinito("CicloInfinito");
+                        Abismo cicloInfinito = new CicloInfinito("CicloInfinito", 8);
                         abismos.add(cicloInfinito);
                     } else if (idDoTipo == 9) {
-                        Abismo segF = new SegmentationFault("SegmentationFault");
+                        Abismo segF = new SegmentationFault("SegmentationFault", 9);
                         abismos.add(segF);
                     } else {
                         System.out.println("Not an abismo found");
@@ -119,22 +118,22 @@ public class GameManager {
                 }
                 if(type == 1) {
                     if (idDoTipo == 0) {
-                        Ferramenta heranca = new Heranca("Herança");
+                        Ferramenta heranca = new Heranca("Herança", 0);
                         ferramentas.add(heranca);
                     } else if (idDoTipo == 1) {
-                        Ferramenta progF = new ProgramacaoFuncional("Prog Funtional");
+                        Ferramenta progF = new ProgramacaoFuncional("Prog Funtional", 1);
                         ferramentas.add(progF);
                     } else if (idDoTipo == 2) {
-                        Ferramenta unitarios = new Unitarios("Unitarios");
+                        Ferramenta unitarios = new Unitarios("Unitarios", 2);
                         ferramentas.add(unitarios);
                     } else if (idDoTipo == 3) {
-                        Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExcepcoes");
+                        Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExcepcoes", 3);
                         ferramentas.add(tratEx);
                     } else if (idDoTipo == 4) {
-                        Ferramenta ide = new IDE("IDE");
+                        Ferramenta ide = new IDE("IDE", 4);
                         ferramentas.add(ide);
                     } else if (idDoTipo == 5) {
-                        Ferramenta helpProf = new AjudaDoProfessor("AjudaDoProfessor");
+                        Ferramenta helpProf = new AjudaDoProfessor("AjudaDoProfessor", 5);
                         ferramentas.add(helpProf);
                     }else {
                         System.out.println("Not a tool found");
@@ -204,6 +203,10 @@ public class GameManager {
     }
 
     public String reactToAbyssOrTool () {
+        for(Abismo abs: abismos){
+
+        }
+
         return "";
     }
 

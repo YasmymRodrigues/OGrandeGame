@@ -1,14 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class CicloInfinito extends Abismo {
-    String nome;
-
-    public CicloInfinito(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
+    public CicloInfinito(String nome, int idAbismo) {
+        super(nome, idAbismo);
     }
 
     @Override

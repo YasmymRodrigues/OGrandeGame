@@ -1,18 +1,12 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class SegmentationFault extends Abismo {
-    String nome;
-
-    public SegmentationFault(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
+    public SegmentationFault(String nome, int idAbismo) {
+        super(nome, idAbismo);
     }
 
     @Override
     public String abisName() {
-        return "Segmentation Fault";
+        return nome;
     }
 }

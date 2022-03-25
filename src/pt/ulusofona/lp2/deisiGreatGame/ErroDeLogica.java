@@ -1,14 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class ErroDeLogica extends Abismo{
-    String nome;
-
-    public ErroDeLogica(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
+    public ErroDeLogica(String nome, int idAbismo) {
+        super(nome, idAbismo);
     }
 
     @Override
