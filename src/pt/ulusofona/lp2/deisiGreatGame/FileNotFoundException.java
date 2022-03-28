@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class FileNotFoundException extends Abismo {
-    public FileNotFoundException(String nome, int idAbismo) {
-        super(nome, idAbismo);
+    public FileNotFoundException(String nome, int idAbismo, int pos) {
+        super(nome, idAbismo, pos);
     }
 
     @Override

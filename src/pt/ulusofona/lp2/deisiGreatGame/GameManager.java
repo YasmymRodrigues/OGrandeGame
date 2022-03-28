@@ -4,15 +4,16 @@ package pt.ulusofona.lp2.deisiGreatGame;
 //move () + react () + getCurrentPlayerID()
 import javax.swing.*;
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.*;
 
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
 public class GameManager {
     int worldSize;
-    HashMap<Integer, Programmer> programmers = new HashMap<>();
-    HashMap<Integer, Ferramenta> ferramentas = new HashMap<>();
-    HashMap<Integer, Abismo> abismos = new HashMap<>();
+    List<Programmer> programmers = new ArrayList<>();
+    List<Ferramenta> ferramentas = new ArrayList<>();
+    List<Abismo> abismos = new ArrayList<>();
 
 
 
@@ -52,10 +53,10 @@ public class GameManager {
             }
 
             programmer.setPos(1); // todos os programadores começam na posição 1
-            programmers.put(programmer.id, programmer);
+            programmers.add(programmer);
         }
 
-        for (Programmer pro : programmers.values()) {
+        for (Programmer pro : programmers) {
             if (progId.add(pro.id) ||pro.id < 0) { //todo I am not sure about this range
                 return false;
             }
@@ -80,58 +81,58 @@ public class GameManager {
                 int position = Integer.parseInt(arr[2]);
                 if (type == 0) {
                     if (idDoTipo == 0) {
-                        Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de Sintaxe", 0);
-                        abismos.put(0, erroDeSintaxe);
+                        Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de Sintaxe", 0, position);
+                        abismos.add(0, erroDeSintaxe);
                     } else if (idDoTipo == 1) {
-                        Abismo erroDeLogica = new ErroDeLogica("Erro de Logica", 1);
-                        abismos.put(1, erroDeLogica);
+                        Abismo erroDeLogica = new ErroDeLogica("Erro de Logica", 1, position);
+                        abismos.add(1, erroDeLogica);
                     } else if (idDoTipo == 2) {
-                        Abismo exception = new Exception("Exception", 2);
-                        abismos.put(2, exception);
+                        Abismo exception = new Exception("Exception", 2, position);
+                        abismos.add(2, exception);
                     } else if (idDoTipo == 3) {
-                        Abismo fileNotFoundException = new FileNotFoundException("FileNotFoundException", 3);
-                        abismos.put(3, fileNotFoundException);
+                        Abismo fileNotFoundException = new FileNotFoundException("FileNotFoundException", 3, position);
+                        abismos.add(3, fileNotFoundException);
                     } else if (idDoTipo == 4) {
-                        Abismo crash = new Crash("Crash", 4);
-                        abismos.put(4, crash);
+                        Abismo crash = new Crash("Crash", 4, position);
+                        abismos.add(4, crash);
                     } else if (idDoTipo == 5) {
-                        Abismo duplicatedCode = new DuplicatedCode("DulicatedCode", 5);
-                        abismos.put(5, duplicatedCode);
+                        Abismo duplicatedCode = new DuplicatedCode("DulicatedCode", 5, position);
+                        abismos.add(5, duplicatedCode);
                     } else if (idDoTipo == 6) {
-                        Abismo efeitosSecundarios = new EfeitosSecundarios("EfeitosSecundarios", 6);
-                        abismos.put(6, efeitosSecundarios);
+                        Abismo efeitosSecundarios = new EfeitosSecundarios("EfeitosSecundarios", 6, position);
+                        abismos.add(6, efeitosSecundarios);
                     } else if (idDoTipo == 7) {
-                        Abismo bsod = new BlueScreenOfDeath("BlueScreenOfDeath", 7);
-                        abismos.put(7, bsod);
+                        Abismo bsod = new BlueScreenOfDeath("BlueScreenOfDeath", 7, position);
+                        abismos.add(7, bsod);
                     } else if (idDoTipo == 8) {
-                        Abismo cicloInfinito = new CicloInfinito("CicloInfinito", 8);
-                        abismos.put(8, cicloInfinito);
+                        Abismo cicloInfinito = new CicloInfinito("CicloInfinito", 8, position);
+                        abismos.add(8, cicloInfinito);
                     } else if (idDoTipo == 9) {
-                        Abismo segF = new SegmentationFault("SegmentationFault", 9);
-                        abismos.put(9, segF);
+                        Abismo segF = new SegmentationFault("SegmentationFault", 9, position);
+                        abismos.add(9, segF);
                     } else {
                         System.out.println("Not an abismo found");
                     }
                 }
                 if(type == 1) {
                     if (idDoTipo == 0) {
-                        Ferramenta heranca = new Heranca("Herança", 0);
-                        ferramentas.put(0, heranca);
+                        Ferramenta heranca = new Heranca("Herança", 0, position);
+                        ferramentas.add(0, heranca);
                     } else if (idDoTipo == 1) {
-                        Ferramenta progF = new ProgramacaoFuncional("Prog Funtional", 1);
-                        ferramentas.put(1, progF);
+                        Ferramenta progF = new ProgramacaoFuncional("Prog Funtional", 1, position);
+                        ferramentas.add(1, progF);
                     } else if (idDoTipo == 2) {
-                        Ferramenta unitarios = new Unitarios("Unitarios", 2);
-                        ferramentas.put(2, unitarios);
+                        Ferramenta unitarios = new Unitarios("Unitarios", 2, position);
+                        ferramentas.add(2, unitarios);
                     } else if (idDoTipo == 3) {
-                        Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExcepcoes", 3);
-                        ferramentas.put(4, tratEx);
+                        Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExcepcoes", 3, position);
+                        ferramentas.add(4, tratEx);
                     } else if (idDoTipo == 4) {
-                        Ferramenta ide = new IDE("IDE", 4);
-                        ferramentas.put(4, ide);
+                        Ferramenta ide = new IDE("IDE", 4, position);
+                        ferramentas.add(4, ide);
                     } else if (idDoTipo == 5) {
-                        Ferramenta helpProf = new AjudaDoProfessor("AjudaDoProfessor", 5);
-                        ferramentas.put(5, helpProf);
+                        Ferramenta helpProf = new AjudaDoProfessor("AjudaDoProfessor", 5, position);
+                        ferramentas.add(5, helpProf);
                     }else {
                         System.out.println("Not a tool found");
                     }
@@ -172,7 +173,7 @@ public class GameManager {
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
         List<Programmer> programmerList = new ArrayList<>();
-        for(Programmer pro: programmers.values()){
+        for(Programmer pro: programmers){
             programmerList.add(pro);
         }
         return programmerList;
@@ -180,7 +181,7 @@ public class GameManager {
 
     public List<Programmer> getProgrammers(int position) {
         List<Programmer> programmersList = new ArrayList<>();
-        for (Programmer programmer: programmers.values()){
+        for (Programmer programmer: programmers){
             if(programmer.pos == position ){
                 programmersList.add(programmer);
             }
@@ -194,25 +195,37 @@ public class GameManager {
     }
 
     public boolean moveCurrentPlayer(int nrSpaces) {
-        if(nrSpaces < 1 && nrSpaces > 6){
+        if(nrSpaces < 1 || nrSpaces > 6){
             return false;
         }
-        if(abismos.isEmpty()){
-            return false;
+
+        for (Abismo abs: abismos) {
+            for (Programmer pro : programmers) {
+                if (abs.pos == pro.pos) {
+                    return false;
+                }
+            }
         }
         return true;
     }
 
     public String reactToAbyssOrTool () {
 
-        for (Programmer pos : programmers.values()) {
-            if (abismos.containsKey(pos.pos)) {
+        for (Abismo abs: abismos) {
+        for (Programmer pro : programmers) {
+            if (abs.pos == pro.pos) {
                 return "It is a Abismo";
-            }else{
-                return "It is a tool";
             }
         }
-        return null;
+     }
+        for (Ferramenta ferr: ferramentas) {
+            for (Programmer pro : programmers) {
+                if (ferr.pos == pro.pos) {
+                    return "It is a Ferramenta";
+                }
+            }
+        }
+            return null;
     }
 
     public boolean gameIsOver() {
@@ -233,7 +246,7 @@ public class GameManager {
 
     public String getProgrammersInfo() {
         List<Integer> progIdsSorted = new ArrayList<>();
-        for (Programmer programmer : programmers.values()) {
+        for (Programmer programmer : programmers) {
             //progIdsSorted.sort(programmer.id);
             if (programmer.ferramentas == null) {
                 return "" + programmer.name + " : No tools";

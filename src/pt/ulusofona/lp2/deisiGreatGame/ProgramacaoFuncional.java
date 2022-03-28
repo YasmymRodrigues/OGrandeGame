@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class ProgramacaoFuncional extends Ferramenta{
-    public ProgramacaoFuncional(String nome, int idFerramenta) {
-        super(nome, idFerramenta);
+    public ProgramacaoFuncional(String nome, int idFerramenta, int pos) {
+        super(nome, idFerramenta, pos);
     }
 
     @Override

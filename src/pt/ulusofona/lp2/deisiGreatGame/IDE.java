@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class IDE extends Ferramenta {
-    public IDE(String nome, int idFerramenta) {
-        super(nome, idFerramenta);
+    public IDE(String nome, int idFerramenta, int pos) {
+        super(nome, idFerramenta, pos);
     }
 
     @Override

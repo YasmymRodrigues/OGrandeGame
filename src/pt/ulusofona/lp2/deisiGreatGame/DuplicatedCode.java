@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class DuplicatedCode extends Abismo{
-    public DuplicatedCode(String nome, int idAbismo) {
-        super(nome, idAbismo);
+    public DuplicatedCode(String nome, int idAbismo, int pos) {
+        super(nome, idAbismo, pos);
     }
 
     @Override

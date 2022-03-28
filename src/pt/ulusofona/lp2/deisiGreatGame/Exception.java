@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class Exception extends Abismo {
-    public Exception(String nome, int idAbismo) {
-        super(nome, idAbismo);
+    public Exception(String nome, int idAbismo, int pos) {
+        super(nome, idAbismo, pos);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class ErroDeSintaxe extends Abismo{
-    public ErroDeSintaxe(String nome, int idAbismo) {
-        super(nome, idAbismo);
+    public ErroDeSintaxe(String nome, int idAbismo, int pos) {
+        super(nome, idAbismo, pos);
     }
 
     @Override

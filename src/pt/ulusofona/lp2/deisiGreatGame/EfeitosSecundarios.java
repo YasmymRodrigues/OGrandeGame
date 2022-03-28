@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class EfeitosSecundarios extends Abismo {
-    public EfeitosSecundarios(String nome, int idAbismo) {
-        super(nome, idAbismo);
+    public EfeitosSecundarios(String nome, int idAbismo, int pos) {
+        super(nome, idAbismo, pos);
     }
 
     @Override
