@@ -14,6 +14,7 @@ public class GameManager {
     List<Programmer> programmers = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
+    List<Integer> mapa = new ArrayList<>();
 
 
 
@@ -210,11 +211,19 @@ public class GameManager {
     }
 
     public String reactToAbyssOrTool () {
+        Random dice = new Random();
 
-        for (Abismo abs: abismos) {
+      for (Abismo abs: abismos) {
         for (Programmer pro : programmers) {
             if (abs.pos == pro.pos) {
-                return "It is a Abismo";
+                if(abs.idAbismo == 0){
+                    pro.pos --;
+                    return "Erro de sintaxe - recua 1 casa";
+                }else if(abs.idAbismo == 1){
+                    pro.pos =
+                }
+
+
             }
         }
      }
