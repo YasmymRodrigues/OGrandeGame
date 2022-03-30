@@ -240,6 +240,8 @@ public class GameManager {
                         if(ferramentas.get(i).idFerramenta == 0){
 
                         }
+                    }else{
+                        return "Empty ";
                     }
                 }
             }
