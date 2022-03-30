@@ -4,7 +4,6 @@ package pt.ulusofona.lp2.deisiGreatGame;
 //move () + react () + getCurrentPlayerID()
 import javax.swing.*;
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
@@ -15,20 +14,17 @@ public class GameManager {
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
     List<Object> mapa = new ArrayList<>();
-    //Note: null, A abs, T tool
 
 
-
-    public GameManager() {
-    }
+    public GameManager() {}
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
 
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
 
-        int id = 0;
-        String nome = "";
+        int id;
+        String nome;
         this.worldSize = worldSize;
         for (String[] arr : playerInfo) {
             id = Integer.parseInt(arr[0]); //Id do jogador
@@ -141,7 +137,7 @@ public class GameManager {
                         mapa.add(unitarios);
                     } else if (idDoTipo == 3) {
                         Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExcepcoes", 3, position);
-                        ferramentas.add(4, tratEx);
+                        ferramentas.add(3, tratEx);
                         mapa.add(tratEx);
                     } else if (idDoTipo == 4) {
                         Ferramenta ide = new IDE("IDE", 4, position);
@@ -232,11 +228,19 @@ public class GameManager {
     public String reactToAbyssOrTool () {
         Random dice = new Random();
         List<Programmer> programmersPlayingNow;
-       for(int i = 0; i < mapa.size(); i++){
+       for(int i = 1; i < mapa.size(); i++){
            programmersPlayingNow = getProgrammers(i);
             if(mapa.get(i) != null){
                 for(Programmer programmer: programmersPlayingNow){
-                    //if (programmer.pos == ){}
+                    if (programmer.pos == abismos.get(i).pos){
+                        if(abismos.get(i).idAbismo == 0){
+
+                        }
+                    }else if(programmer.pos == ferramentas.get(i).pos){
+                        if(ferramentas.get(i).idFerramenta == 0){
+
+                        }
+                    }
                 }
             }
        }
