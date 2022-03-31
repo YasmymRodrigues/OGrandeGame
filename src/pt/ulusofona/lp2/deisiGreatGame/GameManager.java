@@ -216,38 +216,65 @@ public class GameManager {
             return false;
         }
 
-        for (Abismo abs: abismos) {
+       /* for (Abismo abs: abismos) {
             for (Programmer pro : programmers) {
                 if (abs.pos == pro.pos) {
                     return false;
                 }
             }
+        }*/
+        return true;
+    }
+
+    public boolean canGoBack(int pos, int dice){
+
+        if (pos - dice < 1){
+            return false;
         }
+
         return true;
     }
 
     public String reactToAbyssOrTool () {
-        Random dice = new Random();
+        Random random = new Random();
+        int dice = random.nextInt(7);
 
-        for(int i = 1; i < mapa.size(); i++){
-           if(mapa.get(i) != null){
-                for(Programmer programmer: getProgrammers(i)){
-                    if (programmer.pos == ferramentas.get(i).pos){
+            for (int i = 1; i < mapa.size(); i++) {
+                if (mapa.get(i) != null) {
+                    for (Programmer programmer : getProgrammers(i)) {
+                    /*if (programmer.pos == ferramentas.get(i).pos){
                         if(ferramentas.get(i).idFerramenta == 0){
                             programmer.ferramentas.add(ferramentas.get(i));
                             return "Herança - You have a new tool";
                         }
-                    }else if(programmer.pos == abismos.get(i).pos){
-                        if(abismos.get(i).idAbismo == 0){
-                            programmer.pos--;
-                            return "Erro de Sintaxe - go back one";
+                    }else */
+                        if (programmer.pos == abismos.get(i).pos) {
+                            if (abismos.get(i).idAbismo == 0) {
+                                if(programmer.pos - 1 > 0) {
+                                    programmer.pos--;
+                                    return "Erro de Sintaxe - go back one space";
+                                }
+                            } else if (abismos.get(i).idAbismo == 1) {
+                                int n = dice / 2;
+                                if(programmer.pos - n > 0) {
+                                    programmer.pos -= n;
+                                    return "Erro de Lógica - go back " + n + " space(s)";
+                                }
+                            } else if (abismos.get(i).idAbismo == 2) {
+                                if(programmer.pos - 2 > 0) {
+                                    programmer.pos -= 2;
+                                    return "Exception - go back 2 space(s)";
+                                }
+                            } else if (abismos.get(i).idAbismo == 3){
+
+                            }
+                        } else {
+                            return "Empty";
                         }
-                    }else{
-                        return "Empty";
                     }
                 }
             }
-       }
+
             return null;
     }
 
