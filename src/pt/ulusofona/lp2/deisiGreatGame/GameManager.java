@@ -238,6 +238,10 @@ public class GameManager {
     public String reactToAbyssOrTool () {
         Random random = new Random();
         int dice = random.nextInt(7);
+        //TODO: Confirmation about go in forward
+        //TODO: Confirmation about go back
+        //NOTE: How to save the last positions of each programmer
+
 
             for (int i = 1; i < mapa.size(); i++) {
                 if (mapa.get(i) != null) {
