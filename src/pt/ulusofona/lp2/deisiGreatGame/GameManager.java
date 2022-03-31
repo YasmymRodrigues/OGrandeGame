@@ -16,6 +16,7 @@ public class GameManager {
     List<Object> mapa = new ArrayList<>();
 
 
+
     public GameManager() {}
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
@@ -227,26 +228,26 @@ public class GameManager {
 
     public String reactToAbyssOrTool () {
         Random dice = new Random();
-        List<Programmer> programmersPlayingNow;
-       for(int i = 1; i < mapa.size(); i++){
-           programmersPlayingNow = getProgrammers(i);
-            if(mapa.get(i) != null){
-                for(Programmer programmer: programmersPlayingNow){
-                    if (programmer.pos == abismos.get(i).pos){
-                        if(abismos.get(i).idAbismo == 0){
 
-                        }
-                    }else if(programmer.pos == ferramentas.get(i).pos){
+        for(int i = 1; i < mapa.size(); i++){
+           if(mapa.get(i) != null){
+                for(Programmer programmer: getProgrammers(i)){
+                    if (programmer.pos == ferramentas.get(i).pos){
                         if(ferramentas.get(i).idFerramenta == 0){
-
+                            programmer.ferramentas.add(ferramentas.get(i));
+                            return "Tool - You have a new tool";
+                        }
+                    }else if(programmer.pos == abismos.get(i).pos){
+                        if(abismos.get(i).idAbismo == 0){
+                            programmer.pos--;
+                            return "Erro de Sintaxe - go back one";
                         }
                     }else{
-                        return "Empty ";
+                        return "Empty";
                     }
                 }
             }
        }
-
             return null;
     }
 
