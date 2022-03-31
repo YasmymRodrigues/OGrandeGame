@@ -212,6 +212,7 @@ public class GameManager {
     }
 
     public boolean moveCurrentPlayer(int nrSpaces) {
+
         if(nrSpaces < 1 || nrSpaces > 6){
             return false;
         }
@@ -226,21 +227,13 @@ public class GameManager {
         return true;
     }
 
-    public boolean canGoBack(int pos, int dice){
-
-        if (pos - dice < 1){
-            return false;
-        }
-
-        return true;
-    }
-
     public String reactToAbyssOrTool () {
         Random random = new Random();
         int dice = random.nextInt(7);
-        //TODO: Confirmation about go in forward
+        //TODO: Confirmation about go forward
         //TODO: Confirmation about go back
-        //NOTE: How to save the last positions of each programmer
+        //NOTE: How to save the last positions of each programmer ?
+        //NOTE: The dice is here or in Move() ?
 
 
             for (int i = 1; i < mapa.size(); i++) {
