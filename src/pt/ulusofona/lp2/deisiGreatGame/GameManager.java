@@ -235,7 +235,7 @@ public class GameManager {
                     if (programmer.pos == ferramentas.get(i).pos){
                         if(ferramentas.get(i).idFerramenta == 0){
                             programmer.ferramentas.add(ferramentas.get(i));
-                            return "Tool - You have a new tool";
+                            return "Herança - You have a new tool";
                         }
                     }else if(programmer.pos == abismos.get(i).pos){
                         if(abismos.get(i).idAbismo == 0){
