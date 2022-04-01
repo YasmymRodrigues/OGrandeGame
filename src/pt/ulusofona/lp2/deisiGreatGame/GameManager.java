@@ -14,6 +14,7 @@ public class GameManager {
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
     List<Object> mapa = new ArrayList<>();
+    List<Integer> positions = new ArrayList<>();
 
 
 
@@ -257,12 +258,28 @@ public class GameManager {
                                     programmer.pos -= n;
                                     return "Erro de Lógica - go back " + n + " space(s)";
                                 }
-                            } else if (abismos.get(i).idAbismo == 2) {
+                            }else if(abismos.get(i).idAbismo == 2){
                                 if(programmer.pos - 2 > 0) {
                                     programmer.pos -= 2;
                                     return "Exception - go back 2 space(s)";
                                 }
-                            } else if (abismos.get(i).idAbismo == 3){
+                            }else if(abismos.get(i).idAbismo == 3){
+                                if(programmer.pos - 3 > 0){
+                                    programmer.pos -= 3;
+                                }
+                            }else if(abismos.get(i).idAbismo == 4){
+                                programmer.pos = 1;
+
+                            }else if(abismos.get(i).idAbismo == 5){
+
+                            }else if(abismos.get(i).idAbismo == 6){
+
+                            }else if(abismos.get(i).idAbismo == 7){
+                                programmers.remove(programmer);
+
+                            }else if(abismos.get(i).idAbismo == 8){
+
+                            }else if(abismos.get(i).idAbismo == 9){
 
                             }
                         } else {
