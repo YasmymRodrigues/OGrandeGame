@@ -266,9 +266,11 @@ public class GameManager {
                             }else if(abismos.get(i).idAbismo == 3){
                                 if(programmer.pos - 3 > 0){
                                     programmer.pos -= 3;
+                                    return "File Not Found Exception - go back 3 spaces";
                                 }
                             }else if(abismos.get(i).idAbismo == 4){
                                 programmer.pos = 1;
+                                return "Crash - go back to the first space";
 
                             }else if(abismos.get(i).idAbismo == 5){
 
@@ -276,6 +278,7 @@ public class GameManager {
 
                             }else if(abismos.get(i).idAbismo == 7){
                                 programmers.remove(programmer);
+                                return "Blue Screen of Death - Fail";
 
                             }else if(abismos.get(i).idAbismo == 8){
 
