@@ -222,18 +222,19 @@ public class GameManager {
         for (Programmer programmer: getProgrammers(true)){
                 if (programmer.id == playerAtual){
                     programmer.posicoes.add(programmer.pos);
-                    if ((programmer.pos += nrSpaces) > worldSize)
-                            programmer.pos += nrSpaces;
+                    if ((programmer.pos += nrSpaces) > worldSize) {
+                        programmer.pos += nrSpaces;
+                    }
                 }
         }
 
-        /*for (Abismo abs: abismos) {
+        for (Abismo abs: abismos) {
             for (Programmer pro : programmers) {
                 if (abs.pos == pro.pos) {
                     return false;
                 }
             }
-        }*/
+        }
         return true;
     }
 
