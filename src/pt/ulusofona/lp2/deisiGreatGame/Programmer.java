@@ -11,6 +11,7 @@ public class Programmer {
     int pos;
     List<Ferramenta> ferramentas;
     boolean estado;
+    List<Integer> posicoes;
 
     Programmer() {
         this.linguagens = new ArrayList<>();

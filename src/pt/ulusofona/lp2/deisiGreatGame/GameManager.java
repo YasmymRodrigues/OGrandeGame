@@ -16,7 +16,7 @@ public class GameManager {
     List<Programmer> programmers = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
-    List<Object> mapa = new ArrayList<>();
+    List<Object> mapa = new ArrayList<>(); // array com os espaços do mapa
     List<Integer> positions = new ArrayList<>();
 
     public GameManager() {}
@@ -154,7 +154,6 @@ public class GameManager {
                         System.out.println("Not a tool found");
                     }
                 }
-
                 //DONE: Validation ofAoA
                 if ((arr[0] == null)) {
                     return false;
@@ -191,7 +190,7 @@ public class GameManager {
     public List<Programmer> getProgrammers(boolean includeDefeated) {
         List<Programmer> programmerList = new ArrayList<>();
         for(Programmer pro: programmers){
-            if(includeDefeated == false ){
+            if(includeDefeated == false){
                 programmerList.add(pro);
             } //note: não entendi bem essa função
         }
@@ -208,8 +207,10 @@ public class GameManager {
         return programmersList;
     }
 
-
     public int getCurrentPlayerID() {
+       /* for (Programmer programmer: getProgrammers(true)){
+
+        }*/
         return 1;
     }
 
@@ -218,8 +219,15 @@ public class GameManager {
         if(nrSpaces < 1 || nrSpaces > 6){
             return false;
         }
-
-
+        //Note: existe self-made function para ir direto dentro do programmer.id ?
+        int playerAtual = getCurrentPlayerID();
+        for (Programmer programmer: getProgrammers(true)){
+                if (programmer.id == playerAtual){
+                    programmer.posicoes.add(programmer.pos);
+                    if ((programmer.pos += nrSpaces) > worldSize)
+                            programmer.pos += nrSpaces;
+                }
+        }
 
        /* for (Abismo abs: abismos) {
             for (Programmer pro : programmers) {
@@ -232,71 +240,81 @@ public class GameManager {
     }
 
     public String reactToAbyssOrTool () {
-        //Random random = new Random();
-        //int dice = random.nextInt(7);
-        //TODO: Confirmation about go forward
+         //TODO: Confirmation about go forward
         //TODO: Confirmation about go back
         //NOTE: How to save the last positions of each programmer ?
-        //NOTE: The dice is here or in Move() ?
-        //Done: Apenas reações as Ferramentas e Abismos
+        //Note: Apenas reações as Ferramentas e Abismos
 
 
-            for (int i = 1; i < mapa.size(); i++) {
-                if (mapa.get(i) != null) {
-                for (Programmer programmer : getProgrammers(i)) {
+            for (int i = 1; i < mapa.size(); i++) { //percorre o mapa
+                if (mapa.get(i) != null) { // se o espaço no mapa não são blank então é uma tool ou abismo. Mas quando já há um player lá ?
+                    for (Programmer programmer : getProgrammers(true)) {
                     /*if (programmer.pos == ferramentas.get(i).pos){
                         if(ferramentas.get(i).idFerramenta == 0){
                             programmer.ferramentas.add(ferramentas.get(i));
                             return "Herança - You have a new tool";
                         }
                     }*/
-                    if (programmer.pos == abismos.get(i).pos) {
-                        if (abismos.get(i).idAbismo == 0) {
-                            if(programmer.pos - 1 > 0) {
-                                programmer.pos--;
-                                return "Erro de Sintaxe - go back one space";
-                            }else{
-                                return "Erro de Sintaxe - stay in the same space";
+                        if (programmer.pos == abismos.get(i).pos) {
+                            if (abismos.get(i).idAbismo == 0) {
+                                if(programmer.pos - 1 > 0) {
+                                    programmer.pos--;
+                                    return "Erro de Sintaxe - go back one space";
+                                }else{
+                                    return "Erro de Sintaxe - stay in the same space";
+                                }
+                            } else if (abismos.get(i).idAbismo == 1) {
+                                //todo: make the reaction - posição atual - numero de espaços oferecidos pela função move ?
+                                if((programmer.pos / 2) > 0) { // todo= salvar os valores em uma variavel que eu passo e diminuo, variavel global ???
+                                    return "Erro de Lógica - go back space(s)";
+                                }else{
+                                    return "Erro de Lógica - stay in the same space";
+                                }
                             }
-                        } else if (abismos.get(i).idAbismo == 1) {
-                            //todo: make the reaction - posição atual - numero de espaços oferecidos pela função move ?
-                            if(programmer.pos - moveCurrentPlayer(int nrSpaces) > 0) { // todo= salvar os valores em uma variavel que eu passo e diminuo, variavel global ???
-                                programmer.pos -= n;
-                                return "Erro de Lógica - go back space(s)";
+                            }else if(abismos.get(i).idAbismo == 2){
+                                if(programmer.pos - 2 > 0) {
+                                    return "Exception - go back 2 space(s)";
+                                }else{
+                                    return "Exception - stay in the same space";
+
+                                }
+                            }else if(abismos.get(i).idAbismo == 3){
+                                if(programmer.pos - 3 > 0){
+                                    programmer.pos -= 3;
+                                    return "File Not Found Exception - go back 3 spaces";
+                                }else{
+                                    return "File Not Found Exception - stay in the same space";
+                                }
+                            }else if(abismos.get(i).idAbismo == 4){
+                                programmer.pos = 1;
+                                return "Crash - go back to the first space";
+
+                            }else if(abismos.get(i).idAbismo == 5){
+                                programmer.pos = programmer.posicoes.get(0);
+                                return "Duplicated Code - Go back to your last position.";
+
+                            }else if(abismos.get(i).idAbismo == 6){
+                                programmer.pos = programmer.posicoes.get(1);
+                                return "Secondary Efects - Go back to your second last position";
+
+                            }else if(abismos.get(i).idAbismo == 7){
+                                programmers.remove(programmer);
+                                return "Blue Screen of Death - Fail";
+
+                            }else if(abismos.get(i).idAbismo == 8){
+                            //Todo: Não entendi essa parte, pois na função move eu já mando o programador para lá. Ou seja sempre vai ter alguém lá.
+                                /*if (mapa.contains(programmer)){
+
+                                }*/
+
+                            }else if(abismos.get(i).idAbismo == 9){
+
+                          } else {
+                            return "Empty";
                             }
-                        }else if(abismos.get(i).idAbismo == 2){
-                            if(programmer.pos - 2 > 0) {
-                                programmer.pos -= 2;
-                                return "Exception - go back 2 space(s)";
-                            }
-                        }else if(abismos.get(i).idAbismo == 3){
-                            if(programmer.pos - 3 > 0){
-                                programmer.pos -= 3;
-                                return "File Not Found Exception - go back 3 spaces";
-                            }
-                        }else if(abismos.get(i).idAbismo == 4){
-                            programmer.pos = 1;
-                            return "Crash - go back to the first space";
-
-                        }else if(abismos.get(i).idAbismo == 5){
-
-                        }else if(abismos.get(i).idAbismo == 6){
-
-                        }else if(abismos.get(i).idAbismo == 7){
-                            programmers.remove(programmer);
-                            return "Blue Screen of Death - Fail";
-
-                        }else if(abismos.get(i).idAbismo == 8){
-
-                        }else if(abismos.get(i).idAbismo == 9){
-
-                      }
-                    } else {
-                        return "Empty";
                         }
                     }
                 }
-            }
 
             return null;
     }
