@@ -6,7 +6,7 @@ import java.util.List;
 public class Programmer {
     String name;
     int id;
-    List<Language> linguagens;
+    List<Language> languages;
     ProgrammerColor color;
     int pos;
     List<Ferramenta> ferramentas;
@@ -14,15 +14,15 @@ public class Programmer {
     List<Integer> posicoes;
 
     Programmer() {
-        this.linguagens = new ArrayList<>();
+        this.languages = new ArrayList<>();
         this.ferramentas = new ArrayList<>();
     }
 
-    Programmer(int id, String name, int pos, List<Ferramenta> ferramentas, List<Language> linguagens, ProgrammerColor color){
+    Programmer(int id, String name, int pos, List<Ferramenta> ferramentas, List<Language> languages, ProgrammerColor color){
         this.id = id;
         this.name = name;
         this.ferramentas = ferramentas;
-        this.linguagens = linguagens;
+        this.languages = languages;
         this.color = color;
         this.pos = pos;
 
@@ -48,12 +48,12 @@ public class Programmer {
         this.id = id;
     }
 
-    public List<Language> getLinguagens() {
-        return linguagens;
+    public List<Language> getLanguages() {
+        return languages;
     }
 
-    public void setLinguagens(ArrayList<Language> linguagens) {
-        this.linguagens = linguagens;
+    public void setLanguages(ArrayList<Language> languages) {
+        this.languages = languages;
     }
 
     public ProgrammerColor getColor(){
@@ -90,7 +90,7 @@ public class Programmer {
 
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
-        for(Language language: linguagens){
+        for(Language language: languages){
             if(languages.size() == 1) {
                 lang += language.nome;
             }else{
@@ -104,9 +104,9 @@ public class Programmer {
     public String toString() {
         //TODO: Ferramentas are now Null, not instantiated
         if (ferramentas == null) {
-            return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +" | "+ converteArrayParaString(linguagens) + "|" + estado;
+            return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +" | "+ converteArrayParaString(languages) + "|" + estado;
         } else {
-            return "" + id +" | "+ name +" | "+ pos +" | "+ ferramentas +" | "+ converteArrayParaString(linguagens) + "|" + estado;
+            return "" + id +" | "+ name +" | "+ pos +" | "+ ferramentas +" | "+ converteArrayParaString(languages) + "|" + estado;
         }
     }
 }

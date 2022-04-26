@@ -40,7 +40,7 @@ public class GameManager {
             String[] arrayLanguage = nomesLanguage.split(",");
             for(String lang: arrayLanguage){
                 Language language1 = new Language(lang);
-                programmer.getLinguagens().add(language1);
+                programmer.getLanguages().add(language1);
             }
 
             if (arr[3].equals("Blue")) {
@@ -208,10 +208,8 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID() {
-       /* for (Programmer programmer: getProgrammers(true)){
 
-        }*/
-        return 1;
+         return 1;
     }
 
     public boolean moveCurrentPlayer(int nrSpaces) {
@@ -229,7 +227,7 @@ public class GameManager {
                 }
         }
 
-       /* for (Abismo abs: abismos) {
+        /*for (Abismo abs: abismos) {
             for (Programmer pro : programmers) {
                 if (abs.pos == pro.pos) {
                     return false;
@@ -302,7 +300,7 @@ public class GameManager {
                                 return "Blue Screen of Death - Fail";
 
                             }else if(abismos.get(i).idAbismo == 8){
-                            //Todo: Não entendi essa parte, pois na função move eu já mando o programador para lá. Ou seja sempre vai ter alguém lá.
+                            //Todo: Não entendi essa parte, pois na função move() eu já mando o programador para lá. Ou seja sempre vai ter alguém lá.
                                 /*if (mapa.contains(programmer)){
 
                                 }*/
@@ -310,7 +308,8 @@ public class GameManager {
                             }else if(abismos.get(i).idAbismo == 9){
 
                           } else {
-                            return "Empty";
+
+                            return null;
                             }
                         }
                     }
