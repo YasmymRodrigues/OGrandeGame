@@ -1,7 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 //https://deisi.ulusofona.pt/drop-project/upload/lp2-2122-projecto-especial
-//move () + react () + getCurrentPlayerID()
+//move() + react() + getCurrentPlayerID()
 //Note: Um objeto é uma instância - Ocorrência - de uma Classe
 //Note: Metódos static só podem referenciar vars ou outro metódo static (Não manipulam Vars do object)
 //Note: Quem manipula os metodos da classe são metódos da classe ?
@@ -17,7 +17,7 @@ public class GameManager {
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
     List<Object> mapa = new ArrayList<>(); // array com os espaços do mapa
-    List<Integer> positions = new ArrayList<>();
+
 
     public GameManager() {}
 
@@ -54,6 +54,7 @@ public class GameManager {
             }
 
             programmer.setPos(1); // todos os programadores começam na posição 1
+            programmer.estado = true;
             programmers.add(programmer);
         }
 
@@ -183,17 +184,21 @@ public class GameManager {
         return createInitialBoard(playerInfo, worldSize, null);
     }
 
-     public String getImagePng(int position) {
+    public String getImagePng(int position) {
         return "blank.png";
     }
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
         List<Programmer> programmerList = new ArrayList<>();
-        for(Programmer pro: programmers){
-            if(includeDefeated == false){
-                programmerList.add(pro);
-            } //note: não entendi bem essa função
-        }
+            if(includeDefeated){ // True todos os jogadores já existentes
+               programmerList = programmers;
+            }else{
+                for (Programmer programmer: programmers){
+                    if (programmer.estado == true){
+                        programmerList.add(programmer);
+                    }
+                }
+            }
         return programmerList;
     }
 
@@ -217,24 +222,22 @@ public class GameManager {
         if(nrSpaces < 1 || nrSpaces > 6){
             return false;
         }
-        //Note: existe self-made function para ir direto dentro do programmer.id ?
         int playerAtual = getCurrentPlayerID();
-        for (Programmer programmer: getProgrammers(true)){
+        /*for (Abismo abismo: abismos){
+            if (abismo.pos == playerAtual){
+                return false;
+            }
+        }*/
+
+        for (Programmer programmer: getProgrammers(false)){
                 if (programmer.id == playerAtual){
-                    programmer.posicoes.add(programmer.pos);
-                    if ((programmer.pos += nrSpaces) > worldSize) {
+                    //programmer.posicoes.add(programmer.pos); //programmer.posicoes is null
+                    if ((programmer.pos += nrSpaces) < worldSize) {
                         programmer.pos += nrSpaces;
                     }
                 }
         }
 
-        for (Abismo abs: abismos) {
-            for (Programmer pro : programmers) {
-                if (abs.pos == pro.pos) {
-                    return false;
-                }
-            }
-        }
         return true;
     }
 
@@ -258,6 +261,7 @@ public class GameManager {
                             if (abismos.get(i).idAbismo == 0) {
                                 if(programmer.pos - 1 > 0) {
                                     programmer.pos--;
+                                    programmer.estado = false;
                                     return "Erro de Sintaxe - go back one space";
                                 }else{
                                     return "Erro de Sintaxe - stay in the same space";
@@ -265,6 +269,7 @@ public class GameManager {
                             } else if (abismos.get(i).idAbismo == 1) {
                                 //todo: make the reaction - posição atual - numero de espaços oferecidos pela função move ?
                                 if((programmer.pos / 2) > 0) { // todo= salvar os valores em uma variavel que eu passo e diminuo, variavel global ???
+                                    programmer.estado = false;
                                     return "Erro de Lógica - go back space(s)";
                                 }else{
                                     return "Erro de Lógica - stay in the same space";
@@ -272,6 +277,7 @@ public class GameManager {
                             }
                             }else if(abismos.get(i).idAbismo == 2){
                                 if(programmer.pos - 2 > 0) {
+                                    programmer.estado = false;
                                     return "Exception - go back 2 space(s)";
                                 }else{
                                     return "Exception - stay in the same space";
@@ -280,24 +286,30 @@ public class GameManager {
                             }else if(abismos.get(i).idAbismo == 3){
                                 if(programmer.pos - 3 > 0){
                                     programmer.pos -= 3;
+                                    programmer.estado = false;
                                     return "File Not Found Exception - go back 3 spaces";
                                 }else{
                                     return "File Not Found Exception - stay in the same space";
                                 }
                             }else if(abismos.get(i).idAbismo == 4){
                                 programmer.pos = 1;
+                                programmer.estado = false;
                                 return "Crash - go back to the first space";
 
                             }else if(abismos.get(i).idAbismo == 5){
                                 programmer.pos = programmer.posicoes.get(0);
+                                programmer.estado = false;
                                 return "Duplicated Code - Go back to your last position.";
 
                             }else if(abismos.get(i).idAbismo == 6){
                                 programmer.pos = programmer.posicoes.get(1);
+                                programmer.estado = false;
                                 return "Secondary Efects - Go back to your second last position";
 
                             }else if(abismos.get(i).idAbismo == 7){
+                                programmer.estado = false;
                                 programmers.remove(programmer);
+
                                 return "Blue Screen of Death - Fail";
 
                             }else if(abismos.get(i).idAbismo == 8){
@@ -308,15 +320,12 @@ public class GameManager {
 
                             }else if(abismos.get(i).idAbismo == 9){
 
-                          } else {
-
-                            return null;
-                            }
+                          }
                         }
                     }
                 }
 
-            return null;
+            return "Nothing";
     }
 
     public boolean gameIsOver() {

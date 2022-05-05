@@ -88,6 +88,18 @@ public class Programmer {
         this.estado = estado;
     }
 
+    public void setLanguages(List<Language> languages) {
+        this.languages = languages;
+    }
+
+    public List<Integer> getPosicoes() {
+        return posicoes;
+    }
+
+    public void setPosicoes(List<Integer> posicoes) {
+        this.posicoes = posicoes;
+    }
+
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
         for(Language language: languages){
