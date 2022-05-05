@@ -18,13 +18,14 @@ public class Programmer {
         this.ferramentas = new ArrayList<>();
     }
 
-    Programmer(int id, String name, int pos, List<Ferramenta> ferramentas, List<Language> languages, ProgrammerColor color){
+    Programmer(int id, String name, int pos, List<Ferramenta> ferramentas, List<Language> languages, ProgrammerColor color, List<Integer> posicoes){
         this.id = id;
         this.name = name;
         this.ferramentas = ferramentas;
         this.languages = languages;
         this.color = color;
         this.pos = pos;
+        this.posicoes = new ArrayList<>();
 
     }
 
