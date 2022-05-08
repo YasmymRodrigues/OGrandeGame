@@ -45,8 +45,8 @@ public class TestJogo {
         //assertEquals(Boolean.TRUE, move);
 
         //Note: test reactToAbyssOrTool() class GM
-        //String react = game.reactToAbyssOrTool();
-        //assertEquals("Herança - You have a new tool", react);
+        String react = game.reactToAbyssOrTool();
+        assertEquals("Herança - You have a new tool", react);
 
         //Note: test toString() class Programmer
         //Programmer  programmer = new Programmer("Pedro", 1, languages, ProgrammerColor.PURPLE,1);

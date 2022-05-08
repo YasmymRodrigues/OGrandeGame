@@ -16,7 +16,7 @@ public class GameManager {
     List<Programmer> programmers = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
-    List<Object> mapa = new ArrayList<>(); // array com os espaços do mapa
+    Object[] mapa = new Object[worldSize]; // array com os espaços do mapa
 
 
     public GameManager() {}
@@ -25,11 +25,12 @@ public class GameManager {
 
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
+        Object[] mapa = new Object[worldSize];
 
         int id;
         String nome;
         this.worldSize = worldSize;
-        this.mapa = Arrays.asList(new Integer[worldSize]);
+
 
         for (String[] arr : playerInfo) {
             id = Integer.parseInt(arr[0]); //Id do jogador
@@ -89,43 +90,43 @@ public class GameManager {
                     if (idDoTipo == 0) {
                         Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de Sintaxe", 0, position);
                         abismos.add(erroDeSintaxe);
-                        mapa.add(position, erroDeSintaxe);
+                        mapa[position] = erroDeSintaxe;
                     } else if (idDoTipo == 1) {
                         Abismo erroDeLogica = new ErroDeLogica("Erro de Logica", 1, position);
                         abismos.add(erroDeLogica);
-                        mapa.add(position, erroDeLogica);
+                        mapa[position] = erroDeLogica;
                     } else if (idDoTipo == 2) {
                         Abismo exception = new Exception("Exception", 2, position);
                         abismos.add(exception);
-                        mapa.add(position, exception);
+                        mapa[position] = exception;
                     } else if (idDoTipo == 3) {
                         Abismo fileNotFoundException = new FileNotFoundException("FileNotFoundException", 3, position);
                         abismos.add(fileNotFoundException);
-                        mapa.add(position, fileNotFoundException);
+                        mapa[position] = fileNotFoundException;
                     } else if (idDoTipo == 4) {
                         Abismo crash = new Crash("Crash", 4, position);
                         abismos.add(crash);
-                        mapa.add(position, crash);
+                        mapa[position] = crash;
                     } else if (idDoTipo == 5) {
                         Abismo duplicatedCode = new DuplicatedCode("DulicatedCode", 5, position);
                         abismos.add(duplicatedCode);
-                        mapa.add(position, duplicatedCode);
+                        mapa[position] = duplicatedCode;
                     } else if (idDoTipo == 6) {
                         Abismo efeitosSecundarios = new EfeitosSecundarios("EfeitosSecundarios", 6, position);
                         abismos.add(efeitosSecundarios);
-                        mapa.add(position, efeitosSecundarios);
+                        mapa[position] = efeitosSecundarios;
                     } else if (idDoTipo == 7) {
                         Abismo bsod = new BlueScreenOfDeath("BlueScreenOfDeath", 7, position);
                         abismos.add(bsod);
-                        mapa.add(position, bsod);
+                        mapa[position] = bsod;
                     } else if (idDoTipo == 8) {
                         Abismo cicloInfinito = new CicloInfinito("CicloInfinito", 8, position);
                         abismos.add(cicloInfinito);
-                        mapa.add(position, cicloInfinito);
+                        mapa[position] = cicloInfinito;
                     } else if (idDoTipo == 9) {
                         Abismo segF = new SegmentationFault("SegmentationFault", 9, position);
                         abismos.add(segF);
-                        mapa.add(position, segF);
+                        mapa[position] = segF;
                     } else {
                         System.out.println("Not an abismo found");
                     }
@@ -134,31 +135,32 @@ public class GameManager {
                     if (idDoTipo == 0) {
                         Ferramenta heranca = new Heranca("Herança", 0, position);
                         ferramentas.add(heranca);
-                        mapa.add(heranca);
+                        mapa[position] = heranca;
                     } else if (idDoTipo == 1) {
                         Ferramenta progF = new ProgramacaoFuncional("Prog Funtional", 1, position);
                         ferramentas.add(progF);
-                        mapa.add(progF);
+                        mapa[position] = progF;
                     } else if (idDoTipo == 2) {
                         Ferramenta unitarios = new Unitarios("Unitarios", 2, position);
                         ferramentas.add(unitarios);
-                        mapa.add(unitarios);
+                        mapa[position] = unitarios;
                     } else if (idDoTipo == 3) {
                         Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExcepcoes", 3, position);
                         ferramentas.add(tratEx);
-                        mapa.add(tratEx);
+                        mapa[position] = tratEx;
                     } else if (idDoTipo == 4) {
                         Ferramenta ide = new IDE("IDE", 4, position);
                         ferramentas.add(ide);
-                        mapa.add(ide);
+                        mapa[position] = ide;
                     } else if (idDoTipo == 5) {
                         Ferramenta helpProf = new AjudaDoProfessor("AjudaDoProfessor", 5, position);
                         ferramentas.add(helpProf);
-                        mapa.add(helpProf);
+                        mapa[position] = helpProf;
                     }else {
                         System.out.println("Not a tool found");
                     }
                 }
+                this.mapa = mapa;
                 //DONE: Validation ofAoA
                 if ((arr[0] == null)) {
                     return false;
@@ -232,29 +234,33 @@ public class GameManager {
                 return false;
             }
         }*/
-
         for (Programmer programmer: getProgrammers(false)){
-                if (programmer.id == playerAtual){
-                    int pos = programmer.pos;
+                if (programmer.getId() == playerAtual){
+                    int pos = programmer.getPos();
                     int move = pos + nrSpaces;
+                    List<Integer> posicoesList = programmer.getPosicoes();
                     if (move < worldSize) {
-                        programmer.pos += nrSpaces;
-                        programmer.posicoes.add(programmer.pos);
+                        int newPos = programmer.getPos();
+                        newPos += nrSpaces;
+                        programmer.setPos(newPos);
+                        posicoesList.add(newPos);
+                        //programmer.posicoes.add(programmer.pos);
+                        programmer.setPosicoes(posicoesList);
                     }
                 }
         }
-
         return true;
     }
 
     public String reactToAbyssOrTool () {
-         //TODO: Confirmation about go forward
-        //TODO: Confirmation about go back
         //Note: Apenas reações as Ferramentas e Abismos
+        //TODO: Confirmation about go forward
+        //TODO: Confirmation about go back
+        //Todo: Meu mapa não tem blanks ainda
+        //Todo: Validar a posicao quando já tem um programador lá
 
-
-            for (int i = 1; i < worldSize; i++) { //percorre o world
-                if (mapa.get(i) != null) { // se o espaço no mapa não são blank então é uma tool ou abismo. Mas quando já há um player lá ?
+            for (int i = 1; i <= worldSize; i++) {
+                if (mapa[i] != null) {
                     for (Programmer programmer : getProgrammers(false)) {
                     /*if (programmer.pos == ferramentas.get(i).pos){
                         if(ferramentas.get(i).idFerramenta == 0){
@@ -262,8 +268,9 @@ public class GameManager {
                             return "Herança - You have a new tool";
                         }
                     }*/
-                        if (programmer.pos == abismos.get(i).pos) {
-                            if (abismos.get(i).idAbismo == 0) {
+
+                        if (programmer.getPos() == i) {
+                            if (abismos.get(i).idAbismo == 0) { //abismos.get(i).idAbismo == 0
                                 if(programmer.pos - 1 > 0) {
                                     programmer.pos--;
                                     programmer.estado = false;
