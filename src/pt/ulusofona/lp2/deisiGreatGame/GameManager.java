@@ -270,7 +270,7 @@ public class GameManager {
                     }*/
 
                         if (programmer.getPos() == i) {
-                            if (abismos.get(i).idAbismo == 0) { //abismos.get(i).idAbismo == 0
+                            if (abismos.get(i - 1).idAbismo == 0) { //abismos.get(i).idAbismo == 0
                                 if(programmer.pos - 1 > 0) {
                                     programmer.pos--;
                                     programmer.estado = false;
@@ -278,7 +278,7 @@ public class GameManager {
                                 }else{
                                     return "Erro de Sintaxe - stay in the same space";
                                 }
-                            } else if (abismos.get(i).idAbismo == 1) {
+                            } else if (abismos.get(i - 1).idAbismo == 1) {
                                 //todo: make the reaction - posição atual - numero de espaços oferecidos pela função move ?
                                 if((programmer.pos / 2) > 0) { // todo= salvar os valores em uma variavel que eu passo e diminuo, variavel global ???
                                     programmer.estado = false;
@@ -287,7 +287,7 @@ public class GameManager {
                                     return "Erro de Lógica - stay in the same space";
                                 }
                             }
-                            }else if(abismos.get(i).idAbismo == 2){
+                            }else if(abismos.get(i - 1).idAbismo == 2){
                                 if(programmer.pos - 2 > 0) {
                                     programmer.estado = false;
                                     return "Exception - go back 2 space(s)";
@@ -295,7 +295,7 @@ public class GameManager {
                                     return "Exception - stay in the same space";
 
                                 }
-                            }else if(abismos.get(i).idAbismo == 3){
+                            }else if(abismos.get(i - 1).idAbismo == 3){
                                 if(programmer.pos - 3 > 0){
                                     programmer.pos -= 3;
                                     programmer.estado = false;
@@ -303,34 +303,34 @@ public class GameManager {
                                 }else{
                                     return "File Not Found Exception - stay in the same space";
                                 }
-                            }else if(abismos.get(i).idAbismo == 4){
+                            }else if(abismos.get(i - 1).idAbismo == 4){
                                 programmer.pos = 1;
                                 programmer.estado = false;
                                 return "Crash - go back to the first space";
 
-                            }else if(abismos.get(i).idAbismo == 5){
+                            }else if(abismos.get(i - 1).idAbismo == 5){
                                 programmer.pos = programmer.posicoes.get(0);
                                 programmer.estado = false;
                                 return "Duplicated Code - Go back to your last position.";
 
-                            }else if(abismos.get(i).idAbismo == 6){
+                            }else if(abismos.get(i - 1).idAbismo == 6){
                                 programmer.pos = programmer.posicoes.get(1);
                                 programmer.estado = false;
                                 return "Secondary Efects - Go back to your second last position";
 
-                            }else if(abismos.get(i).idAbismo == 7){
+                            }else if(abismos.get(i - 1).idAbismo == 7){
                                 programmer.estado = false;
                                 programmers.remove(programmer);
 
                                 return "Blue Screen of Death - Fail";
 
-                            }else if(abismos.get(i).idAbismo == 8){
+                            }else if(abismos.get(i - 1).idAbismo == 8){
                             //Todo: Não entendi essa parte, pois na função move() eu já mando o programador para lá. Ou seja sempre vai ter alguém lá.
                                 /*if (mapa.contains(programmer)){
 
                                 }*/
 
-                            }else if(abismos.get(i).idAbismo == 9){
+                            }else if(abismos.get(i - 1).idAbismo == 9){
 
                           }
                         }
