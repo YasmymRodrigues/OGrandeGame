@@ -270,7 +270,7 @@ public class GameManager {
                     }*/
 
                         if (programmer.getPos() == i) {
-                            if (abismos.get(i - 1).idAbismo == 0) { //abismos.get(i).idAbismo == 0
+                            if (abismos.get(i - 1).getIdAbismo() == 0) { //abismos.get(i).idAbismo == 0
                                 if(programmer.pos - 1 > 0) {
                                     programmer.pos--;
                                     programmer.estado = false;
@@ -278,59 +278,66 @@ public class GameManager {
                                 }else{
                                     return "Erro de Sintaxe - stay in the same space";
                                 }
-                            } else if (abismos.get(i - 1).idAbismo == 1) {
+                            } else if (abismos.get(i - 1).getIdAbismo() == 1) {
                                 //todo: make the reaction - posição atual - numero de espaços oferecidos pela função move ?
-                                if((programmer.pos / 2) > 0) { // todo= salvar os valores em uma variavel que eu passo e diminuo, variavel global ???
-                                    programmer.estado = false;
+                                int pos = programmer.getPos();
+                                int div = pos / 2;
+
+                                if(div > 0) { // todo= salvar os valores em uma variavel que eu passo e diminuo, variavel global ???
+                                    programmer.setEstado(false);
                                     return "Erro de Lógica - go back space(s)";
                                 }else{
                                     return "Erro de Lógica - stay in the same space";
                                 }
                             }
-                            }else if(abismos.get(i - 1).idAbismo == 2){
-                                if(programmer.pos - 2 > 0) {
-                                    programmer.estado = false;
+                            }else if(abismos.get(i - 1).getIdAbismo() == 2){
+                                int pos = programmer.getPos();
+                                int recuar = pos / 2;
+
+                                if(recuar > 0) {
+                                    programmer.setEstado(false);
                                     return "Exception - go back 2 space(s)";
                                 }else{
                                     return "Exception - stay in the same space";
-
                                 }
-                            }else if(abismos.get(i - 1).idAbismo == 3){
-                                if(programmer.pos - 3 > 0){
-                                    programmer.pos -= 3;
-                                    programmer.estado = false;
+                            }else if(abismos.get(i - 1).getIdAbismo() == 3){
+                                int pos = programmer.getPos() - 3;
+                                if(pos > 0){
+                                    programmer.setPos(3);
+                                    programmer.setEstado(false);
                                     return "File Not Found Exception - go back 3 spaces";
                                 }else{
                                     return "File Not Found Exception - stay in the same space";
                                 }
-                            }else if(abismos.get(i - 1).idAbismo == 4){
-                                programmer.pos = 1;
-                                programmer.estado = false;
+                            }else if(abismos.get(i - 1).getIdAbismo() == 4){
+                                programmer.setPos(1);
+                                programmer.setEstado(false);
                                 return "Crash - go back to the first space";
 
-                            }else if(abismos.get(i - 1).idAbismo == 5){
-                                programmer.pos = programmer.posicoes.get(0);
-                                programmer.estado = false;
+                            }else if(abismos.get(i - 1).getIdAbismo() == 5){
+                                int lastPos = programmer.getPosicoes().get(-2);
+                                programmer.setPos(lastPos);
+                                programmer.setEstado(false);
                                 return "Duplicated Code - Go back to your last position.";
 
-                            }else if(abismos.get(i - 1).idAbismo == 6){
-                                programmer.pos = programmer.posicoes.get(1);
-                                programmer.estado = false;
+                            }else if(abismos.get(i - 1).getIdAbismo() == 6){
+                                programmer.setPos(programmer.getPosicoes().get(-3));
+                                programmer.setEstado(false);
                                 return "Secondary Efects - Go back to your second last position";
 
-                            }else if(abismos.get(i - 1).idAbismo == 7){
-                                programmer.estado = false;
-                                programmers.remove(programmer);
+                            }else if(abismos.get(i - 1).getIdAbismo() == 7){
+                                programmer.setEstado(false);
+                                //programmers.remove(programmer);
 
                                 return "Blue Screen of Death - Fail";
 
-                            }else if(abismos.get(i - 1).idAbismo == 8){
+                            }else if(abismos.get(i - 1).getIdAbismo() == 8){
                             //Todo: Não entendi essa parte, pois na função move() eu já mando o programador para lá. Ou seja sempre vai ter alguém lá.
                                 /*if (mapa.contains(programmer)){
 
                                 }*/
 
-                            }else if(abismos.get(i - 1).idAbismo == 9){
+                            }else if(abismos.get(i - 1).getIdAbismo() == 9){
 
                           }
                         }
