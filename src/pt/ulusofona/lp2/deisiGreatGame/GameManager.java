@@ -29,6 +29,9 @@ public class GameManager {
         int id;
         String nome;
         this.worldSize = worldSize;
+        this.mapa.add(0, null);
+        this.abismos.add(0, null);
+        this.ferramentas.add(0, null);
 
 
         for (String[] arr : playerInfo) {
@@ -258,7 +261,7 @@ public class GameManager {
         //Todo: Meu mapa não tem blanks ainda
         //Todo: Validar a posicao quando já tem um programador lá
 
-            for (int i = 0; i <= worldSize; i++) {
+            for (int i = 1; i <= mapa.size(); i++) {
                 if (mapa.get(i) != null) {
                     for (Programmer programmer : getProgrammers(false)) {
                     /*if (programmer.pos == ferramentas.get(i).pos){

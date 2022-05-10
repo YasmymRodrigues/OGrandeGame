@@ -46,7 +46,7 @@ public class TestJogo {
 
         //Note: test reactToAbyssOrTool() class GM
         String react = game.reactToAbyssOrTool();
-        assertEquals("Herança - You have a new tool", react);
+        assertEquals("Erro de Sintaxe - stay in the same space", react);
 
         //Note: test toString() class Programmer
         //Programmer  programmer = new Programmer("Pedro", 1, languages, ProgrammerColor.PURPLE,1);
