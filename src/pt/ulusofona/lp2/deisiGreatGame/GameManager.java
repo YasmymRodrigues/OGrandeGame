@@ -270,12 +270,12 @@ public class GameManager {
                             return "Herança - You have a new tool";
                         }
                     }*/
-
                         if (programmer.getPos() == i) {
                             if (abismos.get(i).getIdAbismo() == 0) { //abismos.get(i).idAbismo == 0
-                                if(programmer.pos - 1 > 0) {
-                                    programmer.pos--;
-                                    programmer.estado = false;
+                                int pos = getCurrentPlayerID() - 1 ;
+                                if(pos > 0) {
+                                    programmer.setPos(pos);
+                                    programmer.setEstado(false);
                                     return "Erro de Sintaxe - go back one space";
                                 }else{
                                     return "Erro de Sintaxe - stay in the same space";
