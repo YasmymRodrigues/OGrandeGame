@@ -16,7 +16,7 @@ public class GameManager {
     List<Programmer> programmers = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
-    Object[] mapa = new Object[worldSize]; // array com os espaços do mapa
+    List<Object> mapa = new ArrayList<>(); // array com os espaços do mapa
 
 
     public GameManager() {}
@@ -25,7 +25,6 @@ public class GameManager {
 
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
-        Object[] mapa = new Object[worldSize];
 
         int id;
         String nome;
@@ -90,43 +89,43 @@ public class GameManager {
                     if (idDoTipo == 0) {
                         Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de Sintaxe", 0, position);
                         abismos.add(erroDeSintaxe);
-                        mapa[position] = erroDeSintaxe;
+                        mapa.add(erroDeSintaxe);
                     } else if (idDoTipo == 1) {
                         Abismo erroDeLogica = new ErroDeLogica("Erro de Logica", 1, position);
                         abismos.add(erroDeLogica);
-                        mapa[position] = erroDeLogica;
+                        mapa.add(erroDeLogica);
                     } else if (idDoTipo == 2) {
                         Abismo exception = new Exception("Exception", 2, position);
                         abismos.add(exception);
-                        mapa[position] = exception;
+                        mapa.add(exception);
                     } else if (idDoTipo == 3) {
                         Abismo fileNotFoundException = new FileNotFoundException("FileNotFoundException", 3, position);
                         abismos.add(fileNotFoundException);
-                        mapa[position] = fileNotFoundException;
+                        mapa.add(fileNotFoundException);
                     } else if (idDoTipo == 4) {
                         Abismo crash = new Crash("Crash", 4, position);
                         abismos.add(crash);
-                        mapa[position] = crash;
+                        mapa.add(crash);
                     } else if (idDoTipo == 5) {
                         Abismo duplicatedCode = new DuplicatedCode("DulicatedCode", 5, position);
                         abismos.add(duplicatedCode);
-                        mapa[position] = duplicatedCode;
+                        mapa.add(duplicatedCode);
                     } else if (idDoTipo == 6) {
                         Abismo efeitosSecundarios = new EfeitosSecundarios("EfeitosSecundarios", 6, position);
                         abismos.add(efeitosSecundarios);
-                        mapa[position] = efeitosSecundarios;
+                        mapa.add(efeitosSecundarios);
                     } else if (idDoTipo == 7) {
                         Abismo bsod = new BlueScreenOfDeath("BlueScreenOfDeath", 7, position);
                         abismos.add(bsod);
-                        mapa[position] = bsod;
+                        mapa.add(bsod);
                     } else if (idDoTipo == 8) {
                         Abismo cicloInfinito = new CicloInfinito("CicloInfinito", 8, position);
                         abismos.add(cicloInfinito);
-                        mapa[position] = cicloInfinito;
+                        mapa.add(cicloInfinito);
                     } else if (idDoTipo == 9) {
                         Abismo segF = new SegmentationFault("SegmentationFault", 9, position);
                         abismos.add(segF);
-                        mapa[position] = segF;
+                        mapa.add(segF);
                     } else {
                         System.out.println("Not an abismo found");
                     }
@@ -135,32 +134,32 @@ public class GameManager {
                     if (idDoTipo == 0) {
                         Ferramenta heranca = new Heranca("Herança", 0, position);
                         ferramentas.add(heranca);
-                        mapa[position] = heranca;
+                        mapa.add(heranca);
                     } else if (idDoTipo == 1) {
                         Ferramenta progF = new ProgramacaoFuncional("Prog Funtional", 1, position);
                         ferramentas.add(progF);
-                        mapa[position] = progF;
+                        mapa.add(progF);
                     } else if (idDoTipo == 2) {
                         Ferramenta unitarios = new Unitarios("Unitarios", 2, position);
                         ferramentas.add(unitarios);
-                        mapa[position] = unitarios;
+                        mapa.add(unitarios);
                     } else if (idDoTipo == 3) {
                         Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExcepcoes", 3, position);
                         ferramentas.add(tratEx);
-                        mapa[position] = tratEx;
+                        mapa.add(tratEx);
                     } else if (idDoTipo == 4) {
                         Ferramenta ide = new IDE("IDE", 4, position);
                         ferramentas.add(ide);
-                        mapa[position] = ide;
+                        mapa.add(ide);
                     } else if (idDoTipo == 5) {
                         Ferramenta helpProf = new AjudaDoProfessor("AjudaDoProfessor", 5, position);
                         ferramentas.add(helpProf);
-                        mapa[position] = helpProf;
+                        mapa.add(helpProf);
                     }else {
                         System.out.println("Not a tool found");
                     }
                 }
-                this.mapa = mapa;
+
                 //DONE: Validation ofAoA
                 if ((arr[0] == null)) {
                     return false;
@@ -211,7 +210,7 @@ public class GameManager {
     public List<Programmer> getProgrammers(int position) {
         List<Programmer> programmersList = new ArrayList<>();
         for (Programmer programmer: programmers){
-            if(programmer.pos == position){
+            if(programmer.getPos() == position){
                 programmersList.add(programmer);
             }
         }
@@ -259,8 +258,8 @@ public class GameManager {
         //Todo: Meu mapa não tem blanks ainda
         //Todo: Validar a posicao quando já tem um programador lá
 
-            for (int i = 1; i <= worldSize; i++) {
-                if (mapa[i] != null) {
+            for (int i = 0; i <= worldSize; i++) {
+                if (mapa.get(i) != null) {
                     for (Programmer programmer : getProgrammers(false)) {
                     /*if (programmer.pos == ferramentas.get(i).pos){
                         if(ferramentas.get(i).idFerramenta == 0){
@@ -270,7 +269,7 @@ public class GameManager {
                     }*/
 
                         if (programmer.getPos() == i) {
-                            if (abismos.get(i - 1).getIdAbismo() == 0) { //abismos.get(i).idAbismo == 0
+                            if (abismos.get(i).getIdAbismo() == 0) { //abismos.get(i).idAbismo == 0
                                 if(programmer.pos - 1 > 0) {
                                     programmer.pos--;
                                     programmer.estado = false;
@@ -278,7 +277,7 @@ public class GameManager {
                                 }else{
                                     return "Erro de Sintaxe - stay in the same space";
                                 }
-                            } else if (abismos.get(i - 1).getIdAbismo() == 1) {
+                            } else if (abismos.get(i).getIdAbismo() == 1) {
                                 //todo: make the reaction - posição atual - numero de espaços oferecidos pela função move ?
                                 int pos = programmer.getPos();
                                 int div = pos / 2;
@@ -290,7 +289,7 @@ public class GameManager {
                                     return "Erro de Lógica - stay in the same space";
                                 }
                             }
-                            }else if(abismos.get(i - 1).getIdAbismo() == 2){
+                            }else if(abismos.get(i).getIdAbismo() == 2){
                                 int pos = programmer.getPos();
                                 int recuar = pos / 2;
 
@@ -300,7 +299,7 @@ public class GameManager {
                                 }else{
                                     return "Exception - stay in the same space";
                                 }
-                            }else if(abismos.get(i - 1).getIdAbismo() == 3){
+                            }else if(abismos.get(i).getIdAbismo() == 3){
                                 int pos = programmer.getPos() - 3;
                                 if(pos > 0){
                                     programmer.setPos(3);
@@ -309,35 +308,35 @@ public class GameManager {
                                 }else{
                                     return "File Not Found Exception - stay in the same space";
                                 }
-                            }else if(abismos.get(i - 1).getIdAbismo() == 4){
+                            }else if(abismos.get(i).getIdAbismo() == 4){
                                 programmer.setPos(1);
                                 programmer.setEstado(false);
                                 return "Crash - go back to the first space";
 
-                            }else if(abismos.get(i - 1).getIdAbismo() == 5){
+                            }else if(abismos.get(i).getIdAbismo() == 5){
                                 int lastPos = programmer.getPosicoes().get(-2);
                                 programmer.setPos(lastPos);
                                 programmer.setEstado(false);
                                 return "Duplicated Code - Go back to your last position.";
 
-                            }else if(abismos.get(i - 1).getIdAbismo() == 6){
+                            }else if(abismos.get(i).getIdAbismo() == 6){
                                 programmer.setPos(programmer.getPosicoes().get(-3));
                                 programmer.setEstado(false);
                                 return "Secondary Efects - Go back to your second last position";
 
-                            }else if(abismos.get(i - 1).getIdAbismo() == 7){
+                            }else if(abismos.get(i).getIdAbismo() == 7){
                                 programmer.setEstado(false);
                                 //programmers.remove(programmer);
 
                                 return "Blue Screen of Death - Fail";
 
-                            }else if(abismos.get(i - 1).getIdAbismo() == 8){
+                            }else if(abismos.get(i).getIdAbismo() == 8){
                             //Todo: Não entendi essa parte, pois na função move() eu já mando o programador para lá. Ou seja sempre vai ter alguém lá.
                                 /*if (mapa.contains(programmer)){
 
                                 }*/
 
-                            }else if(abismos.get(i - 1).getIdAbismo() == 9){
+                            }else if(abismos.get(i).getIdAbismo() == 9){
 
                           }
                         }
