@@ -11,5 +11,17 @@ abstract class Ferramenta {
           this.pos = pos;
      }
 
+     public String getNome() {
+          return nome;
+     }
+
+     public int getIdFerramenta() {
+          return idFerramenta;
+     }
+
+     public int getPos() {
+          return pos;
+     }
+
      abstract public String toolName();
 }
