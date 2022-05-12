@@ -266,91 +266,91 @@ public class GameManager {
         //Todo: Meu mapa não tem blanks ainda
         //Todo: Validar a posicao quando já tem um programador lá
 
-            for (int i = 1; i <= mapa.size(); i++) {
-                if (mapa.get(i) != null) {
-                    for (Programmer programmer : getProgrammers(false)) {
-                        if (programmer.getPos() == i) { // se a posição do programador é a mesma que a atual do mapa
-                            Abismo = mapa.get(i);
-                            int id = abismo.idAbismo;
-                            //How to compare the ids
-                            if (abismo.idAbismo == 0) { //abismos.get(i).idAbismo == 0
-                                int pos = getCurrentPlayerID() - 1 ;
-                                if(pos > 0) {
-                                    programmer.setPos(pos);
-                                    programmer.setEstado(false);
-                                    return "Erro de Sintaxe - go back one space";
-                                }else{
-                                    return "Erro de Sintaxe - stay in the same space";
-                                }
-                            } else if (abismos.get(i).getIdAbismo() == 1) {
-                                //todo: make the reaction - posição atual - numero de espaços oferecidos pela função move ?
-                                int pos = programmer.getPos();
-                                int div = pos / 2;
-
-                                if(div > 0) { // todo= salvar os valores em uma variavel que eu passo e diminuo, variavel global ???
-                                    programmer.setEstado(false);
-                                    return "Erro de Lógica - go back space(s)";
-                                }else{
-                                    return "Erro de Lógica - stay in the same space";
-                                }
+        for (int i = 1; i <= mapa.size(); i++) {
+            if (mapa.get(i) != null) {
+                for (Programmer programmer : getProgrammers(false)) {
+                    if (programmer.getPos() == i) { // se a posição do programador é a mesma que a atual do mapa
+                        Object obj = mapa.get(i);
+                        ((Abismo) obj).getIdAbismo(); // cast is required
+                        int id = ((Abismo) obj).getIdAbismo();
+                        if (id == 0) {
+                            int pos = programmer.getPos() - 1;
+                            if (pos > 0) {
+                                programmer.setPos(pos);
+                                programmer.setEstado(false);
+                                return "Erro de Sintaxe - go back one space";
+                            } else {
+                                return "Erro de Sintaxe - stay in the same space";
                             }
-                            }else if(abismos.get(i).getIdAbismo() == 2){
-                                int pos = programmer.getPos();
-                                int recuar = pos / 2;
+                        } else if (id == 1) {
+                            //todo: make the reaction - posição atual - numero de espaços oferecidos pela função move ?
+                            int pos = programmer.getPos();
+                            int div = pos / 2;
 
-                                if(recuar > 0) {
-                                    programmer.setEstado(false);
-                                    return "Exception - go back 2 space(s)";
-                                }else{
-                                    return "Exception - stay in the same space";
-                                }
-                            }else if(abismos.get(i).getIdAbismo() == 3){
-                                int pos = programmer.getPos() - 3;
-                                if(pos > 0){
-                                    programmer.setPos(pos);
-                                    programmer.setEstado(false);
-                                    return "File Not Found Exception - go back 3 spaces";
-                                }else{
-                                    return "File Not Found Exception - stay in the same space";
-                                }
-                            }else if(abismos.get(i).getIdAbismo() == 4){
-                                programmer.setPos(1);
+                            if (div > 0) { // todo= salvar os valores em uma variavel que eu passo e diminuo, variavel global ???
                                 programmer.setEstado(false);
-                                return "Crash - go back to the first space";
+                                return "Erro de Lógica - go back space(s)";
+                            } else {
+                                return "Erro de Lógica - stay in the same space";
+                            }
+                        } else if (id == 2) {
+                            int pos = programmer.getPos();
+                            int recuar = pos / 2;
 
-                            }else if(abismos.get(i).getIdAbismo() == 5){
-                                int lastPos = programmer.getPosicoes().get(-2);
-                                programmer.setPos(lastPos);
+                            if (recuar > 0) {
                                 programmer.setEstado(false);
-                                return "Duplicated Code - Go back to your last position.";
-
-                            }else if(abismos.get(i).getIdAbismo() == 6){
-                                programmer.setPos(programmer.getPosicoes().get(-3));
+                                return "Exception - go back 2 space(s)";
+                            } else {
+                                return "Exception - stay in the same space";
+                            }
+                        } else if (id == 3) {
+                            int pos = programmer.getPos() - 3;
+                            if (pos > 0) {
+                                programmer.setPos(pos);
                                 programmer.setEstado(false);
-                                return "Secondary Efects - Go back to your second last position";
+                                return "File Not Found Exception - go back 3 spaces";
+                            } else {
+                                return "File Not Found Exception - stay in the same space";
+                            }
+                        } else if (id == 4) {
+                            programmer.setPos(1);
+                            programmer.setEstado(false);
+                            return "Crash - go back to the first space";
 
-                            }else if(abismos.get(i).getIdAbismo() == 7){
-                                programmer.setEstado(false);
-                                //programmers.remove(programmer);
+                        } else if (id == 5) {
+                            int lastPos = programmer.getPosicoes().get(-2);
+                            programmer.setPos(lastPos);
+                            programmer.setEstado(false);
+                            return "Duplicated Code - Go back to your last position.";
 
-                                return "Blue Screen of Death - Fail";
+                        } else if (id == 6) {
+                            programmer.setPos(programmer.getPosicoes().get(-3));
+                            programmer.setEstado(false);
+                            return "Secondary Efects - Go back to your second last position";
 
-                            }else if(abismos.get(i).getIdAbismo() == 8){
+                        } else if (id == 7) {
+                            programmer.setEstado(false);
+                            //programmers.remove(programmer);
+
+                            return "Blue Screen of Death - Fail";
+
+                        } else if (id == 8) {
                             //Todo: Não entendi essa parte, pois na função move() eu já mando o programador para lá. Ou seja sempre vai ter alguém lá.
                                 /*if (mapa.contains(programmer)){
 
                                 }*/
 
-                            }else if(abismos.get(i).getIdAbismo() == 9){
+                        } else if (id == 9) {
 
-                          }
                         }
                     }
                 }
+            }
 
-            return "Nothing";
+
+        }
+        return "Nothing";
     }
-
     public boolean gameIsOver() {
         return true;
     }
