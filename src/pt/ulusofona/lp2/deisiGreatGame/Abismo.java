@@ -5,7 +5,7 @@ abstract public class Abismo {
     int idAbismo;
     int pos;
 
-
+    //Teste
     public Abismo(String nome, int idAbismo, int pos) {
         this.nome = nome;
         this.idAbismo = idAbismo;
