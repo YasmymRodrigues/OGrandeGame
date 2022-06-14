@@ -14,6 +14,8 @@ public class CicloInfinito extends Abismo {
 
     @Override
     public int getReact(int pos, Programmer programmer) {
-        return 1;
+
+
+        return pos;
     }
 }

@@ -259,9 +259,8 @@ public class GameManager {
         //Note: Apenas reações as Ferramentas e Abismos
         //TODO: Confirmation about go forward
         //TODO: Confirmation about go back
-        //Todo: Meu mapa não tem blanks ainda
         //Todo: Validar a posicao quando já tem um programador lá
-        //Dictionary key Integer value object
+
 
         int playerId = getCurrentPlayerID();
         for (Programmer programmer: getProgrammers(false)){
