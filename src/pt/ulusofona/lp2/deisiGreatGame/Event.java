@@ -1,14 +1,14 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-abstract public class Abismo {
+abstract public class Event {
     String nome;
-    int idAbismo;
+    int id;
     int pos;
 
 
-    public Abismo(String nome, int idAbismo, int pos) {
+    public Event(String nome, int id, int pos) {
         this.nome = nome;
-        this.idAbismo = idAbismo;
+        this.id = id;
         this.pos = pos;
 
     }
@@ -17,14 +17,15 @@ abstract public class Abismo {
         return nome;
     }
 
-    public int getIdAbismo() {
-        return idAbismo;
+    public int getId() {
+        return id;
     }
 
     public int getPos() {
         return pos;
     }
 
+    abstract public boolean isAbismo();
+    abstract public void getReact(int pos);
 
-    abstract public String abisName();
 }

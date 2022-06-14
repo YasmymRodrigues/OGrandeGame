@@ -5,6 +5,10 @@ package pt.ulusofona.lp2.deisiGreatGame;
 //Note: Um objeto é uma instância - Ocorrência - de uma Classe
 //Note: Metódos static só podem referenciar vars ou outro metódo static (Não manipulam Vars do object)
 //Note: Quem manipula os metodos da classe são metódos da classe ?
+import pt.ulusofona.lp2.deisiGreatGame.abismos.*;
+import pt.ulusofona.lp2.deisiGreatGame.abismos.Exception;
+import pt.ulusofona.lp2.deisiGreatGame.tools.*;
+
 import javax.swing.*;
 import java.io.File;
 import java.util.*;
@@ -257,94 +261,28 @@ public class GameManager {
         //TODO: Confirmation about go back
         //Todo: Meu mapa não tem blanks ainda
         //Todo: Validar a posicao quando já tem um programador lá
+        //Dictionary key Integer value object
 
-        for (int i = 1; i <= mapa.size(); i++) { // Go throw the map
-            if (mapa.get(i) != null) { // just select positions that are not null
-                for (Programmer programmer : getProgrammers(false)) { // go throw the programmers
-                    if (programmer.getPos() == i) { // if the programmer position is the same the one in the map
-                        if (mapa.get(i) == abismo) {
-                            Object obj = mapa.get(i);
-                            ((Abismo) obj).getIdAbismo(); // cast is required
-                            int id = ((Abismo) obj).getIdAbismo();
-                            if (id == 0) {
-                                int pos = programmer.getPos() - 1;
-                                if (pos > 0) {
-                                    programmer.setPos(pos);
-                                    programmer.setEstado(false);
-                                    return "Erro de Sintaxe - go back one space";
-                                } else {
-                                    return "Erro de Sintaxe - stay in the same space";
-                                }
-                            } else if (id == 1) {
-                                //todo: make the reaction - posição atual - numero de espaços oferecidos pela função move ?
-                                int pos = programmer.getPos();
-                                int div = pos / 2;
-                                if (div > 0) { // todo= salvar os valores em uma variavel que eu passo e diminuo, variavel global ???
-                                    programmer.setEstado(false);
-                                    return "Erro de Lógica - go back space(s)";
-                                } else {
-                                    return "Erro de Lógica - stay in the same space";
-                                }
-                            } else if (id == 2) {
-                                int pos = programmer.getPos();
-                                int recuar = pos / 2;
-                                if (recuar > 0) {
-                                    programmer.setEstado(false);
-                                    return "Exception - go back 2 space(s)";
-                                } else {
-                                    return "Exception - stay in the same space";
-                                }
-                            } else if (id == 3) {
-                                int pos = programmer.getPos() - 3;
-                                if (pos > 0) {
-                                    programmer.setPos(pos);
-                                    programmer.setEstado(false);
-                                    return "File Not Found Exception - go back 3 spaces";
-                                } else {
-                                    return "File Not Found Exception - stay in the same space";
-                                }
-                            } else if (id == 4) {
-                                programmer.setPos(1);
-                                programmer.setEstado(false);
-                                return "Crash - go back to the first space";
-
-                            } else if (id == 5) {
-                                int lastPos = programmer.getPosicoes().get(-2);
-                                programmer.setPos(lastPos);
-                                programmer.setEstado(false);
-                                return "Duplicated Code - Go back to your last position.";
-
-                            } else if (id == 6) {
-                                programmer.setPos(programmer.getPosicoes().get(-3));
-                                programmer.setEstado(false);
-                                return "Secondary Efects - Go back to your second last position";
-
-                            } else if (id == 7) {
-                                programmer.setEstado(false);
-                                //programmers.remove(programmer);
-
-                                return "Blue Screen of Death - Fail";
-
-                            } else if (id == 8) {
-                                //Todo: Não entendi essa parte, pois na função move() eu já mando o programador para lá. Ou seja sempre vai ter alguém lá.
-                                /*if (mapa.contains(programmer)){
-
-                                }*/
-
-                            } else if (id == 9) {
-
-                            }
-                        }else{
-                            System.out.println("Ferramenta");
-                        }
-                    }
+        int playerId = getCurrentPlayerID();
+        for (Programmer programmer: getProgrammers(false)){
+            if(programmer.getId() == playerId){
+                int pos = programmer.getPos();
+                if(mapa.get(pos) != null){
+                     Event obj = (Event) mapa.get(pos);
+                     if(obj.isAbismo()){
+                         obj.getReact(pos);
+                     }else{
+                         obj.getReact(pos);
+                     }
+                }else{
+                    System.out.println("Não acontece reacts, stay in the same place");
                 }
             }
-
-
         }
         return "Nothing";
     }
+
+
     public boolean gameIsOver() {
         return true;
     }
@@ -378,13 +316,13 @@ public class GameManager {
         public String getTitle (int position){
 
         for(Ferramenta ferramenta: ferramentas){
-            if(ferramenta.pos == position){
-                return ferramenta.nome;
+            if(ferramenta.getPos() == position){
+                return ferramenta.getNome();
             }
         }
         for(Abismo abismo: abismos){
-            if (abismo.pos == position){
-                return abismo.nome;
+            if (abismo.getPos()== position){
+                return abismo.getNome();
             }
         }
 

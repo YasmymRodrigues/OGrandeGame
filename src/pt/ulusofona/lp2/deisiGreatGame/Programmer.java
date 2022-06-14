@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
+
 import java.util.ArrayList;
 import java.util.List;
 

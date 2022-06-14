@@ -3,7 +3,6 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.List;
