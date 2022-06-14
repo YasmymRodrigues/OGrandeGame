@@ -272,6 +272,7 @@ public class GameManager {
                      if(obj.isAbismo()){
                          int newPos = obj.getReact(pos, programmer);
                          programmer.setPos(newPos);
+                         //programmer.setEstado(true);
                      }else{
                          obj.getReact(pos, programmer);
                      }

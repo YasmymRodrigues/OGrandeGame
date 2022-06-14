@@ -14,11 +14,12 @@ public class ErroDeSintaxe extends Abismo{
 
     @Override
     public int getReact(int pos, Programmer programmer) {
-        int newPosition = 0;
+        int newPosition;
         if (pos > 1){
             newPosition = programmer.getPos() - 1;
+        }else{
+            return pos;
         }
-
         return newPosition;
     }
 }
