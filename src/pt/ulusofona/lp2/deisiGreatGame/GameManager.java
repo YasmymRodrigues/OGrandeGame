@@ -270,16 +270,17 @@ public class GameManager {
                 if(mapa.get(pos) != null){
                      Event obj = (Event) mapa.get(pos);
                      if(obj.isAbismo()){
-                         obj.getReact(pos);
+                         int newPos = obj.getReact(pos, programmer);
+                         programmer.setPos(newPos);
                      }else{
-                         obj.getReact(pos);
+                         obj.getReact(pos, programmer);
                      }
                 }else{
-                    System.out.println("Não acontece reacts, stay in the same place");
+                    return null;
                 }
             }
         }
-        return "Nothing";
+        return null;
     }
 
 

@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame.abismos;
 
+import pt.ulusofona.lp2.deisiGreatGame.Programmer;
+
 public class DuplicatedCode extends Abismo{
     public DuplicatedCode(String nome, int id, int pos) {
         super(nome, id, pos);
@@ -11,7 +13,7 @@ public class DuplicatedCode extends Abismo{
     }
 
     @Override
-    public void getReact(int pos) {
-
+    public int getReact(int pos, Programmer programmer) {
+        return 1;
     }
 }

@@ -1,6 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame.abismos;
 
-import pt.ulusofona.lp2.deisiGreatGame.abismos.Abismo;
+import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 
 public class SegmentationFault extends Abismo {
     public SegmentationFault(String nome, int id, int pos) {
@@ -13,7 +13,7 @@ public class SegmentationFault extends Abismo {
     }
 
     @Override
-    public void getReact(int pos) {
-
+    public int getReact(int pos, Programmer programmer) {
+        return 1;
     }
 }

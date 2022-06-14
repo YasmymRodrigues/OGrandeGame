@@ -26,6 +26,6 @@ abstract public class Event {
     }
 
     abstract public boolean isAbismo();
-    abstract public void getReact(int pos);
+    abstract public int getReact(int pos, Programmer programmer);
 
 }
