@@ -109,7 +109,7 @@ public class Programmer {
             if(languages.size() == 1) {
                 lang += language.nome;
             }else{
-                lang += language.nome + "; ";
+                lang += language.nome + ";";
             }
         }
         return lang;
@@ -134,5 +134,5 @@ public class Programmer {
     }
 }
 
-// expected:<...inho | 1 | No tools [| Common Lisp; PHP] | Em Jogo>
-//  but was:<...inho | 1 | No tools [ | Common Lisp;PHP ] | Em Jogo>
+//expected:<...tools | Common Lisp;[ ]PHP | Em Jogo>
+// but was:<...tools | Common Lisp;[]PHP | Em Jogo>
