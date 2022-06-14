@@ -16,7 +16,6 @@ import java.util.*;
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
 public class GameManager {
-    Abismo abismo;
     int worldSize;
     List<Programmer> programmers = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
@@ -217,6 +216,7 @@ public class GameManager {
         for (Programmer programmer: programmers){
             if(programmer.getPos() == position){
                 programmersList.add(programmer);
+                programadorAtual.setId(programmer.getId());
             }
         }
         return programmersList;
@@ -231,14 +231,14 @@ public class GameManager {
         if(nrSpaces < 1 || nrSpaces > 6){
             return false;
         }
-        int playerAtual = getCurrentPlayerID();
+
         /*for (Abismo abismo: abismos){
             if (abismo.pos == playerAtual){
                 return false;
             }
         }*/
         for (Programmer programmer: getProgrammers(false)){
-                if (programmer.getId() == playerAtual){
+                if (programmer.getId() == programadorAtual.getId()){
                     int pos = programmer.getPos();
                     int move = pos + nrSpaces;
                     List<Integer> posicoesList = programmer.getPosicoes();
@@ -262,9 +262,8 @@ public class GameManager {
         //Todo: Validar a posicao quando já tem um programador lá
 
 
-        int playerId = getCurrentPlayerID();
         for (Programmer programmer: getProgrammers(false)){
-            if(programmer.getId() == playerId){
+            if(programmer.getId() == programadorAtual.getId()){
                 int pos = programmer.getPos();
                 if(mapa.get(pos) != null){
                      Event obj = (Event) mapa.get(pos);
