@@ -107,7 +107,7 @@ public class Programmer {
         String lang = "";
         for(Language language: languages){
             if(languages.size() == 1) {
-                lang += language.nome;
+                lang += language.nome + " ";
             }else{
                 lang += language.nome + ";";
             }
@@ -115,13 +115,24 @@ public class Programmer {
         return lang;
     }
 
+    public String getStaus(){
+        if(estado == true){
+            return "Em Jogo";
+        }else{
+            return "Fora de Jogo";
+        }
+    }
+
     @Override
     public String toString() {
         //TODO: Ferramentas are now Null, not instantiated
-        if (ferramentas == null) {
-            return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +" | "+ converteArrayParaString(languages) + "|" + estado;
+        if (ferramentas.isEmpty()) {
+            return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +" | "+ converteArrayParaString(languages) + " | " + getStaus();
         } else {
-            return "" + id +" | "+ name +" | "+ pos +" | "+ ferramentas +" | "+ converteArrayParaString(languages) + "|" + estado;
+            return "" + id +" | "+ name +" | "+ pos +" | "+ ferramentas +" | "+ converteArrayParaString(languages) + " | " + getStaus();
         }
     }
 }
+
+//expected:<1 | Bruninho | 1 | [No tools | Common Lisp; PHP | Em Jogo]>
+//but was:<1 | Bruninho | 1 | [[] | Common Lisp;PHP|true]>
