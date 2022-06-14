@@ -107,9 +107,9 @@ public class Programmer {
         String lang = "";
         for(Language language: languages){
             if(languages.size() == 1) {
-                lang += language.nome + " ";
+                lang += language.nome;
             }else{
-                lang += language.nome + ";";
+                lang += language.nome + "; ";
             }
         }
         return lang;
@@ -127,12 +127,12 @@ public class Programmer {
     public String toString() {
         //TODO: Ferramentas are now Null, not instantiated
         if (ferramentas.isEmpty()) {
-            return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +" | "+ converteArrayParaString(languages) + " | " + getStaus();
+            return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +"| "+ converteArrayParaString(languages) + " | " + getStaus();
         } else {
-            return "" + id +" | "+ name +" | "+ pos +" | "+ ferramentas +" | "+ converteArrayParaString(languages) + " | " + getStaus();
+            return "" + id +" | "+ name +" | "+ pos +" | "+ ferramentas +"| "+ converteArrayParaString(languages) + " | " + getStaus();
         }
     }
 }
 
-//expected:<1 | Bruninho | 1 | [No tools | Common Lisp; PHP | Em Jogo]>
-//but was:<1 | Bruninho | 1 | [[] | Common Lisp;PHP|true]>
+// expected:<...inho | 1 | No tools [| Common Lisp; PHP] | Em Jogo>
+//  but was:<...inho | 1 | No tools [ | Common Lisp;PHP ] | Em Jogo>
