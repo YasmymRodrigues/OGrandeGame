@@ -16,4 +16,5 @@ public class SegmentationFault extends Abismo {
     public int getReact(int pos, Programmer programmer) {
         return 1;
     }
+    //IDE 4
 }

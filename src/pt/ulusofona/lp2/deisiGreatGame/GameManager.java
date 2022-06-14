@@ -22,6 +22,7 @@ public class GameManager {
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
     HashMap<Integer, Object> mapa = new HashMap<>(); // array com os espaços do mapa
+    Programmer programadorAtual;
 
 
     public GameManager() {}
@@ -222,8 +223,7 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID() {
-
-         return 1;
+         return programadorAtual.getId();
     }
 
     public boolean moveCurrentPlayer(int nrSpaces) {
@@ -275,8 +275,6 @@ public class GameManager {
                      }else{
                          obj.getReact(pos, programmer);
                      }
-                }else{
-                    return null;
                 }
             }
         }

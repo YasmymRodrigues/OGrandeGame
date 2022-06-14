@@ -16,7 +16,7 @@ public class EfeitosSecundarios extends Abismo {
     @Override
     public int getReact(int pos, Programmer programmer) {
         for (Ferramenta ferramenta: programmer.getFerramentas()){
-            if (ferramenta.getId() == 0){ //Herança
+            if (ferramenta.getId() == 1 || ferramenta.getId() == 2){ //Testes Unitários
                 return pos;
             }
         }
