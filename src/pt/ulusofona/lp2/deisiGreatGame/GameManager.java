@@ -21,7 +21,7 @@ public class GameManager {
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
     HashMap<Integer, Object> mapa = new HashMap<>(); // array com os espaços do mapa
-    Programmer programadorAtual;
+    Programmer programadorAtual = new Programmer();
 
 
     public GameManager() {}
@@ -96,7 +96,7 @@ public class GameManager {
                         abismos.add(erroDeSintaxe);
                         mapa.put(position,erroDeSintaxe);
                     } else if (idDoTipo == 1) {
-                        Abismo erroDeLogica = new ErroDeLogica("Erro de Logica", 1, position);
+                        Abismo erroDeLogica = new ErroDeLogica("Erro de Lógica", 1, position);
                         abismos.add(erroDeLogica);
                         mapa.put(position, erroDeLogica);
                     } else if (idDoTipo == 2) {
@@ -112,7 +112,7 @@ public class GameManager {
                         abismos.add(crash);
                         mapa.put(position,crash);
                     } else if (idDoTipo == 5) {
-                        Abismo duplicatedCode = new DuplicatedCode("DulicatedCode", 5, position);
+                        Abismo duplicatedCode = new DuplicatedCode("DuplicatedCode", 5, position);
                         abismos.add(duplicatedCode);
                         mapa.put(position,duplicatedCode);
                     } else if (idDoTipo == 6) {
@@ -141,15 +141,15 @@ public class GameManager {
                         ferramentas.add(heranca);
                         mapa.put(position,heranca);
                     } else if (idDoTipo == 1) {
-                        Ferramenta progF = new ProgramacaoFuncional("Prog Funtional", 1, position);
+                        Ferramenta progF = new ProgramacaoFuncional("Prog Funcional", 1, position);
                         ferramentas.add(progF);
                         mapa.put(position,progF);
                     } else if (idDoTipo == 2) {
-                        Ferramenta unitarios = new Unitarios("Unitarios", 2, position);
+                        Ferramenta unitarios = new Unitarios("Unitários", 2, position);
                         ferramentas.add(unitarios);
                         mapa.put(position,unitarios);
                     } else if (idDoTipo == 3) {
-                        Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExcepcoes", 3, position);
+                        Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExceções", 3, position);
                         ferramentas.add(tratEx);
                         mapa.put(position,tratEx);
                     } else if (idDoTipo == 4) {
@@ -216,14 +216,14 @@ public class GameManager {
         for (Programmer programmer: programmers){
             if(programmer.getPos() == position){
                 programmersList.add(programmer);
-                programadorAtual.setId(programmer.getId());
+                //programadorAtual.setId(programmer.getId());
             }
         }
         return programmersList;
     }
 
     public int getCurrentPlayerID() {
-         return programadorAtual.getId();
+         return 1;// programadorAtual.getId();
     }
 
     public boolean moveCurrentPlayer(int nrSpaces) {
@@ -238,7 +238,7 @@ public class GameManager {
             }
         }*/
         for (Programmer programmer: getProgrammers(false)){ // devia chamar a outra
-                if (programmer.getId() == programadorAtual.getId()){
+                if (programmer.getId() == getCurrentPlayerID()){
                     int pos = programmer.getPos();
                     int move = pos + nrSpaces;
                     List<Integer> posicoesList = programmer.getPosicoes();
@@ -272,7 +272,7 @@ public class GameManager {
                          programmer.setPos(newPos);
                          //programmer.setEstado(true);
                      }else{
-                         obj.getReact(pos, programmer);
+                         programmer.ferramentas.add((Ferramenta) obj);
                      }
                 }
             }
@@ -323,9 +323,8 @@ public class GameManager {
                 return abismo.getNome();
             }
         }
-
         return null;
-        }
+    }
 
 
         public boolean saveGame (File file){
