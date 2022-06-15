@@ -237,7 +237,7 @@ public class GameManager {
                 return false;
             }
         }*/
-        for (Programmer programmer: getProgrammers(false)){
+        for (Programmer programmer: getProgrammers(false)){ // devia chamar a outra
                 if (programmer.getId() == programadorAtual.getId()){
                     int pos = programmer.getPos();
                     int move = pos + nrSpaces;
@@ -263,7 +263,7 @@ public class GameManager {
 
 
         for (Programmer programmer: getProgrammers(false)){
-            if(programmer.getId() == programadorAtual.getId()){
+            if(programmer.getId() == getCurrentPlayerID()){
                 int pos = programmer.getPos();
                 if(mapa.get(pos) != null){
                      Event obj = (Event) mapa.get(pos);
