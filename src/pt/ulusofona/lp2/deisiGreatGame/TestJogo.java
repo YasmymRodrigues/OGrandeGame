@@ -29,21 +29,21 @@ public class TestJogo {
 
         //Note: test function getProgrammers() class Game Manager:
         List<Programmer> programmerInPosition = game.getProgrammers(1); // Resultado Esperado
-        assertEquals(1, programmerInPosition.get(0).id);
-        assertEquals("Marcos", programmerInPosition.get(0).name);
-        assertEquals(1, programmerInPosition.get(0).pos);
-        assertEquals(PURPLE, programmerInPosition.get(0).color);
+        assertEquals(1, programmerInPosition.get(0).id); //ID
+        assertEquals("Marcos", programmerInPosition.get(0).name); //NAME
+        assertEquals(1, programmerInPosition.get(0).pos); //POS
+        assertEquals(PURPLE, programmerInPosition.get(0).color); //COLOR
 
-        assertEquals(2, programmerInPosition.get(1).id);
-        assertEquals("Lucas", programmerInPosition.get(1).name);
-        assertEquals(1, programmerInPosition.get(1).pos);
-        assertEquals(BLUE, programmerInPosition.get(1).color);
+        assertEquals(2, programmerInPosition.get(1).id); //ID
+        assertEquals("Lucas", programmerInPosition.get(1).name); //NAME
+        assertEquals(1, programmerInPosition.get(1).pos); //POS
+        assertEquals(BLUE, programmerInPosition.get(1).color); //COLOR
 
-        //Note: test moveCurrentPlayer() class GM
-        //boolean move = game.moveCurrentPlayer(1);
-        //assertEquals(Boolean.TRUE, move);
+        //Note: moveCurrentPlayer()
+        Boolean move = game.moveCurrentPlayer(2);
+        assertEquals(true, move);
 
-        //Note: test reactToAbyssOrTool() class GM
+        //Note: React
         String react = game.reactToAbyssOrTool();
         assertEquals(null, react);
 
@@ -64,12 +64,12 @@ public class TestJogo {
         assertEquals("blank.png",game.getImagePng(2));
 
     }
-   @Test
+  /* @Test
     public void teste03getCurrentPlayerID() throws InvalidInitialBoardException {
         GameManager game = new GameManager();
         int res = game.getCurrentPlayerID();
         assertEquals(1, res);
-    }
+    }*/
 
    @Test
     public void test04toStringProgrammers() throws InvalidObjectException{

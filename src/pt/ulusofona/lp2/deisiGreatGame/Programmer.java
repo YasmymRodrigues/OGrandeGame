@@ -14,6 +14,7 @@ public class Programmer {
     List<Ferramenta> ferramentas;
     boolean estado;
     List<Integer> posicoes;
+    boolean hasTurn = false;
 
     Programmer() {
         this.languages = new ArrayList<>();
@@ -103,6 +104,14 @@ public class Programmer {
         this.posicoes = posicoes;
     }
 
+    public boolean isHasTurn() {
+        return hasTurn;
+    }
+
+    public void setHasTurn(boolean hasTurn) {
+        this.hasTurn = hasTurn;
+    }
+
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
         for(Language language: languages){
@@ -115,7 +124,7 @@ public class Programmer {
         return lang;
     }
 
-    public String getStaus(){
+    public String getStatus(){
         if(estado == true){
             return "Em Jogo";
         }else{
@@ -127,9 +136,9 @@ public class Programmer {
     public String toString() {
         //TODO: Ferramentas are now Null, not instantiated
         if (ferramentas.isEmpty()) {
-            return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +"| "+ converteArrayParaString(languages) + " | " + getStaus();
+            return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +"| "+ converteArrayParaString(languages) + " | " + getStatus();
         } else {
-            return "" + id +" | "+ name +" | "+ pos +" | "+ ferramentas +"| "+ converteArrayParaString(languages) + " | " + getStaus();
+            return "" + id +" | "+ name +" | "+ pos +" | "+ ferramentas +"| "+ converteArrayParaString(languages) + " | " + getStatus();
         }
     }
 }

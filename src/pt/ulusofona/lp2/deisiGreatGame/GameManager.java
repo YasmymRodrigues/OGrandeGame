@@ -20,8 +20,8 @@ public class GameManager {
     List<Programmer> programmers = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
-    HashMap<Integer, Object> mapa = new HashMap<>(); // array com os espaços do mapa
-    Programmer programadorAtual = new Programmer();
+    HashMap<Integer, Object> map = new HashMap<>(); // array com os espaços do mapa
+    Programmer programmerActual = new Programmer();
 
 
     public GameManager() {}
@@ -61,9 +61,9 @@ public class GameManager {
             }
 
             programmer.setPos(1); // todos os programadores começam na posição 1
-            programmer.estado = true;
             programmer.posicoes = new ArrayList<>();
             programmer.posicoes.add(programmer.pos);
+            programmer.setEstado(true);
             programmers.add(programmer);
         }
 
@@ -94,43 +94,43 @@ public class GameManager {
                     if (idDoTipo == 0) {
                         Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de Sintaxe", 0, position);
                         abismos.add(erroDeSintaxe);
-                        mapa.put(position,erroDeSintaxe);
+                        map.put(position,erroDeSintaxe);
                     } else if (idDoTipo == 1) {
                         Abismo erroDeLogica = new ErroDeLogica("Erro de Lógica", 1, position);
                         abismos.add(erroDeLogica);
-                        mapa.put(position, erroDeLogica);
+                        map.put(position, erroDeLogica);
                     } else if (idDoTipo == 2) {
                         Abismo exception = new Exception("Exception", 2, position);
                         abismos.add(exception);
-                        mapa.put(position, exception);
+                        map.put(position, exception);
                     } else if (idDoTipo == 3) {
                         Abismo fileNotFoundException = new FileNotFoundException("FileNotFoundException", 3, position);
                         abismos.add(fileNotFoundException);
-                        mapa.put(position, fileNotFoundException);
+                        map.put(position, fileNotFoundException);
                     } else if (idDoTipo == 4) {
                         Abismo crash = new Crash("Crash", 4, position);
                         abismos.add(crash);
-                        mapa.put(position,crash);
+                        map.put(position,crash);
                     } else if (idDoTipo == 5) {
                         Abismo duplicatedCode = new DuplicatedCode("DuplicatedCode", 5, position);
                         abismos.add(duplicatedCode);
-                        mapa.put(position,duplicatedCode);
+                        map.put(position,duplicatedCode);
                     } else if (idDoTipo == 6) {
                         Abismo efeitosSecundarios = new EfeitosSecundarios("EfeitosSecundarios", 6, position);
                         abismos.add(efeitosSecundarios);
-                        mapa.put(position,efeitosSecundarios);
+                        map.put(position,efeitosSecundarios);
                     } else if (idDoTipo == 7) {
                         Abismo bsod = new BlueScreenOfDeath("BlueScreenOfDeath", 7, position);
                         abismos.add(bsod);
-                        mapa.put(position,bsod);
+                        map.put(position,bsod);
                     } else if (idDoTipo == 8) {
                         Abismo cicloInfinito = new CicloInfinito("CicloInfinito", 8, position);
                         abismos.add(cicloInfinito);
-                        mapa.put(position,cicloInfinito);
+                        map.put(position,cicloInfinito);
                     } else if (idDoTipo == 9) {
                         Abismo segF = new SegmentationFault("SegmentationFault", 9, position);
                         abismos.add(segF);
-                        mapa.put(position,segF);
+                        map.put(position,segF);
                     } else {
                         System.out.println("Not an abismo found");
                     }
@@ -139,27 +139,27 @@ public class GameManager {
                     if (idDoTipo == 0) {
                         Ferramenta heranca = new Heranca("Herança", 0, position);
                         ferramentas.add(heranca);
-                        mapa.put(position,heranca);
+                        map.put(position,heranca);
                     } else if (idDoTipo == 1) {
                         Ferramenta progF = new ProgramacaoFuncional("Prog Funcional", 1, position);
                         ferramentas.add(progF);
-                        mapa.put(position,progF);
+                        map.put(position,progF);
                     } else if (idDoTipo == 2) {
                         Ferramenta unitarios = new Unitarios("Unitários", 2, position);
                         ferramentas.add(unitarios);
-                        mapa.put(position,unitarios);
+                        map.put(position,unitarios);
                     } else if (idDoTipo == 3) {
                         Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExceções", 3, position);
                         ferramentas.add(tratEx);
-                        mapa.put(position,tratEx);
+                        map.put(position,tratEx);
                     } else if (idDoTipo == 4) {
                         Ferramenta ide = new IDE("IDE", 4, position);
                         ferramentas.add(ide);
-                        mapa.put(position, ide);
+                        map.put(position, ide);
                     } else if (idDoTipo == 5) {
                         Ferramenta helpProf = new AjudaDoProfessor("AjudaDoProfessor", 5, position);
                         ferramentas.add(helpProf);
-                        mapa.put(position, helpProf);
+                        map.put(position, helpProf);
                     }else {
                         System.out.println("Not a tool found");
                     }
@@ -197,13 +197,14 @@ public class GameManager {
         return "blank.png";
     }
 
+    //Note: Programmers em Jogo OU todos
     public List<Programmer> getProgrammers(boolean includeDefeated) {
         List<Programmer> programmerList = new ArrayList<>();
             if(includeDefeated){ // True todos os jogadores já existentes
                programmerList = programmers;
             }else{
                 for (Programmer programmer: programmers){
-                    if (programmer.estado == true){
+                    if (programmer.isEstado() == true){
                         programmerList.add(programmer);
                     }
                 }
@@ -211,69 +212,123 @@ public class GameManager {
         return programmerList;
     }
 
+    //Note: Programmers na position X
     public List<Programmer> getProgrammers(int position) {
         List<Programmer> programmersList = new ArrayList<>();
         for (Programmer programmer: programmers){
             if(programmer.getPos() == position){
                 programmersList.add(programmer);
-                //programadorAtual.setId(programmer.getId());
             }
         }
         return programmersList;
     }
 
+
+    //Note: Player actual --> ID
     public int getCurrentPlayerID() {
-         return 1;// programadorAtual.getId();
+        List<Programmer> sortedProg = getProgrammers(false);
+        Collections.sort(sortedProg, Comparator.comparing(Programmer::getId));
+
+        for(Programmer programmer: sortedProg) {
+            if (programmer.isHasTurn()) {
+                programmer.setHasTurn(false);
+                programmerActual = programmer;
+                return 1;
+            }
+        }
+        for (Programmer programmer: sortedProg){
+            programmer.setHasTurn(true);
+        }
+        programmerActual = sortedProg.get(0);
+        programmerActual.setHasTurn(false);
+        /*sortedProg.forEach(programmer -> {
+            if (programmer.isEstado() == true){
+                programmer.setEstado(false);
+                programadorAtual = programmer;
+                programadorAtual.getId();
+            }
+          }
+        );*/
+        return 1;
+
     }
 
+    //Note: Move
     public boolean moveCurrentPlayer(int nrSpaces) {
 
         if(nrSpaces < 1 || nrSpaces > 6){
             return false;
         }
 
-        /*for (Abismo abismo: abismos){
-            if (abismo.pos == playerAtual){
+       /*for (Abismo abismo: abismos){
+            if (abismo.getPos() == getCurrentPlayerID()){
                 return false;
             }
         }*/
-        for (Programmer programmer: getProgrammers(false)){ // devia chamar a outra
-                if (programmer.getId() == getCurrentPlayerID()){
-                    int pos = programmer.getPos();
-                    int move = pos + nrSpaces;
-                    List<Integer> posicoesList = programmer.getPosicoes();
-                    if (move < worldSize) {
-                        int newPos = programmer.getPos();
-                        newPos += nrSpaces;
-                        programmer.setPos(newPos);
-                        posicoesList.add(newPos);
-                        //programmer.posicoes.add(programmer.pos);
-                        programmer.setPosicoes(posicoesList);
-                    }
+       //getCurrentPlayerID();
+        /*for (Programmer programmer: getProgrammers(false)){ // devia chamar a outra
+            if (programmer.getId() == getCurrentPlayerID()){
+                int pos = programmer.getPos();
+                int move = pos + nrSpaces;
+                List<Integer> posicoesList = programmer.getPosicoes();
+                if (move < worldSize) {
+                    int newPos = programmer.getPos();
+                    newPos += nrSpaces;
+                    programmer.setPos(newPos);
+                    posicoesList.add(newPos);
+                    //programmer.posicoes.add(programmer.pos);
+                    programmer.setPosicoes(posicoesList);
                 }
+            }
+        }*/
+        getCurrentPlayerID();
+        List<Integer> posicoes = new ArrayList<>();
+        int pos = programmerActual.getPos();
+        posicoes.add(pos);
+        int move = pos + nrSpaces;
+        if (move < worldSize){
+            programmerActual.setPos(move);
+            posicoes.add(move);
+            programmerActual.setPosicoes(posicoes);
         }
         return true;
     }
 
+    //Note: React
     public String reactToAbyssOrTool () {
         //Note: Apenas reações as Ferramentas e Abismos
         //TODO: Confirmation about go forward
         //TODO: Confirmation about go back
         //Todo: Validar a posicao quando já tem um programador lá
 
+        //Hashmap mapa
+        //programadorAtual
 
+       /* int programmerActualPos = programmerActual.getPos();
+        if (map.get(programmerActualPos) != null){
+            Event obj = (Event) map.get(programmerActualPos);
+            if(obj.isAbismo()){
+                int newPos = obj.getReact(programmerActualPos, programmerActual);
+                //programmer.setPos(newPos);
+            }else{
+                programmerActual.ferramentas.add((Ferramenta)obj);
+            }
+        }else{
+            getCurrentPlayerID();
+        }
+*/
         for (Programmer programmer: getProgrammers(false)){
-            if(programmer.getId() == getCurrentPlayerID()){
+            if(programmer.getId() == programmerActual.getId()){
                 int pos = programmer.getPos();
-                if(mapa.get(pos) != null){
-                     Event obj = (Event) mapa.get(pos);
+                if(map.get(pos) != null){
+                     Event obj = (Event) map.get(pos);
                      if(obj.isAbismo()){
                          int newPos = obj.getReact(pos, programmer);
-                         programmer.setPos(newPos);
-                         //programmer.setEstado(true);
                      }else{
-                         programmer.ferramentas.add((Ferramenta) obj);
+                         programmer.ferramentas.add((Ferramenta)obj);
                      }
+                }else{
+                    getCurrentPlayerID();
                 }
             }
         }
@@ -282,7 +337,7 @@ public class GameManager {
 
 
     public boolean gameIsOver() {
-        return true;
+        return false;
     }
 
 
@@ -325,14 +380,10 @@ public class GameManager {
         }
         return null;
     }
-
-
         public boolean saveGame (File file){
             return true;
         }
         public boolean loadGame (File file){
             return true;
         }
-
     }
-
