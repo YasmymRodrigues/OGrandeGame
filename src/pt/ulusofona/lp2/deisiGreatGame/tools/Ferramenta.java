@@ -9,4 +9,9 @@ public abstract class Ferramenta extends Event {
 
      abstract public boolean isAbismo();
 
+     @Override
+     public String toString() {
+          return super.toString();
+     }
+
 }

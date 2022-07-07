@@ -112,6 +112,14 @@ public class Programmer {
         this.hasTurn = hasTurn;
     }
 
+    public void addPosicoes(int num){
+        this.posicoes.add(num);
+
+    }
+
+
+
+
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
         for(Language language: languages){

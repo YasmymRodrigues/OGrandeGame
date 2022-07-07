@@ -5,6 +5,15 @@ package pt.ulusofona.lp2.deisiGreatGame;
 //Note: Um objeto é uma instância - Ocorrência - de uma Classe
 //Note: Metódos static só podem referenciar vars ou outro metódo static (Não manipulam Vars do object)
 //Note: Quem manipula os metodos da classe são metódos da classe ?
+//create - apenas 1x
+//em cada turno (por esta ordem):
+//- getProgrammers() + getCurrentPlayerId() - para mostrar o jogador atual junto ao dado
+//- move - pode retornar true ou false. o retorno só influencia a mensagem "Não é possível mover este jogador"
+//- react - sempre chamado, quer o move dê true quer dê false. << aqui muda o turno
+//- gameIsOver
+
+
+
 import pt.ulusofona.lp2.deisiGreatGame.abismos.*;
 import pt.ulusofona.lp2.deisiGreatGame.abismos.Exception;
 import pt.ulusofona.lp2.deisiGreatGame.tools.*;
@@ -21,7 +30,7 @@ public class GameManager {
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
     HashMap<Integer, Object> map = new HashMap<>(); // array com os espaços do mapa
-    Programmer programmerActual = new Programmer();
+    Programmer currentPlayer = new Programmer();
 
 
     public GameManager() {}
@@ -61,10 +70,16 @@ public class GameManager {
             }
 
             programmer.setPos(1); // todos os programadores começam na posição 1
-            programmer.posicoes = new ArrayList<>();
-            programmer.posicoes.add(programmer.pos);
+            List<Integer> firstPos = new ArrayList<>();
+            firstPos.add(1);
+            programmer.setPosicoes(firstPos);
             programmer.setEstado(true);
             programmers.add(programmer);
+            Collections.sort(programmers, Comparator.comparing(Programmer::getId));
+            /*currentPlayer = programmers.get(0);
+            currentPlayer.setHasTurn(true);*/
+
+
         }
 
         for (Programmer pro : programmers) {
@@ -194,6 +209,45 @@ public class GameManager {
     }
 
     public String getImagePng(int position) {
+
+        Event obj = (Event) map.get(position);
+        if (map.get(position) != null) {
+            switch (obj.nome) {
+                case "AjudaDoProfessor":
+                    return "ajuda-professor.png";
+                case "Herança":
+                    return "inheritance.png";
+                case "IDE":
+                    return "IDE.png";
+                case "Prog Funcional":
+                    return "functional.png";
+                case "TratamentoDeExceções":
+                    return "catch.png";
+                case "Unitários":
+                    return "unit-tests.png";
+                case "BlueScreenOfDeath":
+                    return "bsod.png";
+                case "CicloInfinito":
+                    return "infinite-loop.png";
+                case "Crash":
+                    return "crash.png";
+                case "DuplicatedCode":
+                    return "duplicated-code.png";
+                case "EfeitosSecundarios":
+                    return "secondary-effects.png";
+                case "Erro de Lógica":
+                    return "logic.png";
+                case "Erro de Sintaxe":
+                    return "syntax.png";
+                case "Exception":
+                    return "exception.png";
+                case "FileNotFoundException":
+                    return "file-not-found-exception.png";
+                case "SegmentationFault":
+                    return "core-dumped.png";
+            }
+        }
+
         return "blank.png";
     }
 
@@ -226,31 +280,25 @@ public class GameManager {
 
     //Note: Player actual --> ID
     public int getCurrentPlayerID() {
-        List<Programmer> sortedProg = getProgrammers(false);
-        Collections.sort(sortedProg, Comparator.comparing(Programmer::getId));
+        List<Programmer> activeProgrammers = getProgrammers(false);
 
-        for(Programmer programmer: sortedProg) {
-            if (programmer.isHasTurn()) {
-                programmer.setHasTurn(false);
-                programmerActual = programmer;
-                return 1;
+        for(Programmer programmer: activeProgrammers) {
+            if (!programmer.isHasTurn()) {
+                programmer.setHasTurn(true);
+                currentPlayer = programmer;
+                System.out.println("Inside");
+                System.out.println(currentPlayer.getId());
+                return currentPlayer.getId();
             }
         }
-        for (Programmer programmer: sortedProg){
-            programmer.setHasTurn(true);
+        for (Programmer programmer: activeProgrammers){
+            programmer.setHasTurn(false);
         }
-        programmerActual = sortedProg.get(0);
-        programmerActual.setHasTurn(false);
-        /*sortedProg.forEach(programmer -> {
-            if (programmer.isEstado() == true){
-                programmer.setEstado(false);
-                programadorAtual = programmer;
-                programadorAtual.getId();
-            }
-          }
-        );*/
-        return 1;
-
+        currentPlayer = activeProgrammers.get(0);
+        currentPlayer.setHasTurn(true);
+        System.out.println("outside");
+        System.out.println(currentPlayer.getId());
+        return currentPlayer.getId();
     }
 
     //Note: Move
@@ -265,31 +313,13 @@ public class GameManager {
                 return false;
             }
         }*/
-       //getCurrentPlayerID();
-        /*for (Programmer programmer: getProgrammers(false)){ // devia chamar a outra
-            if (programmer.getId() == getCurrentPlayerID()){
-                int pos = programmer.getPos();
-                int move = pos + nrSpaces;
-                List<Integer> posicoesList = programmer.getPosicoes();
-                if (move < worldSize) {
-                    int newPos = programmer.getPos();
-                    newPos += nrSpaces;
-                    programmer.setPos(newPos);
-                    posicoesList.add(newPos);
-                    //programmer.posicoes.add(programmer.pos);
-                    programmer.setPosicoes(posicoesList);
-                }
-            }
-        }*/
-        getCurrentPlayerID();
-        List<Integer> posicoes = new ArrayList<>();
-        int pos = programmerActual.getPos();
-        posicoes.add(pos);
+
+
+        int pos = currentPlayer.getPos();
         int move = pos + nrSpaces;
         if (move < worldSize){
-            programmerActual.setPos(move);
-            posicoes.add(move);
-            programmerActual.setPosicoes(posicoes);
+            currentPlayer.setPos(move);
+            currentPlayer.addPosicoes(move);
         }
         return true;
     }
@@ -304,35 +334,20 @@ public class GameManager {
         //Hashmap mapa
         //programadorAtual
 
-       /* int programmerActualPos = programmerActual.getPos();
+       int programmerActualPos = currentPlayer.getPos();
         if (map.get(programmerActualPos) != null){
             Event obj = (Event) map.get(programmerActualPos);
             if(obj.isAbismo()){
-                int newPos = obj.getReact(programmerActualPos, programmerActual);
-                //programmer.setPos(newPos);
+                int newPos = obj.getReact(programmerActualPos, currentPlayer);
+                currentPlayer.setPos(newPos);
+                currentPlayer.addPosicoes(newPos);
             }else{
-                programmerActual.ferramentas.add((Ferramenta)obj);
-            }
-        }else{
-            getCurrentPlayerID();
-        }
-*/
-        for (Programmer programmer: getProgrammers(false)){
-            if(programmer.getId() == programmerActual.getId()){
-                int pos = programmer.getPos();
-                if(map.get(pos) != null){
-                     Event obj = (Event) map.get(pos);
-                     if(obj.isAbismo()){
-                         int newPos = obj.getReact(pos, programmer);
-                     }else{
-                         programmer.ferramentas.add((Ferramenta)obj);
-                     }
-                }else{
-                    getCurrentPlayerID();
-                }
+                currentPlayer.ferramentas.add((Ferramenta)obj);
             }
         }
-        return null;
+
+        //getCurrentPlayerID();
+        return "teste";
     }
 
 

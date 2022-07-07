@@ -17,4 +17,8 @@ public class Heranca extends Ferramenta {
         return 1;
     }
 
+    @Override
+    public String toString() {
+        return "Heranca";
+    }
 }

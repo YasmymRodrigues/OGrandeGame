@@ -17,4 +17,9 @@ public class IDE extends Ferramenta {
     public int getReact(int pos, Programmer programmer) {
         return 1;
     }
+
+    @Override
+    public String toString() {
+        return "IDE";
+    }
 }

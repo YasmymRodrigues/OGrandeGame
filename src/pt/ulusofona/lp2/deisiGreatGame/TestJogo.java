@@ -39,8 +39,12 @@ public class TestJogo {
         assertEquals(1, programmerInPosition.get(1).pos); //POS
         assertEquals(BLUE, programmerInPosition.get(1).color); //COLOR
 
+        //Note: Test getCurrentPlayerID() class GM
+        int res = game.getCurrentPlayerID();
+        assertEquals(1, res);
+
         //Note: moveCurrentPlayer()
-        Boolean move = game.moveCurrentPlayer(2);
+        Boolean move = game.moveCurrentPlayer(4);
         assertEquals(true, move);
 
         //Note: React
@@ -49,21 +53,21 @@ public class TestJogo {
 
         //Note: test toString() class Programmer
         //Programmer  programmer = new Programmer("Pedro", 1, languages, ProgrammerColor.PURPLE,1);
-       //assertEquals("1 | Pedro | 1 | No tools | Python;Java | false", programmer.toString());
+        //assertEquals("1 | Pedro | 1 | No tools | Python;Java | false", programmer.toString());
 
-        //Note: Test getCurrentPlayerID() class GM
-        //int res = game.getCurrentPlayerID();
-        //assertEquals(1, res);
+
+        //game.getImagePng(2);
+        //assertEquals("blank.png",game.getImagePng(2));
 
     }
 
-    @Test
+   /* @Test
     public void teste02getImagepng()throws  InvalidInitialBoardException{
         GameManager game = new GameManager();
         game.getImagePng(2);
         assertEquals("blank.png",game.getImagePng(2));
 
-    }
+    }*/
   /* @Test
     public void teste03getCurrentPlayerID() throws InvalidInitialBoardException {
         GameManager game = new GameManager();

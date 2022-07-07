@@ -18,4 +18,8 @@ public class AjudaDoProfessor extends Ferramenta {
         return 1;
     }
 
+    @Override
+    public String toString() {
+        return "AjudaDoProfessor";
+    }
 }
