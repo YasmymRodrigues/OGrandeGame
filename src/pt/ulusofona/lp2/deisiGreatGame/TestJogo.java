@@ -49,7 +49,7 @@ public class TestJogo {
 
         //Note: React
         String react = game.reactToAbyssOrTool();
-        assertEquals(null, react);
+        assertEquals( "teste", react);
 
         //Note: test toString() class Programmer
         //Programmer  programmer = new Programmer("Pedro", 1, languages, ProgrammerColor.PURPLE,1);
