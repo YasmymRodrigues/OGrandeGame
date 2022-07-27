@@ -357,7 +357,7 @@ public class GameManager {
         }
 
         changeTurn();
-        return "blank space";
+        return "null";
     }
 
 
