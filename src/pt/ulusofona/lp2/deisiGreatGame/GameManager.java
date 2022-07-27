@@ -76,8 +76,8 @@ public class GameManager {
             programmer.setEstado(true);
             programmers.add(programmer);
             Collections.sort(programmers, Comparator.comparing(Programmer::getId));
-           /* currentPlayer = programmers.get(0);
-            currentPlayer.setHasTurn(true);*/
+            currentPlayer = programmers.get(0);
+            currentPlayer.setHasTurn(true);
 
 
         }
@@ -280,10 +280,10 @@ public class GameManager {
 
     //Note: Player actual --> ID
     public int getCurrentPlayerID() {
-      return playing().getId();
+      return currentPlayer.getId();
     }
 
-    public Programmer playing(){
+    public Programmer changeTurn(){
         List<Programmer> activeProgrammers = getProgrammers(false);
 
         for (Programmer programmer: getProgrammers(false)){
@@ -347,15 +347,17 @@ public class GameManager {
                 int newPos = obj.getReact(programmerActualPos, currentPlayer);
                 currentPlayer.setPos(newPos);
                 currentPlayer.addPosicoes(newPos);
-                return "moved";
+                changeTurn();
+                return "trap";
             }else{
                 currentPlayer.ferramentas.add((Ferramenta)obj);
-                return "moved";
+                changeTurn();
+                return "you got a tool";
             }
         }
 
-        //getCurrentPlayerID();
-        return "Can't move";
+        changeTurn();
+        return "blank space";
     }
 
 
