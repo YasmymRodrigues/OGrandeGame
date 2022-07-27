@@ -76,7 +76,7 @@ public class GameManager {
             programmer.setEstado(true);
             programmers.add(programmer);
             Collections.sort(programmers, Comparator.comparing(Programmer::getId));
-            /*currentPlayer = programmers.get(0);
+           /* currentPlayer = programmers.get(0);
             currentPlayer.setHasTurn(true);*/
 
 
@@ -280,26 +280,32 @@ public class GameManager {
 
     //Note: Player actual --> ID
     public int getCurrentPlayerID() {
+      return playing().getId();
+    }
+
+    public Programmer playing(){
         List<Programmer> activeProgrammers = getProgrammers(false);
 
-        for(Programmer programmer: activeProgrammers) {
-            if (!programmer.isHasTurn()) {
+        for (Programmer programmer: getProgrammers(false)){
+            if (!programmer.isHasTurn()){
                 programmer.setHasTurn(true);
                 currentPlayer = programmer;
-                System.out.println("Inside");
-                System.out.println(currentPlayer.getId());
-                return currentPlayer.getId();
+
+                return currentPlayer;
             }
         }
+
         for (Programmer programmer: activeProgrammers){
             programmer.setHasTurn(false);
         }
+
         currentPlayer = activeProgrammers.get(0);
         currentPlayer.setHasTurn(true);
-        System.out.println("outside");
-        System.out.println(currentPlayer.getId());
-        return currentPlayer.getId();
+
+        return currentPlayer;
     }
+
+
 
     //Note: Move
     public boolean moveCurrentPlayer(int nrSpaces) {
@@ -341,13 +347,15 @@ public class GameManager {
                 int newPos = obj.getReact(programmerActualPos, currentPlayer);
                 currentPlayer.setPos(newPos);
                 currentPlayer.addPosicoes(newPos);
+                return "moved";
             }else{
                 currentPlayer.ferramentas.add((Ferramenta)obj);
+                return "moved";
             }
         }
 
         //getCurrentPlayerID();
-        return "teste";
+        return "Can't move";
     }
 
 

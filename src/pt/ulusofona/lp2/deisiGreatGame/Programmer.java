@@ -114,7 +114,6 @@ public class Programmer {
 
     public void addPosicoes(int num){
         this.posicoes.add(num);
-
     }
 
 
