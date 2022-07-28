@@ -125,7 +125,7 @@ public class Programmer {
             if(languages.size() == 1) {
                 lang += language.nome;
             }else{
-                lang += language.nome + ";";
+                lang += language.nome + "; ";
             }
         }
         return lang;

@@ -245,6 +245,8 @@ public class GameManager {
                     return "file-not-found-exception.png";
                 case "SegmentationFault":
                     return "core-dumped.png";
+                case "Glory":
+                    return "glory.png";
             }
         }
 
@@ -357,7 +359,7 @@ public class GameManager {
         }
 
         changeTurn();
-        return "null";
+        return null;
     }
 
 
