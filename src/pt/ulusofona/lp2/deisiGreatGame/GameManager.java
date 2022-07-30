@@ -69,16 +69,22 @@ public class GameManager {
                 programmer.setColor(GREEN);
             }
 
-            programmer.setPos(1); // todos os programadores começam na posição 1
+            // todos os programadores começam na posição 1
+            programmer.setPos(1);
+            //Iniciar a lista de posicoes
             List<Integer> firstPos = new ArrayList<>();
             firstPos.add(1);
             programmer.setPosicoes(firstPos);
+            //Estado
             programmer.setEstado(true);
+            //Add programmers to the list
             programmers.add(programmer);
+            //Sorting the programmers
             Collections.sort(programmers, Comparator.comparing(Programmer::getId));
+            //get the first position
             currentPlayer = programmers.get(0);
+            //the first programmer gonna be call first
             currentPlayer.setHasTurn(true);
-
 
         }
 
@@ -107,7 +113,7 @@ public class GameManager {
                 int position = Integer.parseInt(arr[2]);
                 if (type == 0) {
                     if (idDoTipo == 0) {
-                        Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de Sintaxe", 0, position);
+                        Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de sintaxe", 0, position);
                         abismos.add(erroDeSintaxe);
                         map.put(position,erroDeSintaxe);
                     } else if (idDoTipo == 1) {
@@ -249,7 +255,6 @@ public class GameManager {
                     return "glory.png";
             }
         }
-
         return "blank.png";
     }
 
@@ -286,9 +291,10 @@ public class GameManager {
     }
 
     public Programmer changeTurn(){
+
         List<Programmer> activeProgrammers = getProgrammers(false);
 
-        for (Programmer programmer: getProgrammers(false)){
+        for (Programmer programmer: activeProgrammers){
             if (!programmer.isHasTurn()){
                 programmer.setHasTurn(true);
                 currentPlayer = programmer;
@@ -325,7 +331,7 @@ public class GameManager {
 
         int pos = currentPlayer.getPos();
         int move = pos + nrSpaces;
-        if (move < worldSize){
+        if (move < worldSize && currentPlayer.estado == true){
             currentPlayer.setPos(move);
             currentPlayer.addPosicoes(move);
         }
@@ -364,6 +370,13 @@ public class GameManager {
 
 
     public boolean gameIsOver() {
+        if (getProgrammers(false).size() < 2){
+            return true;
+        }
+        if (currentPlayer.getPos() == worldSize){
+            return true;
+        }
+
         return false;
     }
 

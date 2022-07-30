@@ -14,7 +14,7 @@ public class BlueScreenOfDeath extends Abismo {
 
     @Override
     public int getReact(int pos, Programmer programmer) {
-        programmer.setEstado(true);
+        programmer.setEstado(false);
         return 0;
     }
 

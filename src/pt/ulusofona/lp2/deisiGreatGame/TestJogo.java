@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.BLUE;
-import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.PURPLE;
+import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
 public class TestJogo {
 
@@ -19,9 +18,9 @@ public class TestJogo {
         List<Language> languages = new ArrayList<>();
         languages.add(new Language("Python"));
         languages.add(new Language("Java"));
-        String playInfo [][] = {{"1", "Marcos", "Python", "Purple"}, {"2", "Lucas", "Python", "Blue"}};
-        String abT[][] = {{"0", "0", "1"}, {"0", "0", "5"}};
-        int worldSize = 10;
+        String playInfo [][] = {{"1", "Marcos", "Python", "Purple"}, {"2", "Lucas", "Python", "Blue"}, {"3", "Paulo", "Python", "Green"}};
+        String abT[][] = {{"0", "0", "1"}, {"0", "0", "5"}, {"0", "0", "7"}};
+        int worldSize = 20;
 
         //Note: test function createInitialBoard()
         boolean results = game.createInitialBoard(playInfo, worldSize, abT); // Resultado Esperado
@@ -39,9 +38,24 @@ public class TestJogo {
         assertEquals(1, programmerInPosition.get(1).pos); //POS
         assertEquals(BLUE, programmerInPosition.get(1).color); //COLOR
 
+        assertEquals(3, programmerInPosition.get(2).id); //ID
+        assertEquals("Paulo", programmerInPosition.get(2).name); //NAME
+        assertEquals(1, programmerInPosition.get(1).pos); //POS
+        assertEquals(GREEN, programmerInPosition.get(2).color); //COLOR
+
         //Note: Test getCurrentPlayerID() class GM
         int res = game.getCurrentPlayerID();
         assertEquals(1, res);
+        game.changeTurn();
+        int res2 = game.getCurrentPlayerID();
+        assertEquals(2, res2);
+        game.changeTurn();
+        int res3 = game.getCurrentPlayerID();
+        assertEquals(3, res3);
+        game.changeTurn();
+        int res1 = game.getCurrentPlayerID();
+        assertEquals(1, res1);
+        /*game.changeTurn();*/
 
         //Note: moveCurrentPlayer()
         Boolean move = game.moveCurrentPlayer(4);
@@ -59,6 +73,9 @@ public class TestJogo {
         //game.getImagePng(2);
         //assertEquals("blank.png",game.getImagePng(2));
 
+
+        //assertEquals(programmer, game.changeTurn());
+
     }
 
    /* @Test
@@ -74,6 +91,7 @@ public class TestJogo {
         int res = game.getCurrentPlayerID();
         assertEquals(1, res);
     }*/
+
 
    @Test
     public void test04toStringProgrammers() throws InvalidObjectException{
@@ -92,7 +110,5 @@ public class TestJogo {
         languages.add(new Language("Java"));
 
         assertEquals("Python;Java;", programmer.converteArrayParaString(languages));
-
-
     }
 }
