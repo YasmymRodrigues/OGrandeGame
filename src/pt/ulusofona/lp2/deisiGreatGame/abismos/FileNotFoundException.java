@@ -21,11 +21,12 @@ public class FileNotFoundException extends Abismo {
                 return pos;
             }
         }
+
         if (pos > 3){
             newPosition = programmer.getPos() - 3;
-        }else{
-            return pos;
+            return newPosition;
         }
-        return newPosition;
+
+        return pos;
     }
 }

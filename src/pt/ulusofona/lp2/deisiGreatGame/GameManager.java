@@ -141,7 +141,7 @@ public class GameManager {
                         abismos.add(efeitosSecundarios);
                         map.put(position,efeitosSecundarios);
                     } else if (idDoTipo == 7) {
-                        Abismo bsod = new BlueScreenOfDeath("BlueScreenOfDeath", 7, position);
+                        Abismo bsod = new BSOD("BlueScreenOfDeath", 7, position);
                         abismos.add(bsod);
                         map.put(position,bsod);
                     } else if (idDoTipo == 8) {
@@ -314,7 +314,6 @@ public class GameManager {
     }
 
 
-
     //Note: Move
     public boolean moveCurrentPlayer(int nrSpaces) {
 
@@ -358,7 +357,8 @@ public class GameManager {
                 changeTurn();
                 return "trap";
             }else{
-                currentPlayer.ferramentas.add((Ferramenta)obj);
+                currentPlayer.getFerramentas();
+                //currentPlayer.ferramentas.add((Ferramenta)obj);
                 changeTurn();
                 return "you got a tool";
             }
@@ -393,13 +393,13 @@ public class GameManager {
     }
 
     public String getProgrammersInfo() {
-        List<Integer> progIdsSorted = new ArrayList<>();
-        for (Programmer programmer : programmers) {
+
+        for (Programmer programmer : getProgrammers(false)) {
             //progIdsSorted.sort(programmer.id);
-            if (programmer.ferramentas == null) {
-                return "" + programmer.name + " : No tools";
+            if (programmer.getFerramentas().size() < 1) {
+                return "" + programmer.getName() + " : No tools";
             }
-            return "" + programmer.name + " | " + programmer.ferramentas;
+            return "" + programmer.getName() + " | " + programmer.getFerramentas();
         }
 
         return null;

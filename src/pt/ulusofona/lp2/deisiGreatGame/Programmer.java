@@ -135,7 +135,7 @@ public class Programmer {
         if(estado == true){
             return "Em Jogo";
         }else{
-            return "Fora de Jogo";
+            return "Derrotado";
         }
     }
 

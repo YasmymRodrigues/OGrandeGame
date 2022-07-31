@@ -23,9 +23,8 @@ public class Exception extends Abismo {
         }
         if (pos > 2){
             newPosition = programmer.getPos() - 2;
-        }else{
-            return pos;
+            return newPosition;
         }
-        return newPosition;
+        return pos;
     }
 }

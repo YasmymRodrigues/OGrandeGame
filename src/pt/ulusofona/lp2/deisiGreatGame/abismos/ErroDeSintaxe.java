@@ -21,11 +21,11 @@ public class ErroDeSintaxe extends Abismo{
                 return pos;
             }
         }
-        if (pos > 1){
+        if (pos > 1) {
             newPosition = programmer.getPos() - 1;
-        }else{
-            return pos;
+            return newPosition;
         }
-        return newPosition;
+
+        return pos;
     }
 }

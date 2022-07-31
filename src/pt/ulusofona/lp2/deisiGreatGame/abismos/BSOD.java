@@ -2,8 +2,8 @@ package pt.ulusofona.lp2.deisiGreatGame.abismos;
 
 import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 
-public class BlueScreenOfDeath extends Abismo {
-    public BlueScreenOfDeath(String nome, int id, int pos) {
+public class BSOD extends Abismo {
+    public BSOD(String nome, int id, int pos) {
         super(nome, id, pos);
     }
 
