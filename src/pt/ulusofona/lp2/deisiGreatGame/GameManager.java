@@ -396,11 +396,10 @@ public class GameManager {
         String resultado = "";
 
         for (Programmer programmer : getProgrammers(false)) {
-            //progIdsSorted.sort(programmer.id);
-            if (programmer.getFerramentas() == null) {
-                return "" + programmer.getName() + " : No tools";
+            if (!programmer.getFerramentas().isEmpty()) {
+                resultado += "" + programmer.getName() + " | " + programmer.getFerramentas();
             }
-            resultado += "" + programmer.getName() + " | " + programmer.getFerramentas();
+            resultado += "" + programmer.getName() + " : No tools ";
         }
 
         return resultado;

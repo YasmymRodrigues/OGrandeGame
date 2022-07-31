@@ -28,7 +28,7 @@ public class ErroDeLogica extends Abismo{
             //get current pos - the last pos = nrSpace
             int currentPos = programmer.getPos();
             List<Integer> posicoes = programmer.getPosicoes();
-            int lastPos = posicoes.size() - 1;
+            int lastPos = posicoes.get(posicoes.size() - 2);
             //get dice value
             int dice = currentPos - lastPos;
             //make the move

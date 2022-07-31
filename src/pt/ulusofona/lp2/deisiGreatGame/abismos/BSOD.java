@@ -15,7 +15,7 @@ public class BSOD extends Abismo {
     @Override
     public int getReact(int pos, Programmer programmer) {
         programmer.setEstado(false);
-        return 0;
+        return pos;
     }
 
 }
