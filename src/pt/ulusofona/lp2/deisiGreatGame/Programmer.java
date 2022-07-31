@@ -117,8 +117,6 @@ public class Programmer {
     }
 
 
-
-
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
         for(Language language: languages){

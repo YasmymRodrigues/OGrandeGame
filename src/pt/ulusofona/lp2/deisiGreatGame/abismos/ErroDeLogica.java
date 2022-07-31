@@ -3,6 +3,9 @@ package pt.ulusofona.lp2.deisiGreatGame.abismos;
 import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ErroDeLogica extends Abismo{
     public ErroDeLogica(String nome, int id, int pos) {
         super(nome, id, pos);
@@ -22,16 +25,16 @@ public class ErroDeLogica extends Abismo{
             }
         }
         if (pos > 1){
-            //get current pos - the last pos = nrSpace * -1
+            //get current pos - the last pos = nrSpace
             int currentPos = programmer.getPos();
-            int lastPos = programmer.getPosicoes().size() - 2;
+            List<Integer> posicoes = programmer.getPosicoes();
+            int lastPos = posicoes.size() - 1;
             //get dice value
-            int dice = (currentPos - lastPos) * - 1;
+            int dice = currentPos - lastPos;
             //make the move
             newPosition = dice / 2;
-        }else{
-            return pos;
+            return newPosition;
         }
-        return newPosition;
+        return pos;
     }
 }

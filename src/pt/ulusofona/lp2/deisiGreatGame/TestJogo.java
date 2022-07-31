@@ -19,7 +19,7 @@ public class TestJogo {
         languages.add(new Language("Python"));
         languages.add(new Language("Java"));
         String playInfo [][] = {{"1", "Marcos", "Python", "Purple"}, {"2", "Lucas", "Python", "Blue"}, {"3", "Paulo", "Python", "Green"}};
-        String abT[][] = {{"0", "0", "1"}, {"0", "0", "5"}, {"0", "0", "7"}};
+        String abT[][] = {{"0", "1", "2"}, {"0", "1", "5"}, {"0", "1", "7"}};
         int worldSize = 20;
 
         //Note: test function createInitialBoard()
