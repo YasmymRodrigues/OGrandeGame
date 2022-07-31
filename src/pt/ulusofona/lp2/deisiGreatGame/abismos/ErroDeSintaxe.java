@@ -17,7 +17,7 @@ public class ErroDeSintaxe extends Abismo{
     public int getReact(int pos, Programmer programmer) {
         int newPosition;
         for (Ferramenta ferramenta: programmer.getFerramentas()){
-            if (ferramenta.getId() == 5){ //Ajuda do professor
+            if (ferramenta.getId() == 4 || ferramenta.getId() == 5){ //Ajuda do professor + IDE
                 return pos;
             }
         }

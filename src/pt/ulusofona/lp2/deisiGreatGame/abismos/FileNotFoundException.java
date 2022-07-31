@@ -17,7 +17,7 @@ public class FileNotFoundException extends Abismo {
     public int getReact(int pos, Programmer programmer) {
         int newPosition;
         for (Ferramenta ferramenta: programmer.getFerramentas()){
-            if (ferramenta.getId() == 5){
+            if (ferramenta.getId() == 5 || ferramenta.getId() == 3){
                 return pos;
             }
         }

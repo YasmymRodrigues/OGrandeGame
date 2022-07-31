@@ -17,7 +17,7 @@ public class Crash extends Abismo {
     public int getReact(int pos, Programmer programmer) {
         if (programmer.getFerramentas() != null){
             for (Ferramenta ferramenta: programmer.getFerramentas()){
-                if (ferramenta.getId() != 3){ //Tratamento de Excessões
+                if (ferramenta.getId() == 3){ //Tratamento de Excessões
                     return pos;
                 }
             }

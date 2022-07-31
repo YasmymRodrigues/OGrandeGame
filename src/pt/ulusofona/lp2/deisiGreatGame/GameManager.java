@@ -393,16 +393,17 @@ public class GameManager {
     }
 
     public String getProgrammersInfo() {
+        String resultado = "";
 
         for (Programmer programmer : getProgrammers(false)) {
             //progIdsSorted.sort(programmer.id);
-            if (programmer.getFerramentas().size() < 1) {
+            if (programmer.getFerramentas() == null) {
                 return "" + programmer.getName() + " : No tools";
             }
-            return "" + programmer.getName() + " | " + programmer.getFerramentas();
+            resultado += "" + programmer.getName() + " | " + programmer.getFerramentas();
         }
 
-        return null;
+        return resultado;
     }
 
 

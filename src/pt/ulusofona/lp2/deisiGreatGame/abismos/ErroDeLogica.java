@@ -22,7 +22,7 @@ public class ErroDeLogica extends Abismo{
             }
         }
         if (pos > 1){
-            //get current post - the last = nrSpace
+            //get current pos - the last pos = nrSpace * -1
             int currentPos = programmer.getPos();
             int lastPos = programmer.getPosicoes().size() - 2;
             //get dice value
