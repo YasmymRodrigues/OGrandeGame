@@ -17,4 +17,7 @@ public class SegmentationFault extends Abismo {
         return 1;
     }
     //IDE 4
+    //2 ou mais programadores na casa
+    //recuam 3 casas
+    //1 programador não tem efeito
 }

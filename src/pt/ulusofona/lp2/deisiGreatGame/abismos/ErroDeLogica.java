@@ -32,7 +32,9 @@ public class ErroDeLogica extends Abismo{
             //get dice value
             int dice = currentPos - lastPos;
             //make the move
-            newPosition = dice / 2;
+
+            newPosition = currentPos - (dice/2);
+
             return newPosition;
         }
         return pos;

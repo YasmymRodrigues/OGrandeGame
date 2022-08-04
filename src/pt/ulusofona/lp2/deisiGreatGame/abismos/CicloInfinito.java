@@ -16,5 +16,6 @@ public class CicloInfinito extends Abismo {
     public int getReact(int pos, Programmer programmer) {
         return pos;
         //1  P Funcional
+        //
     }
 }
