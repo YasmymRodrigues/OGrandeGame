@@ -28,4 +28,9 @@ public class ErroDeSintaxe extends Abismo{
 
         return pos;
     }
+
+    @Override
+    public String toString() {
+        return "ErroDeSintaxe";
+    }
 }

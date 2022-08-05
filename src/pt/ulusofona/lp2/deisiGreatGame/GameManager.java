@@ -162,15 +162,15 @@ public class GameManager {
                         ferramentas.add(heranca);
                         map.put(position,heranca);
                     } else if (idDoTipo == 1) {
-                        Ferramenta progF = new ProgramacaoFuncional("Prog Funcional", 1, position);
+                        Ferramenta progF = new ProgramacaoFuncional("Programação Funcional", 1, position);
                         ferramentas.add(progF);
                         map.put(position,progF);
                     } else if (idDoTipo == 2) {
-                        Ferramenta unitarios = new Unitarios("Unitários", 2, position);
+                        Ferramenta unitarios = new Unitarios("Testes unitários", 2, position);
                         ferramentas.add(unitarios);
                         map.put(position,unitarios);
                     } else if (idDoTipo == 3) {
-                        Ferramenta tratEx = new TratamentoDeExcepcoes("TratamentoDeExceções", 3, position);
+                        Ferramenta tratEx = new TratamentoDeExcepcoes("Tratamento de Excepções", 3, position);
                         ferramentas.add(tratEx);
                         map.put(position,tratEx);
                     } else if (idDoTipo == 4) {
@@ -178,7 +178,7 @@ public class GameManager {
                         ferramentas.add(ide);
                         map.put(position, ide);
                     } else if (idDoTipo == 5) {
-                        Ferramenta helpProf = new AjudaDoProfessor("AjudaDoProfessor", 5, position);
+                        Ferramenta helpProf = new AjudaDoProfessor("Ajuda do Professor", 5, position);
                         ferramentas.add(helpProf);
                         map.put(position, helpProf);
                     }else {
@@ -219,17 +219,17 @@ public class GameManager {
         Event obj = (Event) map.get(position);
         if (map.get(position) != null) {
             switch (obj.nome) {
-                case "AjudaDoProfessor":
+                case "Ajuda do Professor":
                     return "ajuda-professor.png";
                 case "Herança":
                     return "inheritance.png";
                 case "IDE":
                     return "IDE.png";
-                case "Prog Funcional":
+                case "Programação Funcional":
                     return "functional.png";
-                case "TratamentoDeExceções":
+                case "Tratamento de Excepções":
                     return "catch.png";
-                case "Unitários":
+                case "Testes unitários":
                     return "unit-tests.png";
                 case "BlueScreenOfDeath":
                     return "bsod.png";
@@ -330,9 +330,16 @@ public class GameManager {
 
         int pos = currentPlayer.getPos();
         int move = pos + nrSpaces;
-        if (move < worldSize && currentPlayer.estado == true){
-            currentPlayer.setPos(move);
-            currentPlayer.addPosicoes(move);
+        if (currentPlayer.estado == true) {
+            if (move < worldSize) {
+                currentPlayer.setPos(move);
+                currentPlayer.addPosicoes(move);
+            } else {
+                int spacesBack = worldSize - currentPlayer.getPos() - nrSpaces;
+                int newPos = worldSize + spacesBack;
+                currentPlayer.setPos(newPos);
+                currentPlayer.addPosicoes(newPos);
+            }
         }
         return true;
     }
@@ -357,8 +364,8 @@ public class GameManager {
                 changeTurn();
                 return "trap";
             }else{
-                currentPlayer.getFerramentas();
-                //currentPlayer.ferramentas.add((Ferramenta)obj);
+                //currentPlayer.getFerramentas();
+                currentPlayer.ferramentas.add((Ferramenta)obj);
                 changeTurn();
                 return "you got a tool";
             }
@@ -376,7 +383,7 @@ public class GameManager {
         if (currentPlayer.getPos() == worldSize){
             return true;
         }
-
+        //BSOD
         return false;
     }
 
@@ -394,12 +401,21 @@ public class GameManager {
 
     public String getProgrammersInfo() {
         String resultado = "";
+        String tool = "";
 
         for (Programmer programmer : getProgrammers(false)) {
             if (!programmer.getFerramentas().isEmpty()) {
-                resultado += "" + programmer.getName() + " | " + programmer.getFerramentas();
+                for(Ferramenta ferramenta: programmer.getFerramentas()){
+                    if (programmer.getFerramentas().size() == 1){
+                        tool = ferramenta.getNome();
+                    }else {
+                        tool += ferramenta.getNome() + ";";
+                    }
+                }
+                resultado += "" + programmer.getName() + " : " + tool + " | ";
+            }else {
+                resultado += "" + programmer.getName() + " : No tools | ";
             }
-            resultado += "" + programmer.getName() + " : No tools ";
         }
 
         return resultado;

@@ -26,4 +26,9 @@ public class DuplicatedCode extends Abismo{
         }
         return programmer.getPosicoes().size() - 1;
     }
+
+    @Override
+    public String toString() {
+        return "DuplicatedCode";
+    }
 }

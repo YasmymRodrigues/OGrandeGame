@@ -3,6 +3,8 @@ package pt.ulusofona.lp2.deisiGreatGame.abismos;
 import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
 
+import java.util.List;
+
 public class EfeitosSecundarios extends Abismo {
     public EfeitosSecundarios(String nome, int id, int pos) {
         super(nome, id, pos);
@@ -24,7 +26,12 @@ public class EfeitosSecundarios extends Abismo {
         if (programmer.getPosicoes().size() < 3){
             return pos;
         }
+        List<Integer> posicoes = programmer.getPosicoes();
+        return programmer.getPosicoes().get(posicoes.size() - 3);
+    }
 
-        return programmer.getPosicoes().get(-3);
+    @Override
+    public String toString() {
+        return "EfeitosSecundarios";
     }
 }

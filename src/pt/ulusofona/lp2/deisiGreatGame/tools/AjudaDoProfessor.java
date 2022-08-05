@@ -20,6 +20,6 @@ public class AjudaDoProfessor extends Ferramenta {
 
     @Override
     public String toString() {
-        return "AjudaDoProfessor";
+        return "Ajuda do Professor";
     }
 }

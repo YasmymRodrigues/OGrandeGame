@@ -20,4 +20,9 @@ public class SegmentationFault extends Abismo {
     //2 ou mais programadores na casa
     //recuam 3 casas
     //1 programador não tem efeito
+
+    @Override
+    public String toString() {
+        return "SegmentationFault";
+    }
 }

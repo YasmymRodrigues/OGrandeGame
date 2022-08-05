@@ -18,4 +18,9 @@ public class CicloInfinito extends Abismo {
         //1  P Funcional
         //
     }
+
+    @Override
+    public String toString() {
+        return "CicloInfinito";
+    }
 }

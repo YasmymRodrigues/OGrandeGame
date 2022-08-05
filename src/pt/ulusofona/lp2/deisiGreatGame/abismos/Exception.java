@@ -27,4 +27,9 @@ public class Exception extends Abismo {
         }
         return pos;
     }
+
+    @Override
+    public String toString() {
+        return "Exception";
+    }
 }

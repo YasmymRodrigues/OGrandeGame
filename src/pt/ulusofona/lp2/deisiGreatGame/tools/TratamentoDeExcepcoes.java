@@ -19,6 +19,6 @@ public class TratamentoDeExcepcoes extends Ferramenta {
 
     @Override
     public String toString() {
-        return "TratamentoDeExcepcoes";
+        return "Tratamento de Excepções";
     }
 }

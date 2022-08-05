@@ -24,4 +24,9 @@ public class Crash extends Abismo {
         }
         return 1;
     }
+
+    @Override
+    public String toString() {
+        return "Crash";
+    }
 }

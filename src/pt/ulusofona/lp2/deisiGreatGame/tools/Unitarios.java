@@ -19,6 +19,6 @@ public class Unitarios extends Ferramenta {
 
     @Override
     public String toString() {
-        return "Unitarios";
+        return "Testes unitários";
     }
 }

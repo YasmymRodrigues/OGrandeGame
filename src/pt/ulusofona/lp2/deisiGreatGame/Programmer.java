@@ -137,10 +137,11 @@ public class Programmer {
         }
     }
 
+
     @Override
     public String toString() {
         //TODO: Ferramentas are now Null, not instantiated
-        if (ferramentas.isEmpty()) {
+        if (ferramentas.size() < 1) {
             return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +"| "+ converteArrayParaString(languages) + " | " + getStatus();
         } else {
             return "" + id +" | "+ name +" | "+ pos +" | "+ ferramentas +"| "+ converteArrayParaString(languages) + " | " + getStatus();

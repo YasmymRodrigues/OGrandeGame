@@ -19,6 +19,6 @@ public class ProgramacaoFuncional extends Ferramenta{
 
     @Override
     public String toString() {
-        return "ProgramacaoFuncional";
+        return "Programação Funcional";
     }
 }
