@@ -31,6 +31,6 @@ public class ErroDeSintaxe extends Abismo{
 
     @Override
     public String toString() {
-        return "ErroDeSintaxe";
+        return "Erro de sintaxe";
     }
 }

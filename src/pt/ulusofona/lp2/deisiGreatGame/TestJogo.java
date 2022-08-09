@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
 import pt.ulusofona.lp2.deisiGreatGame.tools.Heranca;
+import pt.ulusofona.lp2.deisiGreatGame.tools.IDE;
 
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
@@ -26,8 +27,9 @@ public class TestJogo {
         int worldSize = 20;
 
         //Note: test function createInitialBoard()
-        boolean results = game.createInitialBoard(playInfo, worldSize, abT); // Resultado Esperado
-        Assert.assertEquals(Boolean.TRUE,results);
+        //boolean results = game.createInitialBoard(playInfo, worldSize, abT); // Resultado Esperado
+        //Assert.assertEquals(Boolean.TRUE,results);
+        Ferramenta ferramenta = new IDE("", 1, 1);
 
         //Note: test function getProgrammers() class Game Manager:
         List<Programmer> programmerInPosition = game.getProgrammers(1); // Resultado Esperado

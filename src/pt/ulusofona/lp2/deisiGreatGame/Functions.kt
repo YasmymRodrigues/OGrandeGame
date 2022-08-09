@@ -1,22 +1,45 @@
 package pt.ulusofona.lp2.deisiGreatGame
 
-import com.sun.source.tree.LiteralTree
-
 
 enum class CommandType{GET, POST}
 
-fun getPlayer(manager: GameManager, args: List<String>): String? {return null}
 
-fun router(): (CommandType) -> (GameManager, List<String>) -> String?{
+//Note: Função Comando(depende do comando que foi passado)
+fun getPlayer(manager: GameManager, args: List<String>): String? {
+    var programmers = mutableListOf<Programmer>()
+    programmers.addAll(manager.getProgrammers(false))
 
-    return ::teste
+    for(i in programmers){
+        var firstName = i.name
+        var parts = firstName.split(" ")
+        if(args[1] == parts[0]){
+            return i.toString()
+        }
+    }
+    return "Inexistent player"
+
 }
 
-fun teste(type: CommandType):(GameManager, List<String>) -> String? {
+/*fun getPlayersByLanguage(manager: GameManager, ){
 
-return ::getPlayer
-}
-val f1 = router()
-val f2 = f1.invoke(CommandType.GET)
-//val result = f2.invoke(manager, listOf("PLAYER", "Joshua"))
+}*/
+
+//Note: Router : obtem uma função que recebe um CommandType --> Função comando
+fun router(): (CommandType) -> (GameManager, List<String>) -> String?{return ::teste}
+
+
+fun teste(type: CommandType):(GameManager, List<String>) -> String?{return ::getPlayer}
+
+
+val manager = GameManager()
+val routerFn = router()
+val commandGetFn = routerFn.invoke(CommandType.GET)
+
+
+//Note: Chamada da função comando
+val getPlayer = commandGetFn.invoke(manager, listOf("PLAYER", "Joshua"))
+
+
+
+//val getGuido = commandGetFn.invoke(manager, listOf("PLAYER", "Guido"))
 

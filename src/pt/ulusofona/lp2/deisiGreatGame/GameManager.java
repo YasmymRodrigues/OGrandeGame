@@ -35,10 +35,11 @@ public class GameManager {
 
     public GameManager() {}
 
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
+    public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
 
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
+        InvalidInitialBoardException ex = new InvalidInitialBoardException();
 
         int id;
         String nome;
@@ -54,7 +55,7 @@ public class GameManager {
             programmer.setName(nome);
             String nomesLanguage = arr[2];
             String[] arrayLanguage = nomesLanguage.split(",");
-            for(String lang: arrayLanguage){
+            for (String lang : arrayLanguage) {
                 Language language1 = new Language(lang);
                 programmer.getLanguages().add(language1);
             }
@@ -89,25 +90,26 @@ public class GameManager {
         }
 
         for (Programmer pro : programmers) {
-            if (progId.add(pro.id) ||pro.id < 0) { //todo I am not sure about this range
-                return false;
+            if (progId.add(pro.id) || pro.id < 0) { //todo I am not sure about this range
+                throw new InvalidInitialBoardException();
             }
             if ((pro.name == null) || (pro.name.isEmpty())) {
-                return false;
+                throw new InvalidInitialBoardException();
             }
             if (pro.color != BLUE && pro.color != PURPLE && pro.color != BROWN && pro.color != GREEN) {
-                return false;
+                throw new InvalidInitialBoardException();
             }
             if (!progColor.add(pro.color)) {
-                return false;
+                throw new InvalidInitialBoardException();
             }
             if ((programmers.size() > 4) || (worldSize <= programmers.size() * 2)) {
-                return false;
+                throw new InvalidInitialBoardException();
             }
         }
+        try {
         //Note: abyssesAndTools
         if (abyssesAndTools != null) {
-        for (String[] arr : abyssesAndTools) {
+            for (String[] arr : abyssesAndTools) {
                 int type = Integer.parseInt(arr[0]);
                 int idDoTipo = Integer.parseInt(arr[1]);
                 int position = Integer.parseInt(arr[2]);
@@ -115,7 +117,7 @@ public class GameManager {
                     if (idDoTipo == 0) {
                         Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de sintaxe", 0, position);
                         abismos.add(erroDeSintaxe);
-                        map.put(position,erroDeSintaxe);
+                        map.put(position, erroDeSintaxe);
                     } else if (idDoTipo == 1) {
                         Abismo erroDeLogica = new ErroDeLogica("Erro de Lógica", 1, position);
                         abismos.add(erroDeLogica);
@@ -131,48 +133,48 @@ public class GameManager {
                     } else if (idDoTipo == 4) {
                         Abismo crash = new Crash("Crash", 4, position);
                         abismos.add(crash);
-                        map.put(position,crash);
+                        map.put(position, crash);
                     } else if (idDoTipo == 5) {
                         Abismo duplicatedCode = new DuplicatedCode("DuplicatedCode", 5, position);
                         abismos.add(duplicatedCode);
-                        map.put(position,duplicatedCode);
+                        map.put(position, duplicatedCode);
                     } else if (idDoTipo == 6) {
                         Abismo efeitosSecundarios = new EfeitosSecundarios("EfeitosSecundarios", 6, position);
                         abismos.add(efeitosSecundarios);
-                        map.put(position,efeitosSecundarios);
+                        map.put(position, efeitosSecundarios);
                     } else if (idDoTipo == 7) {
                         Abismo bsod = new BSOD("BlueScreenOfDeath", 7, position);
                         abismos.add(bsod);
-                        map.put(position,bsod);
+                        map.put(position, bsod);
                     } else if (idDoTipo == 8) {
                         Abismo cicloInfinito = new CicloInfinito("CicloInfinito", 8, position);
                         abismos.add(cicloInfinito);
-                        map.put(position,cicloInfinito);
+                        map.put(position, cicloInfinito);
                     } else if (idDoTipo == 9) {
                         Abismo segF = new SegmentationFault("SegmentationFault", 9, position);
                         abismos.add(segF);
-                        map.put(position,segF);
+                        map.put(position, segF);
                     } else {
                         System.out.println("Not an abismo found");
                     }
                 }
-                if(type == 1) {
+                if (type == 1) {
                     if (idDoTipo == 0) {
                         Ferramenta heranca = new Heranca("Herança", 0, position);
                         ferramentas.add(heranca);
-                        map.put(position,heranca);
+                        map.put(position, heranca);
                     } else if (idDoTipo == 1) {
                         Ferramenta progF = new ProgramacaoFuncional("Programação Funcional", 1, position);
                         ferramentas.add(progF);
-                        map.put(position,progF);
+                        map.put(position, progF);
                     } else if (idDoTipo == 2) {
                         Ferramenta unitarios = new Unitarios("Testes unitários", 2, position);
                         ferramentas.add(unitarios);
-                        map.put(position,unitarios);
+                        map.put(position, unitarios);
                     } else if (idDoTipo == 3) {
                         Ferramenta tratEx = new TratamentoDeExcepcoes("Tratamento de Excepções", 3, position);
                         ferramentas.add(tratEx);
-                        map.put(position,tratEx);
+                        map.put(position, tratEx);
                     } else if (idDoTipo == 4) {
                         Ferramenta ide = new IDE("IDE", 4, position);
                         ferramentas.add(ide);
@@ -181,37 +183,42 @@ public class GameManager {
                         Ferramenta helpProf = new AjudaDoProfessor("Ajuda do Professor", 5, position);
                         ferramentas.add(helpProf);
                         map.put(position, helpProf);
-                    }else {
+                    } else {
                         System.out.println("Not a tool found");
                     }
                 }
-                //DONE: Validation ofAoA
-                if ((arr[0] == null)) {
-                    return false;
-                }
-                if (type != 0 && type != 1) {
-                    return false;
-                }
-                if (type == 0) {
-                    if (idDoTipo < 0 || idDoTipo > 9) {
-                        return false;
+
+                    //DONE: Validation ofAoA
+                    if ((arr[0] == null)) {
+                        throw new InvalidInitialBoardException();
                     }
-                } else {
-                    if (idDoTipo < 0 || idDoTipo > 5) {
-                        return false;
+                    if (type != 0 && type != 1) {
+                        throw new InvalidInitialBoardException();
+                    }
+                    if (type == 0) {
+                        if (idDoTipo < 0 || idDoTipo > 9) {
+                            throw new InvalidInitialBoardException();
+                        }
+                    } else {
+                        if (idDoTipo < 0 || idDoTipo > 5) {
+                            throw new InvalidInitialBoardException();
+                        }
+                    }
+                    // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
+                    if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
+                        throw new InvalidInitialBoardException();
                     }
                 }
-                // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
-                if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
-                    return false;
-                }
+
             }
+        }catch(InvalidInitialBoardException exception) {
+            System.out.println(exception.getMessage());
         }
-        return true;
     }
 
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
-        return createInitialBoard(playerInfo, worldSize, null);
+    public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
+        throw new InvalidInitialBoardException();
+        //return createInitialBoard(playerInfo, worldSize, null);
     }
 
     public String getImagePng(int position) {
@@ -243,7 +250,7 @@ public class GameManager {
                     return "secondary-effects.png";
                 case "Erro de Lógica":
                     return "logic.png";
-                case "Erro de Sintaxe":
+                case "Erro de sintaxe":
                     return "syntax.png";
                 case "Exception":
                     return "exception.png";
