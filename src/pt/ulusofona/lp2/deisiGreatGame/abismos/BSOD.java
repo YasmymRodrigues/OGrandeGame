@@ -3,8 +3,8 @@ package pt.ulusofona.lp2.deisiGreatGame.abismos;
 import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 
 public class BSOD extends Abismo {
-    public BSOD(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public BSOD(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ErroDeLogica extends Abismo{
-    public ErroDeLogica(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public ErroDeLogica(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

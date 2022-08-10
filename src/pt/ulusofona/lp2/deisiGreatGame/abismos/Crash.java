@@ -4,8 +4,8 @@ import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
 
 public class Crash extends Abismo {
-    public Crash(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public Crash(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

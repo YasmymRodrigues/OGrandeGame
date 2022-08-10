@@ -1,21 +1,16 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 abstract public class Event {
-    String nome;
     int id;
     int pos;
 
 
-    public Event(String nome, int id, int pos) {
-        this.nome = nome;
+    public Event(int id, int pos) {
         this.id = id;
         this.pos = pos;
 
     }
 
-    public String getNome() {
-        return nome;
-    }
 
     public int getId() {
         return id;

@@ -3,8 +3,8 @@ package pt.ulusofona.lp2.deisiGreatGame.tools;
 import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 
 public class Unitarios extends Ferramenta {
-    public Unitarios(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public Unitarios(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

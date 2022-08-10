@@ -4,8 +4,8 @@ import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
 
 public class DuplicatedCode extends Abismo{
-    public DuplicatedCode(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public DuplicatedCode(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

@@ -6,8 +6,8 @@ import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
 import java.util.List;
 
 public class EfeitosSecundarios extends Abismo {
-    public EfeitosSecundarios(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public EfeitosSecundarios(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

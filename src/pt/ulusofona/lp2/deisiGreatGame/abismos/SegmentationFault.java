@@ -3,8 +3,8 @@ package pt.ulusofona.lp2.deisiGreatGame.abismos;
 import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 
 public class SegmentationFault extends Abismo {
-    public SegmentationFault(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public SegmentationFault(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

@@ -3,8 +3,8 @@ package pt.ulusofona.lp2.deisiGreatGame.tools;
 import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 
 public class IDE extends Ferramenta {
-    public IDE(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public IDE(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

@@ -4,8 +4,8 @@ import pt.ulusofona.lp2.deisiGreatGame.Event;
 
 abstract public class Abismo extends Event {
 
-    public Abismo(String nome, int id, int pos) {
-        super(nome,id,pos);
+    public Abismo(int id, int pos) {
+        super(id,pos);
     }
 
     abstract public boolean isAbismo();

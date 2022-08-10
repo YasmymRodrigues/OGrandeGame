@@ -4,9 +4,9 @@ package pt.ulusofona.lp2.deisiGreatGame
 enum class CommandType{GET, POST}
 
 //Note: Router : obtem uma função que recebe um CommandType --> Função comando
-fun router(): (CommandType) -> (GameManager, List<String>) -> String?{return ::teste}
+fun router(): (CommandType) -> (GameManager, List<String>) -> String?{return ::callCommandFunction}
 
-fun teste(type: CommandType):(GameManager, List<String>) -> String?{
+fun callCommandFunction(type: CommandType):(GameManager, List<String>) -> String?{
     when(type){
         CommandType.GET -> return::getPlayer
         CommandType.POST -> return ::postPlayer
@@ -34,12 +34,7 @@ fun postPlayer(manager: GameManager, args: List<String>): String?{return null}
 
 val manager = GameManager()
 val routerFn = router()
-
-
-
 val commandGetFn = routerFn.invoke(CommandType.GET)
-
-
 //Note: Chamada da função comando
 val getPlayer = commandGetFn.invoke(manager, listOf("PLAYER", "Joshua"))
 val postPlayer = commandGetFn.invoke(manager, listOf("PLAYER", "Joshua"))

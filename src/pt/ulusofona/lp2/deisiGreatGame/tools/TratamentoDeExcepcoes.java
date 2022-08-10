@@ -3,8 +3,8 @@ package pt.ulusofona.lp2.deisiGreatGame.tools;
 import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 
 public class TratamentoDeExcepcoes extends Ferramenta {
-    public TratamentoDeExcepcoes(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public TratamentoDeExcepcoes(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

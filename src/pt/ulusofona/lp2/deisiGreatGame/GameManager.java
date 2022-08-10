@@ -84,13 +84,13 @@ public class GameManager {
             Collections.sort(programmers, Comparator.comparing(Programmer::getId));
             //get the first position
             currentPlayer = programmers.get(0);
-            //the first programmer gonna be call first
+            //the first programmer going to be call first
             currentPlayer.setHasTurn(true);
 
         }
 
         for (Programmer pro : programmers) {
-            if (progId.add(pro.id) || pro.id < 0) { //todo I am not sure about this range
+            if (progId.add(pro.id) || pro.id < 0) {
                 throw new InvalidInitialBoardException();
             }
             if ((pro.name == null) || (pro.name.isEmpty())) {
@@ -115,43 +115,43 @@ public class GameManager {
                 int position = Integer.parseInt(arr[2]);
                 if (type == 0) {
                     if (idDoTipo == 0) {
-                        Abismo erroDeSintaxe = new ErroDeSintaxe("Erro de sintaxe", 0, position);
+                        Abismo erroDeSintaxe = new ErroDeSintaxe(0, position);
                         abismos.add(erroDeSintaxe);
                         map.put(position, erroDeSintaxe);
                     } else if (idDoTipo == 1) {
-                        Abismo erroDeLogica = new ErroDeLogica("Erro de Lógica", 1, position);
+                        Abismo erroDeLogica = new ErroDeLogica(1, position);
                         abismos.add(erroDeLogica);
                         map.put(position, erroDeLogica);
                     } else if (idDoTipo == 2) {
-                        Abismo exception = new Exception("Exception", 2, position);
+                        Abismo exception = new Exception( 2, position);
                         abismos.add(exception);
                         map.put(position, exception);
                     } else if (idDoTipo == 3) {
-                        Abismo fileNotFoundException = new FileNotFoundException("FileNotFoundException", 3, position);
+                        Abismo fileNotFoundException = new FileNotFoundException( 3, position);
                         abismos.add(fileNotFoundException);
                         map.put(position, fileNotFoundException);
                     } else if (idDoTipo == 4) {
-                        Abismo crash = new Crash("Crash", 4, position);
+                        Abismo crash = new Crash(4, position);
                         abismos.add(crash);
                         map.put(position, crash);
                     } else if (idDoTipo == 5) {
-                        Abismo duplicatedCode = new DuplicatedCode("DuplicatedCode", 5, position);
+                        Abismo duplicatedCode = new DuplicatedCode( 5, position);
                         abismos.add(duplicatedCode);
                         map.put(position, duplicatedCode);
                     } else if (idDoTipo == 6) {
-                        Abismo efeitosSecundarios = new EfeitosSecundarios("EfeitosSecundarios", 6, position);
+                        Abismo efeitosSecundarios = new EfeitosSecundarios( 6, position);
                         abismos.add(efeitosSecundarios);
                         map.put(position, efeitosSecundarios);
                     } else if (idDoTipo == 7) {
-                        Abismo bsod = new BSOD("BlueScreenOfDeath", 7, position);
+                        Abismo bsod = new BSOD( 7, position);
                         abismos.add(bsod);
                         map.put(position, bsod);
                     } else if (idDoTipo == 8) {
-                        Abismo cicloInfinito = new CicloInfinito("CicloInfinito", 8, position);
+                        Abismo cicloInfinito = new CicloInfinito( 8, position);
                         abismos.add(cicloInfinito);
                         map.put(position, cicloInfinito);
                     } else if (idDoTipo == 9) {
-                        Abismo segF = new SegmentationFault("SegmentationFault", 9, position);
+                        Abismo segF = new SegmentationFault(9, position);
                         abismos.add(segF);
                         map.put(position, segF);
                     } else {
@@ -160,27 +160,27 @@ public class GameManager {
                 }
                 if (type == 1) {
                     if (idDoTipo == 0) {
-                        Ferramenta heranca = new Heranca("Herança", 0, position);
+                        Ferramenta heranca = new Heranca(0, position);
                         ferramentas.add(heranca);
                         map.put(position, heranca);
                     } else if (idDoTipo == 1) {
-                        Ferramenta progF = new ProgramacaoFuncional("Programação Funcional", 1, position);
+                        Ferramenta progF = new ProgramacaoFuncional( 1, position);
                         ferramentas.add(progF);
                         map.put(position, progF);
                     } else if (idDoTipo == 2) {
-                        Ferramenta unitarios = new Unitarios("Testes unitários", 2, position);
+                        Ferramenta unitarios = new Unitarios( 2, position);
                         ferramentas.add(unitarios);
                         map.put(position, unitarios);
                     } else if (idDoTipo == 3) {
-                        Ferramenta tratEx = new TratamentoDeExcepcoes("Tratamento de Excepções", 3, position);
+                        Ferramenta tratEx = new TratamentoDeExcepcoes( 3, position);
                         ferramentas.add(tratEx);
                         map.put(position, tratEx);
                     } else if (idDoTipo == 4) {
-                        Ferramenta ide = new IDE("IDE", 4, position);
+                        Ferramenta ide = new IDE( 4, position);
                         ferramentas.add(ide);
                         map.put(position, ide);
                     } else if (idDoTipo == 5) {
-                        Ferramenta helpProf = new AjudaDoProfessor("Ajuda do Professor", 5, position);
+                        Ferramenta helpProf = new AjudaDoProfessor( 5, position);
                         ferramentas.add(helpProf);
                         map.put(position, helpProf);
                     } else {
@@ -225,41 +225,44 @@ public class GameManager {
 
         Event obj = (Event) map.get(position);
         if (map.get(position) != null) {
-            switch (obj.nome) {
-                case "Ajuda do Professor":
-                    return "ajuda-professor.png";
-                case "Herança":
-                    return "inheritance.png";
-                case "IDE":
-                    return "IDE.png";
-                case "Programação Funcional":
-                    return "functional.png";
-                case "Tratamento de Excepções":
-                    return "catch.png";
-                case "Testes unitários":
-                    return "unit-tests.png";
-                case "BlueScreenOfDeath":
-                    return "bsod.png";
-                case "CicloInfinito":
-                    return "infinite-loop.png";
-                case "Crash":
-                    return "crash.png";
-                case "DuplicatedCode":
-                    return "duplicated-code.png";
-                case "EfeitosSecundarios":
-                    return "secondary-effects.png";
-                case "Erro de Lógica":
-                    return "logic.png";
-                case "Erro de sintaxe":
-                    return "syntax.png";
-                case "Exception":
-                    return "exception.png";
-                case "FileNotFoundException":
-                    return "file-not-found-exception.png";
-                case "SegmentationFault":
-                    return "core-dumped.png";
-                case "Glory":
-                    return "glory.png";
+            if(obj.isAbismo()){
+                switch (obj.id){
+                    case 0:
+                        return "syntax.png";
+                    case 1:
+                        return "logic.png";
+                    case 2:
+                        return "exception.png";
+                    case 3:
+                        return "file-not-found-exception.png";
+                    case 4:
+                        return "crash.png";
+                    case 5:
+                        return "duplicated-code.png";
+                    case 6:
+                        return "secondary-effects.png";
+                    case 7:
+                        return "bsod.png";
+                    case 8:
+                        return "infinite-loop.png";
+                    case 9:
+                        return "core-dumped.png";
+                  }
+            }else {
+                switch (obj.id) {
+                    case 0:
+                        return "inheritance.png";
+                    case 1:
+                        return "functional.png";
+                    case 2:
+                        return "unit-tests.png";
+                    case 3:
+                        return "catch.png";
+                    case 4:
+                        return "IDE.png";
+                    case 5:
+                        return "ajuda-professor.png";
+                }
             }
         }
         return "blank.png";
@@ -414,9 +417,9 @@ public class GameManager {
             if (!programmer.getFerramentas().isEmpty()) {
                 for(Ferramenta ferramenta: programmer.getFerramentas()){
                     if (programmer.getFerramentas().size() == 1){
-                        tool = ferramenta.getNome();
+                        tool = ferramenta.toString();
                     }else {
-                        tool += ferramenta.getNome() + ";";
+                        tool += ferramenta.toString() + ";";
                     }
                 }
                 resultado += "" + programmer.getName() + " : " + tool + " | ";
@@ -433,12 +436,12 @@ public class GameManager {
 
         for(Ferramenta ferramenta: ferramentas){
             if(ferramenta.getPos() == position){
-                return ferramenta.getNome();
+                return ferramenta.toString();
             }
         }
         for(Abismo abismo: abismos){
             if (abismo.getPos()== position){
-                return abismo.getNome();
+                return abismo.toString();
             }
         }
         return null;

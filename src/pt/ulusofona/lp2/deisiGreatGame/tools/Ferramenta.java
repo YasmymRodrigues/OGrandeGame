@@ -3,8 +3,8 @@ package pt.ulusofona.lp2.deisiGreatGame.tools;
 import pt.ulusofona.lp2.deisiGreatGame.Event;
 
 public abstract class Ferramenta extends Event {
-     public Ferramenta(String nome, int id, int pos) {
-          super(nome,id,pos);
+     public Ferramenta(int id, int pos) {
+          super(id,pos);
      }
 
      abstract public boolean isAbismo();

@@ -4,8 +4,8 @@ import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
 
 public class Exception extends Abismo {
-    public Exception(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public Exception(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

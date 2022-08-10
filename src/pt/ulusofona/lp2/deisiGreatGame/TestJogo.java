@@ -29,7 +29,7 @@ public class TestJogo {
         //Note: test function createInitialBoard()
         //boolean results = game.createInitialBoard(playInfo, worldSize, abT); // Resultado Esperado
         //Assert.assertEquals(Boolean.TRUE,results);
-        Ferramenta ferramenta = new IDE("", 1, 1);
+        Ferramenta ferramenta = new IDE( 1, 1);
 
         //Note: test function getProgrammers() class Game Manager:
         List<Programmer> programmerInPosition = game.getProgrammers(1); // Resultado Esperado

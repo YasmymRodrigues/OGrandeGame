@@ -4,8 +4,8 @@ import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 
 public class AjudaDoProfessor extends Ferramenta {
 
-    public AjudaDoProfessor(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public AjudaDoProfessor(int id, int pos) {
+        super(id, pos);
     }
 
     @Override

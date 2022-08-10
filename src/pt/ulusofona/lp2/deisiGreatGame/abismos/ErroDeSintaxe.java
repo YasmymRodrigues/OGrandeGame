@@ -4,8 +4,8 @@ import pt.ulusofona.lp2.deisiGreatGame.Programmer;
 import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
 
 public class ErroDeSintaxe extends Abismo{
-    public ErroDeSintaxe(String nome, int id, int pos) {
-        super(nome, id, pos);
+    public ErroDeSintaxe(int id, int pos) {
+        super(id, pos);
     }
 
     @Override
