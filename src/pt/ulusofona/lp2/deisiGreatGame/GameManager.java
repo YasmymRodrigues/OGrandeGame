@@ -412,22 +412,24 @@ public class GameManager {
     public String getProgrammersInfo() {
         String resultado = "";
         String tool = "";
+        String player = "";
 
         for (Programmer programmer : getProgrammers(false)) {
             if (!programmer.getFerramentas().isEmpty()) {
                 for(Ferramenta ferramenta: programmer.getFerramentas()){
-                    if (programmer.getFerramentas().size() == 1){
+                    tool += ferramenta.toString() + ";";
+
+                    /*if (programmer.getFerramentas().size() == 1){
                         tool = ferramenta.toString();
                     }else {
                         tool += ferramenta.toString() + ";";
-                    }
+                    }*/
                 }
-                resultado += "" + programmer.getName() + " : " + tool + " | ";
+                resultado += "" + programmer.getName() + " : " + programmer.getStringFerramentas() + " | ";
             }else {
                 resultado += "" + programmer.getName() + " : No tools | ";
             }
         }
-
         return resultado;
     }
 

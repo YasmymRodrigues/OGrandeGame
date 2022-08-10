@@ -19,6 +19,6 @@ public class Heranca extends Ferramenta {
 
     @Override
     public String toString() {
-        return "Heranca";
+        return "Herança";
     }
 }

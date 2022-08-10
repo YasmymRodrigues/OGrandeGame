@@ -80,6 +80,14 @@ public class Programmer {
         return ferramentas;
     }
 
+    public String getStringFerramentas(){
+        String tool = "";
+        for (Ferramenta ferramenta: ferramentas){
+            tool += ferramenta.toString() + ";";
+        }
+        return tool;
+    }
+
     public void setFerramentas(List<Ferramenta> ferramentas) {
         this.ferramentas = ferramentas;
     }
@@ -137,20 +145,19 @@ public class Programmer {
         }
     }
 
-
     @Override
     public String toString() {
-        //TODO: Ferramentas are now Null, not instantiated
+
         String tools = "";
         if (ferramentas.size() < 1) {
-            return "" + id +" | "+ name +" | "+ pos +" | "+ "No tools " +"| "+ converteArrayParaString(languages) + " | " + getStatus();
+            return "" + id + " | " + name + " | " + pos + " | " + "No tools " + "| " + converteArrayParaString(languages) + " | " + getStatus();
         } else {
-            for(Ferramenta ferramenta: ferramentas){
-                tools += ferramenta.toString() + ";";
+                for (Ferramenta ferramenta : ferramentas) {
+                    tools += ferramenta.toString() + ";";
+                }
+                return "" + id + " | " + name + " | " + pos + " | " + tools + "| " + converteArrayParaString(languages) + " | " + getStatus();
             }
-            return "" + id +" | "+ name +" | "+ pos +" | "+ tools +"| "+ converteArrayParaString(languages) + " | " + getStatus();
-        }
-    }
+       }
 }
 
 //expected:<...tools | Common Lisp;[ ]PHP | Em Jogo>
