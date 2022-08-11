@@ -82,8 +82,12 @@ public class Programmer {
 
     public String getStringFerramentas(){
         String tool = "";
-        for (Ferramenta ferramenta: ferramentas){
-            tool += ferramenta.toString() + ";";
+        for (int i = 0; i < ferramentas.size(); i++){
+            if (i < ferramentas.size() && i > 0){
+                tool += ";" + ferramentas.get(i).toString();
+            }else{
+                tool += ferramentas.get(i).toString();
+            }
         }
         return tool;
     }

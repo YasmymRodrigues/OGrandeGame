@@ -416,15 +416,6 @@ public class GameManager {
 
         for (Programmer programmer : getProgrammers(false)) {
             if (!programmer.getFerramentas().isEmpty()) {
-                for(Ferramenta ferramenta: programmer.getFerramentas()){
-                    tool += ferramenta.toString() + ";";
-
-                    /*if (programmer.getFerramentas().size() == 1){
-                        tool = ferramenta.toString();
-                    }else {
-                        tool += ferramenta.toString() + ";";
-                    }*/
-                }
                 resultado += "" + programmer.getName() + " : " + programmer.getStringFerramentas() + " | ";
             }else {
                 resultado += "" + programmer.getName() + " : No tools | ";
