@@ -8,7 +8,7 @@ fun router(): (CommandType) -> (GameManager, List<String>) -> String?{return ::c
 
 fun callCommandFunction(type: CommandType):(GameManager, List<String>) -> String?{
     when(type){
-        //CommandType.GET -> return::getPlayer
+        CommandType.GET -> return::getPlayer
         CommandType.GET -> return::getPlayersByLanguage
         CommandType.POST -> return ::postPlayer
     }
