@@ -89,6 +89,7 @@ fun getPolyglots(manager: GameManager, args: List<String>): String?{
 
 
     for (programmer in manager.getProgrammers(false)){
+        println(programmer.name + ":" +programmer.getLanguages())
         for (language in programmer.getLanguages()) {
             var tmp = language.nome.split(";")
             //strNameNrLang += "" + programmer.name + ":" + tmp.size + "\n"

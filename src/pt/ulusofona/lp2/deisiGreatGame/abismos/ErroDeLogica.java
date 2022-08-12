@@ -20,7 +20,7 @@ public class ErroDeLogica extends Abismo{
     public int getReact(int pos, Programmer programmer) {
         int newPosition;
         for (Ferramenta ferramenta: programmer.getFerramentas()){
-            if (ferramenta.getId() == 5){ //Ajuda do professor
+            if (ferramenta.getId() == 5 || ferramenta.getId() == 2){ //Ajuda do professor
                 return pos;
             }
         }
