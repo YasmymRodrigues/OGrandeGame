@@ -9,7 +9,17 @@ fun router(): (CommandType) -> (GameManager, List<String>) -> String?{return ::c
 fun callCommandFunction(type: CommandType):(GameManager, List<String>) -> String?{
     when(type){
         //CommandType.GET -> return::getPlayer
-        CommandType.GET -> return::getPlayersByLanguage
+        CommandType.GET -> return::getPolyglots
+
+            /*when () {
+                0 -> return "inheritance.png"
+                1 -> return "functional.png"
+                2 -> return "unit-tests.png"
+                3 -> return "catch.png"
+                4 -> return "IDE.png"
+                5 -> return "ajuda-professor.png"
+            }*/
+
         CommandType.POST -> return ::postPlayer
     }
 }
@@ -46,7 +56,7 @@ fun getPlayersByLanguage(manager: GameManager, args: List<String>): String?{
             }
           }
        }
-
+        //Note: Bad implementation - *Temporary*
         if (listNome.size == 1){
             return listNome.get(0)
         }
@@ -69,7 +79,29 @@ fun getPlayersByLanguage(manager: GameManager, args: List<String>): String?{
                 strNames += "," + str
             }*/
 
-    return "tt"
+    return ""
+}
+
+
+fun getPolyglots(manager: GameManager, args: List<String>): String?{
+    var nameNrLang : HashMap<String, Int> = HashMap<String, Int> ()
+    var strNameNrLang = ""
+
+
+    for (programmer in manager.getProgrammers(false)){
+        for (language in programmer.getLanguages()) {
+            var tmp = language.nome.split(";")
+            //strNameNrLang += "" + programmer.name + ":" + tmp.size + "\n"
+            nameNrLang.put(programmer.name, tmp.size)
+        }
+    }
+    val resultMap = nameNrLang.entries.sortedBy { it.value }.associate { it.toPair() }
+
+    for (res in resultMap){
+        strNameNrLang += "" + res.key + ":" + res.value + "\n"
+    }
+
+    return strNameNrLang
 }
 
 fun postPlayer(manager: GameManager, args: List<String>): String?{return null}
