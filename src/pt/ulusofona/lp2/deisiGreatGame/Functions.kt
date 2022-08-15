@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame
 
+import jdk.swing.interop.SwingInterOpUtils
+
 
 enum class CommandType{GET, POST}
 
@@ -9,8 +11,8 @@ fun router(): (CommandType) -> (GameManager, List<String>) -> String?{return ::c
 fun callCommandFunction(type: CommandType):(GameManager, List<String>) -> String?{
     when(type){
         //CommandType.GET -> return::getPlayer
-        CommandType.GET -> return::getPlayersByLanguage
-        //CommandType.GET -> return::getPolyglots
+        //CommandType.GET -> return::getPlayersByLanguage
+        CommandType.GET -> return::getPolyglots
 
 
 
@@ -91,6 +93,7 @@ fun getPolyglots(manager: GameManager, args: List<String>): String?{
 
     for (res in resultMap){
         strNameNrLang += "" + res.key + ":" + res.value + "\n"
+        println(strNameNrLang)
     }
 
     return strNameNrLang

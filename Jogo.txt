@@ -1,4 +1,26 @@
 1 | Joshua Bloch | 1 | No tools | Java;C;Python;C# | Em Jogo
 2 | Guido van Rossum | 1 | No tools | Python;Common Lisp;C | Em Jogo
 3 | Ada Lovelace | 1 | No tools | Ada;C;  C#;   | Em Jogo
-4 | John McCarthy | 1 | No tools | Lisp;C;  C#;   | Em Jogo
+ErroDeLogica
+Segmentation Fault
+DuplicatedCode
+Erro de sintaxe
+FileNotFoundException
+CicloInfinito
+Crash
+Exception
+EfeitosSecundarios
+BSOD
+Ajuda do Professor
+Testes unitários
+IDE
+Tratamento de Excepções
+Herança
+Ajuda do Professor
+Herança
+Tratamento de Excepções
+Programação Funcional
+Testes unitários
+IDE
+Programação Funcional
+79

@@ -449,6 +449,14 @@ public class GameManager {
                 for (Programmer programmer: getProgrammers(false)){
                     writer.write(programmer.toString() + "\n");
                     }
+                for (Abismo abismo: abismos){
+                    writer.write(abismo.toString() + "\n");
+                }
+                for (Ferramenta ferramenta: ferramentas){
+                    writer.write(ferramenta.toString()+ "\n");
+                }
+                writer.write(Integer.toString(worldSize));
+                System.out.println(worldSize );
                 writer.close();
                 return true;
             } catch (IOException e) {
@@ -471,7 +479,6 @@ public class GameManager {
                     return true;
                 } catch (IOException e) {
                     System.out.println("Erro na leitura do ficheiro do jogo");
-
                 }
 
             return false;
