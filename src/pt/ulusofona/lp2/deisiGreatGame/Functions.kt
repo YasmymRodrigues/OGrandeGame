@@ -8,8 +8,11 @@ fun router(): (CommandType) -> (GameManager, List<String>) -> String?{return ::c
 
 fun callCommandFunction(type: CommandType):(GameManager, List<String>) -> String?{
     when(type){
-        //CommandType.GET -> return::getPlayer
+        CommandType.GET -> return::getPlayer
+        CommandType.GET -> return::getPlayersByLanguage
         CommandType.GET -> return::getPolyglots
+
+
 
             /*when () {
                 0 -> return "inheritance.png"
@@ -50,34 +53,24 @@ fun getPlayersByLanguage(manager: GameManager, args: List<String>): String?{
             var tmp = language.nome.split(";")
             for (lng in tmp) {
                 if (lng == args[1]) {
-                    println("yes it match")
-                    listNome.add(programmer.name)
+                    listNome += programmer.name
                 }
             }
           }
        }
-        //Note: Bad implementation - *Temporary*
-        if (listNome.size == 1){
-            return listNome.get(0)
-        }
 
-        if (listNome.size == 2 ) {
-            strNames += listNome.get(0) + "," + listNome.get(1)
-            return strNames
+    for (i in 0 until listNome.size){
+        if(i < listNome.size && i > 0){
+            strNames += "," + listNome[i]
+        }else{
+            strNames += listNome[i]
         }
+    }
+    return strNames
 
-        if (listNome.size == 3 ) {
-            strNames += listNome.get(0) + "," + listNome.get(1) + "," + listNome.get(2)
-            return strNames
-        }
 
-        if (listNome.size == 4 ) {
-            strNames += listNome.get(0) + "," + listNome.get(1) + "," + listNome.get(2) + "," + listNome.get(3)
-            return strNames
-        }
-           /* for (str in listNome) {
-                strNames += "," + str
-            }*/
+
+
 
     return ""
 }
