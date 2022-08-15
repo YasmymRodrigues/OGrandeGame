@@ -217,8 +217,8 @@ public class GameManager {
     }
 
     public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
-        throw new InvalidInitialBoardException();
-        //return createInitialBoard(playerInfo, worldSize, null);
+        //throw new InvalidInitialBoardException();
+        createInitialBoard(playerInfo, worldSize, null);
     }
 
     public String getImagePng(int position) {
