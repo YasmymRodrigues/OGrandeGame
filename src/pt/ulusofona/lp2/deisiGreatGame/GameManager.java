@@ -450,10 +450,10 @@ public class GameManager {
                     writer.write(programmer.toString() + "\n");
                     }
                 writer.close();
+                return true;
             } catch (IOException e) {
                 System.out.println("Erro na gravação do ficheiro do jogo");
             }
-            return true;
         }
         return false;
         }
