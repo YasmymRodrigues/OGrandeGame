@@ -460,6 +460,20 @@ public class GameManager {
 
 
         public boolean loadGame (File file){
-            return true;
+
+                try {
+                    Scanner reader = new Scanner(file);
+                    while(reader.hasNextLine()){
+                        String data = reader.nextLine();
+                        System.out.println(data);
+                    }
+                    reader.close();
+                    return true;
+                } catch (IOException e) {
+                    System.out.println("Erro na leitura do ficheiro do jogo");
+
+                }
+
+            return false;
         }
     }

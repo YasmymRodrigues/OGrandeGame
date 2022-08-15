@@ -70,7 +70,7 @@ fun getPlayersByLanguage(manager: GameManager, args: List<String>): String?{
     if (strNames.isNotEmpty()) {
         return strNames
     }
-    return " "
+    return ""
 }
 
 

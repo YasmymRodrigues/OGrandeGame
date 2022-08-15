@@ -9,7 +9,7 @@ public class SegmentationFault extends Abismo {
 
     @Override
     public boolean isAbismo() {
-        return false;
+        return true;
     }
 
     @Override
@@ -23,6 +23,6 @@ public class SegmentationFault extends Abismo {
 
     @Override
     public String toString() {
-        return "SegmentationFault";
+        return "Segmentation Fault";
     }
 }
