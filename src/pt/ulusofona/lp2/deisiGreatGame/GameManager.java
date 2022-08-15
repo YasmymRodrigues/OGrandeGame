@@ -92,7 +92,26 @@ public class GameManager {
         }
 
         for (Programmer pro : programmers) {
-            if (progId.add(pro.id) || pro.id < 0) {
+            if (progId.add(pro.id) || pro.id <= 0) {      // não pode ter dois programadores com o mesmo ID
+                throw new InvalidInitialBoardException(); // id smaller than 0
+            }
+            if ((pro.name == null) || (pro.name.isEmpty())) { //name == null
+                throw new InvalidInitialBoardException();     //name.isEmpty()
+            }
+            if (pro.color != BLUE && pro.color != PURPLE && pro.color != BROWN && pro.color != GREEN) {  //color be different of the 4 types
+                throw new InvalidInitialBoardException();
+            }
+            if (!progColor.add(pro.color)) { // add new colar means
+                throw new InvalidInitialBoardException();
+            }
+            if ((programmers.size() > 4) || (worldSize < (programmers.size() * 2))) {
+                throw new InvalidInitialBoardException();
+            }
+
+
+
+
+            /*if (progId.add(pro.id) || pro.id < 0) {
                 throw new InvalidInitialBoardException();
             }
             if ((pro.name == null) || (pro.name.isEmpty())) {
@@ -106,7 +125,7 @@ public class GameManager {
             }
             if ((programmers.size() > 4) || (worldSize <= programmers.size() * 2)) {
                 throw new InvalidInitialBoardException();
-            }
+            }*/
         }
         try {
         //Note: abyssesAndTools

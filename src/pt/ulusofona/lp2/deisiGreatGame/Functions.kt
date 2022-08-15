@@ -10,8 +10,8 @@ fun router(): (CommandType) -> (GameManager, List<String>) -> String?{return ::c
 
 fun callCommandFunction(type: CommandType):(GameManager, List<String>) -> String?{
     when(type){
-        //CommandType.GET -> return::getPlayer
-        //CommandType.GET -> return::getPlayersByLanguage
+        CommandType.GET -> return::getPlayer
+        CommandType.GET -> return::getPlayersByLanguage
         CommandType.GET -> return::getPolyglots
 
 
@@ -91,9 +91,11 @@ fun getPolyglots(manager: GameManager, args: List<String>): String?{
     }
     val resultMap = nameNrLang.entries.sortedBy { it.value }.associate { it.toPair() }
 
-    for (res in resultMap){
-        strNameNrLang += "" + res.key + ":" + res.value + "\n"
-        println(strNameNrLang)
+    for (res in resultMap) {
+        if (res.value > 1) {
+            strNameNrLang += "" + res.key + ":" + res.value + "\n"
+            println(strNameNrLang)
+        }
     }
 
     return strNameNrLang
