@@ -8,9 +8,9 @@ fun router(): (CommandType) -> (GameManager, List<String>) -> String?{return ::c
 
 fun callCommandFunction(type: CommandType):(GameManager, List<String>) -> String?{
     when(type){
-        CommandType.GET -> return::getPlayer
+        //CommandType.GET -> return::getPlayer
         CommandType.GET -> return::getPlayersByLanguage
-        CommandType.GET -> return::getPolyglots
+        //CommandType.GET -> return::getPolyglots
 
 
 
@@ -66,13 +66,11 @@ fun getPlayersByLanguage(manager: GameManager, args: List<String>): String?{
             strNames += listNome[i]
         }
     }
-    return strNames
 
-
-
-
-
-    return ""
+    if (strNames.isNotEmpty()) {
+        return strNames
+    }
+    return " "
 }
 
 

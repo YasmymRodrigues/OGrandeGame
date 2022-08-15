@@ -16,10 +16,12 @@ package pt.ulusofona.lp2.deisiGreatGame;
 
 import pt.ulusofona.lp2.deisiGreatGame.abismos.*;
 import pt.ulusofona.lp2.deisiGreatGame.abismos.Exception;
+import pt.ulusofona.lp2.deisiGreatGame.abismos.FileNotFoundException;
 import pt.ulusofona.lp2.deisiGreatGame.tools.*;
 
 import javax.swing.*;
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 
 import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
@@ -440,8 +442,23 @@ public class GameManager {
         return null;
     }
         public boolean saveGame (File file){
+
+        if (file.exists()){
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                for (Programmer programmer: getProgrammers(false)){
+                    writer.write(programmer.toString() + "\n");
+                    }
+                writer.close();
+            } catch (IOException e) {
+                System.out.println("Erro na gravação do ficheiro do jogo");
+            }
             return true;
         }
+        return false;
+        }
+
+
         public boolean loadGame (File file){
             return true;
         }
