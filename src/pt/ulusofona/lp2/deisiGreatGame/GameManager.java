@@ -107,25 +107,6 @@ public class GameManager {
             if ((programmers.size() > 4) || (worldSize < (programmers.size() * 2))) {
                 throw new InvalidInitialBoardException();
             }
-
-
-
-
-            /*if (progId.add(pro.id) || pro.id < 0) {
-                throw new InvalidInitialBoardException();
-            }
-            if ((pro.name == null) || (pro.name.isEmpty())) {
-                throw new InvalidInitialBoardException();
-            }
-            if (pro.color != BLUE && pro.color != PURPLE && pro.color != BROWN && pro.color != GREEN) {
-                throw new InvalidInitialBoardException();
-            }
-            if (!progColor.add(pro.color)) {
-                throw new InvalidInitialBoardException();
-            }
-            if ((programmers.size() > 4) || (worldSize <= programmers.size() * 2)) {
-                throw new InvalidInitialBoardException();
-            }*/
         }
         try {
         //Note: abyssesAndTools
@@ -175,6 +156,10 @@ public class GameManager {
                         Abismo segF = new SegmentationFault(9, position);
                         abismos.add(segF);
                         map.put(position, segF);
+                    } else if (idDoTipo == 10) {
+                        Abismo vamosFazerContas = new VamosFazerContas(10, position);
+                        abismos.add(vamosFazerContas);
+                        map.put(position, vamosFazerContas);
                     } else {
                         System.out.println("Not an abismo found");
                     }
@@ -230,7 +215,6 @@ public class GameManager {
                         throw new InvalidInitialBoardException();
                     }
                 }
-
             }
         }catch(InvalidInitialBoardException exception) {
             System.out.println(exception.getMessage());
@@ -238,7 +222,6 @@ public class GameManager {
     }
 
     public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
-        //throw new InvalidInitialBoardException();
         createInitialBoard(playerInfo, worldSize, null);
     }
 
@@ -268,6 +251,8 @@ public class GameManager {
                         return "infinite-loop.png";
                     case 9:
                         return "core-dumped.png";
+                    case 10:
+                        return "unknownPiece.png";
                   }
             }else {
                 switch (obj.id) {
@@ -463,9 +448,9 @@ public class GameManager {
         public boolean saveGame (File file){
 
         if (file.exists()){
-            try {
+            try { //note: make validations
                     BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                    if (getProgrammers(false) != null || abismos != null || ferramentas != null || worldSize != 0) {
+                    if (getProgrammers(false) != null && abismos != null && ferramentas != null && worldSize != 0) {
                         for (Programmer programmer : getProgrammers(false)) {
                             writer.write(programmer.toString() + "\n");
                         }
