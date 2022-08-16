@@ -465,7 +465,7 @@ public class GameManager {
         if (file.exists()){
             try {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                    if (getProgrammers(false) == null || abismos == null || ferramentas == null || worldSize == 0) {
+                    if (getProgrammers(false) != null || abismos != null || ferramentas != null || worldSize != 0) {
                         for (Programmer programmer : getProgrammers(false)) {
                             writer.write(programmer.toString() + "\n");
                         }
