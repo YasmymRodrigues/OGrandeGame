@@ -24,17 +24,26 @@ public class VamosFazerContas extends Abismo{
         int avg = 0;
 
         if (posicoes.size() <= 3) {
+
             for (Integer position : posicoes) {
-                avg += position;
+                avg += position; // Sum up all elements
             }
-            avg = (int) Math.round(avg / 3);
-            return avg;
+            int resultFirstDiv = avg/3; // Divide by 3
+            int resultSecondDiv = resultFirstDiv / 3;
+            int finalRes = Math.round(resultSecondDiv);
+
+            return finalRes;
+
         }else {
+
             avg = (posicoes.get(posicoes.size() - 1)) +
                     (posicoes.get(posicoes.size() - 2)) +
                     (posicoes.get(posicoes.size() - 3));
+            int resultFirstDiv = avg/3;
+            int resultSecondDiv = resultFirstDiv/3;
+            int finalRes = Math.round(resultSecondDiv);
 
-            return avg;
+            return finalRes;
         }
 
     }
