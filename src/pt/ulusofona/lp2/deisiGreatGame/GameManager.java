@@ -472,10 +472,9 @@ public class GameManager {
                     writer.write(abismo.toString() + "\n");
                 }
                 for (Ferramenta ferramenta: ferramentas){
-                    writer.write(ferramenta.toString()+ "\n");
+                    writer.write(ferramenta.toString() + "\n");
                 }
                 writer.write(Integer.toString(worldSize));
-                System.out.println(worldSize );
                 writer.close();
                 return true;
             } catch (IOException e) {
