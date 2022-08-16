@@ -7,8 +7,21 @@ enum class CommandType{GET, POST}
 
 //Note: Router : obtem uma função que recebe um CommandType --> Função comando
 fun router(): (commandType: CommandType) -> (GameManager, List<String>) -> String? {
-    return { command() }
+    return { commandType: CommandType ->
+       when(commandType) {
+           CommandType.GET -> command()
+           CommandType.POST -> postCommand()
+       }
     }
+}
+
+fun postCommand(): (GameManager, List<String>) -> String? {
+    return :: fazerComandoPost
+}
+
+fun fazerComandoPost(manager: GameManager, args: List<String>): String? {
+    return null
+}
 
 
 fun command():(GameManager, List<String>) -> String? {
@@ -21,7 +34,9 @@ fun fazerComando(manager: GameManager, args: List<String>): String? {
         "PLAYER" -> return getPlayer(manager, args)
         "PLAYERS_BY_LANGUAGE" -> return getPlayersByLanguage(manager, args)
         "POLYGLOTS" -> return getPolyglots(manager, args)
+        "POST" -> return null
     }
+
     return null
 }
 
