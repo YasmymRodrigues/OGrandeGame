@@ -125,11 +125,10 @@ fun fazerComando(manager: GameManager, args: List<String>): String? {
 
         for (res in resultMap) {
             if (res.value > 1) {
-                strNameNrLang += "\n" + res.key + ":" + res.value + ""
+                strNameNrLang += "" + res.key + ":" + res.value + ""
                 println(strNameNrLang)
             }
         }
-
         return strNameNrLang
     }
 

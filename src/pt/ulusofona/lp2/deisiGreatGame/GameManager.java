@@ -447,8 +447,9 @@ public class GameManager {
     }
         public boolean saveGame (File file){
 
-            try { //note: make validations
-                if (file.exists()) {
+
+                try { //note: make validations
+                    if (file.exists()) {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                     for (Programmer programmer : getProgrammers(false)) {
                         writer.write(programmer.toString() + "\n");
