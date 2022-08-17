@@ -464,7 +464,7 @@ public class GameManager {
                         return true;
 
                 } catch(IOException e){
-                    return false;
+                    //return false;
                 }
 
             }
