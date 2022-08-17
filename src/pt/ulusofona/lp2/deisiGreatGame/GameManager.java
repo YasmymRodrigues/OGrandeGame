@@ -450,7 +450,6 @@ public class GameManager {
         if (file.exists()){
             try { //note: make validations
                     BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                    if (getProgrammers(false) != null && abismos != null && ferramentas != null && worldSize != 0) {
                         for (Programmer programmer : getProgrammers(false)) {
                             writer.write(programmer.toString() + "\n");
                         }
@@ -463,10 +462,9 @@ public class GameManager {
                         writer.write(Integer.toString(worldSize));
                         writer.close();
                         return true;
-                    }
-                    return false;
+
                 } catch(IOException e){
-                    System.out.println("Erro na gravação do ficheiro do jogo");
+                    return false;
                 }
 
             }

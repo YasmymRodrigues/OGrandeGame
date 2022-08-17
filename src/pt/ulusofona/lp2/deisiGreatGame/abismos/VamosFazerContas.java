@@ -21,31 +21,31 @@ public class VamosFazerContas extends Abismo{
         //se não tiver 3pos pega as que existe
         List<Integer> posicoes = programmer.getPosicoes();
 
-        int avg = 0;
+        double avg = 0.0;
+        int finalRes = 0;
 
-        if (posicoes.size() <= 3) {
+        if (posicoes.size() >= 4) {
+            avg = posicoes.get(posicoes.size() - 2) +
+                  posicoes.get(posicoes.size() - 3) +
+                  posicoes.get(posicoes.size() - 4);
 
-            for (Integer position : posicoes) {
-                avg += position; // Sum up all elements
-            }
-            int resultFirstDiv = avg/3; // Divide by 3
-            int resultSecondDiv = resultFirstDiv / 3;
-            int finalRes = Math.round(resultSecondDiv);
-
-            return finalRes;
-
-        }else {
-
-            avg = (posicoes.get(posicoes.size() - 1)) +
-                    (posicoes.get(posicoes.size() - 2)) +
-                    (posicoes.get(posicoes.size() - 3));
-            int resultFirstDiv = avg/3;
-            int resultSecondDiv = resultFirstDiv/3;
-            int finalRes = Math.round(resultSecondDiv);
+            double valueFD = avg;
+            double valueSD = valueFD / 3;
+            finalRes = (int)Math.ceil(valueSD);
 
             return finalRes;
+
         }
+        if (posicoes.size() < 4){
 
+            avg = (posicoes.get(posicoes.size() - 2)) +
+                  (posicoes.get(posicoes.size() - 3));
+
+            double valueFD = avg;
+            double valueSD = valueFD / 3;
+            finalRes = (int)Math.ceil(valueSD);
+        }
+        return finalRes;
     }
 
 }
