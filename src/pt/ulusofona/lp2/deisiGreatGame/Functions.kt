@@ -125,7 +125,7 @@ fun fazerComando(manager: GameManager, args: List<String>): String? {
 
         for (res in resultMap) {
             if (res.value > 1) {
-                strNameNrLang += "" + res.key + ":" + res.value + " "
+                strNameNrLang += "\n" + res.key + ":" + res.value + ""
                 println(strNameNrLang)
             }
         }
