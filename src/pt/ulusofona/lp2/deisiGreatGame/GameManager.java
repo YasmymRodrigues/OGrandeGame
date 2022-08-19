@@ -446,9 +446,9 @@ public class GameManager {
         return null;
     }
         public boolean saveGame (File file){
+
             if (file.exists()) {
                 try { //note: make validations
-                    if (file.exists()) {
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                         for (Programmer programmer : getProgrammers(false)) {
                             writer.write(programmer.toString() + "\n");
@@ -461,7 +461,7 @@ public class GameManager {
                         }
                         writer.write(Integer.toString(worldSize));
                         writer.close();
-                    }
+
                 } catch (IOException e) {
                     return false;
                 }

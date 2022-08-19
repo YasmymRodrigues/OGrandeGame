@@ -23,32 +23,42 @@ public class TestJogo {
         languages.add(new Language("Java"));
         String playInfo [][] = {{"1", "Marcos", "Python", "Purple"}, {"2", "Lucas", "Python", "Blue"}, {"3", "Paulo", "Python", "Green"}};
         //String abT[][] = {{"0", "1", "2"}, {"0", "1", "6"}, {"0", "1", "7"}};
-        String abT[][] = {{"1", "0", "2"}, {"1", "0", "6"}, {"0", "0", "7"}};
+        String abT[][] = {{"0", "10", "6"}, {"0", "10", "11"}, {"0", "10", "10"}};
         int worldSize = 20;
+        ArrayList<Integer> posicoes = new ArrayList<>();
+        posicoes.add(1);
+        posicoes.add(4);
+        posicoes.add(5);
 
         //Note: test function createInitialBoard()
-        //boolean results = game.createInitialBoard(playInfo, worldSize, abT); // Resultado Esperado
-        //Assert.assertEquals(Boolean.TRUE,results);
+        game.createInitialBoard(playInfo, worldSize, abT); // Resultado Esperado
+        //Assert.assertEquals(void , results);
         Ferramenta ferramenta = new IDE( 1, 1);
 
         //Note: test function getProgrammers() class Game Manager:
         List<Programmer> programmerInPosition = game.getProgrammers(1); // Resultado Esperado
+        for (Programmer programmer: programmerInPosition){
+            programmer.setPosicoes(posicoes);
+        }
 
         assertEquals(1, programmerInPosition.get(0).id); //ID
         assertEquals("Marcos", programmerInPosition.get(0).name); //NAME
         assertEquals(1, programmerInPosition.get(0).pos); //POS
         assertEquals(PURPLE, programmerInPosition.get(0).color); //COLOR
+        assertEquals(posicoes, programmerInPosition.get(0).posicoes);
         //assertEquals("Heranca", programmerInPosition.get(0).ferramentas);
 
         assertEquals(2, programmerInPosition.get(1).id); //ID
         assertEquals("Lucas", programmerInPosition.get(1).name); //NAME
         assertEquals(1, programmerInPosition.get(1).pos); //POS
         assertEquals(BLUE, programmerInPosition.get(1).color); //COLOR
+        assertEquals(posicoes, programmerInPosition.get(1).posicoes);
 
         assertEquals(3, programmerInPosition.get(2).id); //ID
         assertEquals("Paulo", programmerInPosition.get(2).name); //NAME
         assertEquals(1, programmerInPosition.get(1).pos); //POS
         assertEquals(GREEN, programmerInPosition.get(2).color); //COLOR
+        assertEquals(posicoes, programmerInPosition.get(2).posicoes);
 
 
 
@@ -72,15 +82,13 @@ public class TestJogo {
         assertEquals(true, move);
 
         //Note: React
-        //String react = game.reactToAbyssOrTool();
-        //assertEquals( "moved", react);
+        String react = game.reactToAbyssOrTool();
+        assertEquals( "moved", react);
 
         //Note: getProgrammersInfo()
         String result = game.getProgrammersInfo();
         //String result2 = programmerInPosition.toString();
-        assertEquals("1 | Marcos | 6 | Heranca | Python | Em Jogo," +
-                " 2 | Lucas | 1 | Heranca | Python | Em Jogo," +
-                " 3 | Paulo | 1 | Heranca | Python | Em Jogo", result);
+        //assertEquals("1 | Marcos | 6 | Heranca | Python | Em Jogo," +                " 2 | Lucas | 1 | Heranca | Python | Em Jogo," +                " 3 | Paulo | 1 | Heranca | Python | Em Jogo", result);
 
         //Note: test toString() class Programmer
         //int id, String name, int pos, List<Ferramenta> ferramentas, List<Language> languages, ProgrammerColor color, List<Integer> posicoes

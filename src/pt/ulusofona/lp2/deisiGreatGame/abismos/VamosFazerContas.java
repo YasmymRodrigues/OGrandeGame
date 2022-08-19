@@ -35,33 +35,12 @@ public class VamosFazerContas extends Abismo{
         double valueSD = valueFD / count;
         finalRes = (int)Math.ceil(valueSD);
 
-       /* if (posicoes.size() >= 4) {
-            avg = posicoes.get(posicoes.size() - 2) +
-                  posicoes.get(posicoes.size() - 3) +
-                  posicoes.get(posicoes.size() - 4);
-
-            double valueFD = avg;
-            double valueSD = valueFD / 3;
-            finalRes = (int)Math.ceil(valueSD);
-
-            return finalRes;
-
-        }
-        if (posicoes.size() == 3){
-
-            avg = (posicoes.get(posicoes.size() - 2)) +
-                  (posicoes.get(posicoes.size() - 3));
-
-            double valueFD = avg;
-            double valueSD = valueFD / 2;
-            finalRes = (int)Math.ceil(valueSD);
-        }
-        if (posicoes.size() == 2){
-
-            avg = (posicoes.get(posicoes.size() - 2));
-            finalRes = (int)avg;
-        }*/
         return finalRes;
+    }
+
+    @Override
+    public String toString() {
+        return "Vamos Fazer Contas";
     }
 
 }
