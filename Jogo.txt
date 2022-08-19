@@ -1,25 +1,27 @@
-1 | Joshua Bloch | 14 | No tools | Java;C;Python;C# | Em Jogo
-2 | Guido van Rossum | 10 | Programação Funcional;| Python;Common Lisp;C | Em Jogo
-0068
-0570
-0640
-0873
-0442
-0343
-0157
-0958
-0259
-0762
-1532
-1433
-123
-1336
-1137
+1,Joshua Bloch,[Language{nome='Java;C;Python;C#'}],Purple
+2,Guido van Rossum,[Language{nome='Python;Common Lisp;C'}],Blue
+3,Ada Lovelace,[Language{nome='Ada;C'}, Language{nome='C#'}],Green
+4,John McCarthy,[Language{nome='Lisp;C'}, Language{nome='C#'}],Brown
+0764
+0839
+0372
+0044
+0945
+0447
+0148
+0653
+0255
+0563
+1333
+1534
 116
-109
-1421
-1522
-1324
-1227
-1028
+1414
+1215
+1018
+1021
+1523
+1224
+1125
+1427
+1329
 79

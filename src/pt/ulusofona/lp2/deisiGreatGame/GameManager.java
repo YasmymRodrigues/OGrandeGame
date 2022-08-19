@@ -451,7 +451,7 @@ public class GameManager {
                 try { //note: make validations
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                         for (Programmer programmer : getProgrammers(false)) {
-                            writer.write(programmer.toString() + "\n");
+                            writer.write(programmer.getId() + "," + programmer.getName() + "," + programmer.getLanguages() + "," + programmer.getColor() + "\n");
                         }
                         for (Abismo abismo : abismos) {
                             writer.write("" + "0" + abismo.getId() + abismo.getPos() + "\n");
