@@ -454,10 +454,10 @@ public class GameManager {
                             writer.write(programmer.toString() + "\n");
                         }
                         for (Abismo abismo : abismos) {
-                            writer.write(abismo.toString() + "\n");
+                            writer.write("" + "0" + abismo.getId() + abismo.getPos() + "\n");
                         }
                         for (Ferramenta ferramenta : ferramentas) {
-                            writer.write(ferramenta.toString() + "\n");
+                            writer.write("" + "1" + ferramenta.getId() + ferramenta.getPos() + "\n");
                         }
                         writer.write(Integer.toString(worldSize));
                         writer.close();

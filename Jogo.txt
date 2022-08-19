@@ -1,26 +1,25 @@
-1 | Joshua Bloch | 1 | No tools | Java;C;Python;C# | Em Jogo
-2 | Guido van Rossum | 1 | No tools | Python;Common Lisp;C | Em Jogo
-3 | Ada Lovelace | 1 | No tools | Ada;C;  C#;   | Em Jogo
-Erro de sintaxe
-Crash
-BSOD
-ErroDeLogica
-EfeitosSecundarios
-Exception
-CicloInfinito
-DuplicatedCode
-FileNotFoundException
-Segmentation Fault
-Programação Funcional
-IDE
-IDE
-Herança
-Ajuda do Professor
-Testes unitários
-Herança
-Tratamento de Excepções
-Ajuda do Professor
-Tratamento de Excepções
-Programação Funcional
-Testes unitários
+1 | Joshua Bloch | 14 | No tools | Java;C;Python;C# | Em Jogo
+2 | Guido van Rossum | 10 | Programação Funcional;| Python;Common Lisp;C | Em Jogo
+0068
+0570
+0640
+0873
+0442
+0343
+0157
+0958
+0259
+0762
+1532
+1433
+123
+1336
+1137
+116
+109
+1421
+1522
+1324
+1227
+1028
 79
