@@ -23,8 +23,19 @@ public class VamosFazerContas extends Abismo{
 
         double avg = 0.0;
         int finalRes = 0;
+        int count = 0;
 
-        if (posicoes.size() >= 4) {
+        for (int i = 2; i < 5; i++){
+            if (posicoes.size() >= i){
+                avg += posicoes.get(posicoes.size() - i);
+                count ++;
+            }
+        }
+        double valueFD = avg;
+        double valueSD = valueFD / count;
+        finalRes = (int)Math.ceil(valueSD);
+
+       /* if (posicoes.size() >= 4) {
             avg = posicoes.get(posicoes.size() - 2) +
                   posicoes.get(posicoes.size() - 3) +
                   posicoes.get(posicoes.size() - 4);
@@ -36,15 +47,20 @@ public class VamosFazerContas extends Abismo{
             return finalRes;
 
         }
-        if (posicoes.size() < 4){
+        if (posicoes.size() == 3){
 
             avg = (posicoes.get(posicoes.size() - 2)) +
                   (posicoes.get(posicoes.size() - 3));
 
             double valueFD = avg;
-            double valueSD = valueFD / 3;
+            double valueSD = valueFD / 2;
             finalRes = (int)Math.ceil(valueSD);
         }
+        if (posicoes.size() == 2){
+
+            avg = (posicoes.get(posicoes.size() - 2));
+            finalRes = (int)avg;
+        }*/
         return finalRes;
     }
 

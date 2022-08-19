@@ -1,7 +1,5 @@
 package pt.ulusofona.lp2.deisiGreatGame
 
-import jdk.swing.interop.SwingInterOpUtils
-
 
 enum class CommandType{GET, POST}
 
@@ -109,7 +107,8 @@ fun fazerComando(manager: GameManager, args: List<String>): String? {
 
 
     fun getPolyglots(manager: GameManager, args: List<String>): String? {
-        var nameNrLang: HashMap<String, Int> = HashMap<String, Int>()
+        //var nameNrLang: ArrayList<String> = ArrayList()
+       var nameNrLang:HashMap<String, Int> = HashMap()
         var strNameNrLang = ""
 
 
@@ -117,26 +116,34 @@ fun fazerComando(manager: GameManager, args: List<String>): String? {
             println(programmer.name + ":" + programmer.getLanguages())
             for (language in programmer.getLanguages()) {
                 var tmp = language.nome.split(";")
-                //strNameNrLang += "" + programmer.name + ":" + tmp.size + "\n"
-                nameNrLang.put(programmer.name, tmp.size)
+                if (tmp.size > 1) {
+                    nameNrLang.put(programmer.name, tmp.size);
+                }
             }
         }
         val resultMap = nameNrLang.entries.sortedBy { it.value }.associate { it.toPair() }
 
+        var i = 1
         for (res in resultMap) {
             if (res.value > 1) {
-                strNameNrLang += "" + res.key + ":" + res.value + ""
-                println(strNameNrLang)
+                if (i < resultMap.size) {
+                    strNameNrLang += "" + res.key + ":" + res.value + "\n"
+                }else{
+                    strNameNrLang += "" + res.key + ":" + res.value
+                }
             }
+            i++
         }
         return strNameNrLang
     }
 
-    fun postPlayer(manager: GameManager, args: List<String>): String? {
-        return null
-    }
 
-    val manager = GameManager()
-    //val routerFn = router()
-    //val commandGetFn = routerFn.invoke(CommandType.GET)
+        fun postPlayer(manager: GameManager, args: List<String>): String? {
+            return null
+        }
+
+
+        //val manager = GameManager()
+        //val routerFn = router()
+        //val commandGetFn = routerFn.invoke(CommandType.GET)
 

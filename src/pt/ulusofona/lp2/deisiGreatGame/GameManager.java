@@ -446,26 +446,26 @@ public class GameManager {
         return null;
     }
         public boolean saveGame (File file){
-
-
+            if (file.exists()) {
                 try { //note: make validations
                     if (file.exists()) {
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                    for (Programmer programmer : getProgrammers(false)) {
-                        writer.write(programmer.toString() + "\n");
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                        for (Programmer programmer : getProgrammers(false)) {
+                            writer.write(programmer.toString() + "\n");
+                        }
+                        for (Abismo abismo : abismos) {
+                            writer.write(abismo.toString() + "\n");
+                        }
+                        for (Ferramenta ferramenta : ferramentas) {
+                            writer.write(ferramenta.toString() + "\n");
+                        }
+                        writer.write(Integer.toString(worldSize));
+                        writer.close();
                     }
-                    for (Abismo abismo : abismos) {
-                        writer.write(abismo.toString() + "\n");
-                    }
-                    for (Ferramenta ferramenta : ferramentas) {
-                        writer.write(ferramenta.toString() + "\n");
-                    }
-                    writer.write(Integer.toString(worldSize));
-                    writer.close();
-                    }
-                } catch(IOException e){
+                } catch (IOException e) {
                     return false;
                 }
+            }
             return true;
         }
 
