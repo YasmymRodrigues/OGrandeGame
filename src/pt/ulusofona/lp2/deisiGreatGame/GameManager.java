@@ -596,6 +596,8 @@ public class GameManager {
                     while(reader.hasNextLine() && (line = reader.nextLine()) != null){
                         worldSizeLoad = Integer.parseInt(line);
                     }
+
+
                     reader.close();
                 } catch (IOException e) {
                     return false;
