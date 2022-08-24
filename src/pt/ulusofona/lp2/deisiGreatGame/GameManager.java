@@ -108,7 +108,7 @@ public class GameManager {
                 throw new InvalidInitialBoardException();
             }
         }
-        try {
+
         //Note: abyssesAndTools
         if (abyssesAndTools != null) {
             for (String[] arr : abyssesAndTools) {
@@ -216,10 +216,10 @@ public class GameManager {
                     }
                 }
             }
-        }catch(InvalidInitialBoardException exception) {
-            System.out.println(exception.getMessage());
-        }
-    }
+        }/*catch(InvalidInitialBoardException exception) {
+
+        }*/
+
 
     public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
         createInitialBoard(playerInfo, worldSize, null);
@@ -446,7 +446,8 @@ public class GameManager {
                 try { //note: make validations
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                         for (Programmer programmer : getProgrammers(false)) {
-                            writer.write(programmer.getId() + "," + programmer.getName() + "," + programmer.getPos() + "," + programmer.getLanguages() + "," + programmer.getColor() + "," + programmer.getStatus() + "\n");
+                           String lang =  programmer.converteArrayParaString(programmer.languages);
+                            writer.write(programmer.getId() + "," + programmer.getName() + "," + programmer.getPos() + "," + lang + "," + programmer.getColor() + "," + programmer.getStatus() + "\n");
                         }
                         writer.write("Abismos"+ "\n");
                         for (Abismo abismo : abismos) {
@@ -483,22 +484,24 @@ public class GameManager {
                         programmer.setId(id);
                         String nome = strSplit[1];
                         programmer.setName(nome);
-                        String lang = strSplit[2];
-                        String[] arrLang = lang.split(",");
+                        int pos = Integer.parseInt(strSplit[2]);
+                        programmer.setPos(pos);
+                        String lang = strSplit[3];
+                        String[] arrLang = lang.split(";");
                         for (String arr: arrLang){
                             Language language = new Language(arr);
                             programmer.getLanguages().add(language);
                         }
-                        if (strSplit[3].equals("Blue")) {
+                        if (strSplit[4].equals("Blue")) {
                             programmer.setColor(BLUE);
-                        } else if (strSplit[3].equals("Purple")) {
+                        } else if (strSplit[4].equals("Purple")) {
                             programmer.setColor(PURPLE);
-                        } else if (strSplit[3].equals("Brown")) {
+                        } else if (strSplit[4].equals("Brown")) {
                             programmer.setColor(BROWN);
-                        } else if (strSplit[3].equals("Green")) {
+                        } else if (strSplit[4].equals("Green")) {
                             programmer.setColor(GREEN);
                         }
-                        programmer.setEstado(Boolean.parseBoolean(strSplit[4]));
+                        programmer.setEstado(Boolean.parseBoolean(strSplit[5]));
                         programmersLoad.add(programmer);
                     }
 

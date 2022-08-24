@@ -3,9 +3,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 public class InvalidInitialBoardException extends Exception {
     int typeId;
 
-    InvalidInitialBoardException(){
-
-    }
+    InvalidInitialBoardException(){}
 
     @Override
     public String getMessage() {
