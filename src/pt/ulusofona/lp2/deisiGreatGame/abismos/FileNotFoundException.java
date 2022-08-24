@@ -24,6 +24,7 @@ public class FileNotFoundException extends Abismo {
 
         if (pos > 3){
             newPosition = programmer.getPos() - 3;
+            programmer.setWasATrap(true);
             return newPosition;
         }
 

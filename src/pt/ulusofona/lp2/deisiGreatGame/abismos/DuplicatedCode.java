@@ -24,6 +24,7 @@ public class DuplicatedCode extends Abismo{
         if (programmer.getPosicoes().size() < 2){
             return pos;
         }
+        programmer.setWasATrap(true);
         return programmer.getPosicoes().size() - 1;
     }
 

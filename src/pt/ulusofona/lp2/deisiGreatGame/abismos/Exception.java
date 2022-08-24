@@ -23,6 +23,7 @@ public class Exception extends Abismo {
         }
         if (pos > 2){
             newPosition = programmer.getPos() - 2;
+            programmer.setWasATrap(true);
             return newPosition;
         }
         return pos;

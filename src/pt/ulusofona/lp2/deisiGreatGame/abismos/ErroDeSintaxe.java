@@ -23,6 +23,7 @@ public class ErroDeSintaxe extends Abismo{
         }
         if (pos > 1) {
             newPosition = programmer.getPos() - 1;
+            programmer.setWasATrap(true);
             return newPosition;
         }
 

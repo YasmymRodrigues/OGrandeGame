@@ -34,7 +34,7 @@ public class ErroDeLogica extends Abismo{
             //make the move
 
             newPosition = currentPos - (dice/2);
-
+            programmer.setWasATrap(true);
             return newPosition;
         }
         return pos;

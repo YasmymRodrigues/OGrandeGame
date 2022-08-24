@@ -22,6 +22,7 @@ public class Crash extends Abismo {
                 }
             }
         }
+        programmer.setWasATrap(true);
         return 1;
     }
 

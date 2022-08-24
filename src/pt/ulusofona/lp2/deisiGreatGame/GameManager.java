@@ -311,7 +311,7 @@ public class GameManager {
         List<Programmer> activeProgrammers = getProgrammers(false);
 
         for (Programmer programmer: activeProgrammers){
-            if (!programmer.isHasTurn()){
+            if (!programmer.isHasTurn() && !programmer.wasATrap()){
                 programmer.setHasTurn(true);
                 currentPlayer = programmer;
 
@@ -321,6 +321,7 @@ public class GameManager {
 
         for (Programmer programmer: activeProgrammers){
             programmer.setHasTurn(false);
+            programmer.setWasATrap(false);
         }
 
         currentPlayer = activeProgrammers.get(0);
@@ -336,13 +337,6 @@ public class GameManager {
         if(nrSpaces < 1 || nrSpaces > 6){
             return false;
         }
-
-       /*for (Abismo abismo: abismos){
-            if (abismo.getPos() == getCurrentPlayerID()){
-                return false;
-            }
-        }*/
-
 
         int pos = currentPlayer.getPos();
         int move = pos + nrSpaces;
@@ -377,6 +371,7 @@ public class GameManager {
                 int newPos = obj.getReact(programmerActualPos, currentPlayer);
                 currentPlayer.setPos(newPos);
                 currentPlayer.addPosicoes(newPos);
+                currentPlayer.setWasATrap(true);
                 changeTurn();
                 return "trap";
             }else{
@@ -476,11 +471,8 @@ public class GameManager {
         List<Ferramenta> ferramentasLoad = new ArrayList<>();
         List<Abismo> abismosLoad = new ArrayList<>();
         HashMap<Integer, Object> mapLoad = new HashMap<>(); // array com os espaços do mapa
+        int worldSizeLoad = 0;
 
-            int worldSizeLoad = 0;
-        boolean tokenFound = false;
-
-        //reader.hasNextLine() String data = reader.nextLine();
                 try {
                     Scanner reader = new Scanner(file);
                     String line = "";
@@ -608,7 +600,6 @@ public class GameManager {
                 } catch (IOException e) {
                     return false;
                 }
-
             return true;
         }
     }

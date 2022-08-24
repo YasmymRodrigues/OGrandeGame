@@ -15,6 +15,7 @@ public class Programmer {
     boolean estado;
     List<Integer> posicoes;
     boolean hasTurn = false;
+    boolean wasATrap = false;
 
     Programmer() {
         this.languages = new ArrayList<>();
@@ -122,6 +123,14 @@ public class Programmer {
 
     public void setHasTurn(boolean hasTurn) {
         this.hasTurn = hasTurn;
+    }
+
+    public boolean wasATrap() {
+        return wasATrap;
+    }
+
+    public void setWasATrap(boolean wasATrap) {
+        this.wasATrap = wasATrap;
     }
 
     public void addPosicoes(int num){

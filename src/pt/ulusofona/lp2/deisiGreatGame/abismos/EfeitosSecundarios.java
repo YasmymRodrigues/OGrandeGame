@@ -26,6 +26,7 @@ public class EfeitosSecundarios extends Abismo {
         if (programmer.getPosicoes().size() < 3){
             return pos;
         }
+        programmer.setWasATrap(true);
         List<Integer> posicoes = programmer.getPosicoes();
         return programmer.getPosicoes().get(posicoes.size() - 3);
     }

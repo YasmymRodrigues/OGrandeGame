@@ -34,7 +34,7 @@ public class VamosFazerContas extends Abismo{
         double valueFD = avg;
         double valueSD = valueFD / count;
         finalRes = (int)Math.ceil(valueSD);
-
+        programmer.setWasATrap(true);
         return finalRes;
     }
 
