@@ -451,14 +451,17 @@ public class GameManager {
                 try { //note: make validations
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                         for (Programmer programmer : getProgrammers(false)) {
-                            writer.write(programmer.getId() + "," + programmer.getName() + "," + programmer.getLanguages() + "," + programmer.getColor() + "\n");
+                            writer.write(programmer.getId() + "," + programmer.getName() + "," + programmer.getPos() + "," + programmer.getLanguages() + "," + programmer.getColor() + "," + programmer.getStatus() + "\n");
                         }
+                        writer.write("Abismos"+ "\n");
                         for (Abismo abismo : abismos) {
-                            writer.write("" + "0" + abismo.getId() + abismo.getPos() + "\n");
+                            writer.write("" + "0" + "," + abismo.getId() + "," + abismo.getPos() + "\n");
                         }
+                        writer.write("Ferramentas"+ "\n");
                         for (Ferramenta ferramenta : ferramentas) {
-                            writer.write("" + "1" + ferramenta.getId() + ferramenta.getPos() + "\n");
+                            writer.write("" + "1" + "," + ferramenta.getId() + "," + ferramenta.getPos() + "\n");
                         }
+                        writer.write("WorldSize" + "\n");
                         writer.write(Integer.toString(worldSize));
                         writer.close();
                 } catch (IOException e) {
@@ -469,19 +472,143 @@ public class GameManager {
 
 
         public boolean loadGame (File file){
+        List<Programmer> programmersLoad = new ArrayList<>();
+        List<Ferramenta> ferramentasLoad = new ArrayList<>();
+        List<Abismo> abismosLoad = new ArrayList<>();
+        HashMap<Integer, Object> mapLoad = new HashMap<>(); // array com os espaços do mapa
 
+            int worldSizeLoad = 0;
+        boolean tokenFound = false;
+
+        //reader.hasNextLine() String data = reader.nextLine();
                 try {
                     Scanner reader = new Scanner(file);
-                    while(reader.hasNextLine()){
-                        String data = reader.nextLine();
-                        System.out.println(data);
+                    String line = "";
+                    while((line = reader.nextLine()) != null && !"Abismos".equals(line)){
+                        String[] strSplit = line.split(",");
+                        Programmer programmer = new Programmer();
+                        int id = Integer.parseInt(strSplit[0]);
+                        programmer.setId(id);
+                        String nome = strSplit[1];
+                        programmer.setName(nome);
+                        String lang = strSplit[2];
+                        String[] arrLang = lang.split(",");
+                        for (String arr: arrLang){
+                            Language language = new Language(arr);
+                            programmer.getLanguages().add(language);
+                        }
+                        if (strSplit[3].equals("Blue")) {
+                            programmer.setColor(BLUE);
+                        } else if (strSplit[3].equals("Purple")) {
+                            programmer.setColor(PURPLE);
+                        } else if (strSplit[3].equals("Brown")) {
+                            programmer.setColor(BROWN);
+                        } else if (strSplit[3].equals("Green")) {
+                            programmer.setColor(GREEN);
+                        }
+                        programmer.setEstado(Boolean.parseBoolean(strSplit[4]));
+                        programmersLoad.add(programmer);
+                    }
+
+                    while((line = reader.nextLine()) != null && !"Ferramentas".equals(line)){
+                        String[] strSplit = line.split(",");
+                        int type = Integer.parseInt(strSplit[0]);
+                        int idDoTipo = Integer.parseInt(strSplit[1]);
+                        int position = Integer.parseInt(strSplit[2]);
+                        if (type == 0) {
+                            if (idDoTipo == 0) {
+                                Abismo erroDeSintaxe = new ErroDeSintaxe(0, position);
+                                abismosLoad.add(erroDeSintaxe);
+                                mapLoad.put(position, erroDeSintaxe);
+                            } else if (idDoTipo == 1) {
+                                Abismo erroDeLogica = new ErroDeLogica(1, position);
+                                abismosLoad.add(erroDeLogica);
+                                mapLoad.put(position, erroDeLogica);
+                            } else if (idDoTipo == 2) {
+                                Abismo exception = new Exception( 2, position);
+                                abismosLoad.add(exception);
+                                mapLoad.put(position, exception);
+                            } else if (idDoTipo == 3) {
+                                Abismo fileNotFoundException = new FileNotFoundException( 3, position);
+                                abismosLoad.add(fileNotFoundException);
+                                mapLoad.put(position, fileNotFoundException);
+                            } else if (idDoTipo == 4) {
+                                Abismo crash = new Crash(4, position);
+                                abismosLoad.add(crash);
+                                mapLoad.put(position, crash);
+                            } else if (idDoTipo == 5) {
+                                Abismo duplicatedCode = new DuplicatedCode( 5, position);
+                                abismosLoad.add(duplicatedCode);
+                                mapLoad.put(position, duplicatedCode);
+                            } else if (idDoTipo == 6) {
+                                Abismo efeitosSecundarios = new EfeitosSecundarios( 6, position);
+                                abismosLoad.add(efeitosSecundarios);
+                                mapLoad.put(position, efeitosSecundarios);
+                            } else if (idDoTipo == 7) {
+                                Abismo bsod = new BSOD( 7, position);
+                                abismosLoad.add(bsod);
+                                mapLoad.put(position, bsod);
+                            } else if (idDoTipo == 8) {
+                                Abismo cicloInfinito = new CicloInfinito( 8, position);
+                                abismosLoad.add(cicloInfinito);
+                                mapLoad.put(position, cicloInfinito);
+                            } else if (idDoTipo == 9) {
+                                Abismo segF = new SegmentationFault(9, position);
+                                abismosLoad.add(segF);
+                                mapLoad.put(position, segF);
+                            } else if (idDoTipo == 10) {
+                                Abismo vamosFazerContas = new VamosFazerContas(10, position);
+                                abismosLoad.add(vamosFazerContas);
+                                mapLoad.put(position, vamosFazerContas);
+                            } else {
+                                System.out.println("Not an abismo found");
+                            }
+                        }
+                   }
+
+                    while((line = reader.nextLine()) != null && !"WorldSize".equals(line)){
+                        String[] strSplit = line.split(",");
+                        int type = Integer.parseInt(strSplit[0]);
+                        int idDoTipo = Integer.parseInt(strSplit[1]);
+                        int position = Integer.parseInt(strSplit[2]);
+                        if (type == 1) {
+                            if (idDoTipo == 0) {
+                                Ferramenta heranca = new Heranca(0, position);
+                                ferramentasLoad.add(heranca);
+                                mapLoad.put(position, heranca);
+                            } else if (idDoTipo == 1) {
+                                Ferramenta progF = new ProgramacaoFuncional( 1, position);
+                                ferramentasLoad.add(progF);
+                                mapLoad.put(position, progF);
+                            } else if (idDoTipo == 2) {
+                                Ferramenta unitarios = new Unitarios( 2, position);
+                                ferramentasLoad.add(unitarios);
+                                mapLoad.put(position, unitarios);
+                            } else if (idDoTipo == 3) {
+                                Ferramenta tratEx = new TratamentoDeExcepcoes( 3, position);
+                                ferramentasLoad.add(tratEx);
+                                mapLoad.put(position, tratEx);
+                            } else if (idDoTipo == 4) {
+                                Ferramenta ide = new IDE( 4, position);
+                                ferramentasLoad.add(ide);
+                                mapLoad.put(position, ide);
+                            } else if (idDoTipo == 5) {
+                                Ferramenta helpProf = new AjudaDoProfessor( 5, position);
+                                ferramentasLoad.add(helpProf);
+                                mapLoad.put(position, helpProf);
+                            } else {
+                                System.out.println("Not a tool found");
+                            }
+                        }
+                    }
+                    while(reader.hasNextLine() && (line = reader.nextLine()) != null){
+                        worldSizeLoad = Integer.parseInt(line);
                     }
                     reader.close();
-                    return true;
                 } catch (IOException e) {
-                    System.out.println("Erro na leitura do ficheiro do jogo");
+                    return false;
                 }
 
-            return false;
+            return true;
         }
     }
