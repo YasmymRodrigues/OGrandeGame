@@ -23,9 +23,7 @@ public class Language {
 
     @Override
     public String toString() {
-        return "Language{" +
-                "nome='" + nome + '\'' +
-                '}';
+        return "" + nome ;
     }
 
 

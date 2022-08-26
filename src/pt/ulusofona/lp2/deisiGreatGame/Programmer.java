@@ -140,13 +140,24 @@ public class Programmer {
 
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
-        for(Language language: languages){
+        for (int i = 0; i < languages.size(); i++){
+            if (i < languages.size() && i < 0){
+                lang += ";" + languages.get(i);
+            }else {
+                lang += languages.get(i);
+            }
+        }
+
+        /*for(Language language: languages){
             if(languages.size() == 1) {
                 lang += language.nome;
             }else{
-                lang += language.nome + ";  ";
+                //language.nome.trim();
+                lang += language.nome.trim() + ";";
+
             }
-        }
+        }*/
+        //lang.trim();
         return lang;
     }
 
@@ -155,6 +166,14 @@ public class Programmer {
             return "Em Jogo";
         }else{
             return "Derrotado";
+        }
+    }
+
+    public Boolean setStatus(String status){
+        if (status.equals("Em Jogo")){
+            return true;
+        }else{
+            return false;
         }
     }
 

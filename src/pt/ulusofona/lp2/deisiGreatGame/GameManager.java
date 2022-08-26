@@ -21,6 +21,7 @@ import pt.ulusofona.lp2.deisiGreatGame.tools.*;
 
 import javax.swing.*;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.util.*;
 
@@ -160,8 +161,6 @@ public class GameManager {
                         Abismo vamosFazerContas = new VamosFazerContas(10, position);
                         abismos.add(vamosFazerContas);
                         map.put(position, vamosFazerContas);
-                    } else {
-                        System.out.println("Not an abismo found");
                     }
                 }
                 if (type == 1) {
@@ -189,8 +188,6 @@ public class GameManager {
                         Ferramenta helpProf = new AjudaDoProfessor( 5, position);
                         ferramentas.add(helpProf);
                         map.put(position, helpProf);
-                    } else {
-                        System.out.println("Not a tool found");
                     }
                 }
 
@@ -216,9 +213,7 @@ public class GameManager {
                     }
                 }
             }
-        }/*catch(InvalidInitialBoardException exception) {
-
-        }*/
+        }
 
 
     public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
@@ -446,8 +441,19 @@ public class GameManager {
                 try { //note: make validations
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                         for (Programmer programmer : getProgrammers(false)) {
-                           String lang =  programmer.converteArrayParaString(programmer.languages);
-                            writer.write(programmer.getId() + "," + programmer.getName() + "," + programmer.getPos() + "," + lang + "," + programmer.getColor() + "," + programmer.getStatus() + "\n");
+                            List<Language> languages = programmer.getLanguages();
+                            String lang = programmer.converteArrayParaString(languages);
+                            String langTrim = lang.trim();
+                            writer.write(programmer.getId() + "," +
+                                    programmer.getName() + "," +
+                                    programmer.getPos() + "," +
+                                    lang + "," +
+                                    programmer.getColor() +
+                                    "," + programmer.getStatus() +
+                                    "," + programmer.getFerramentas() +
+                                    "," + programmer.getPosicoes() +
+                                    "," + programmer.isHasTurn() +
+                                    "\n");
                         }
                         writer.write("Abismos"+ "\n");
                         for (Abismo abismo : abismos) {
@@ -501,7 +507,8 @@ public class GameManager {
                         } else if (strSplit[4].equals("Green")) {
                             programmer.setColor(GREEN);
                         }
-                        programmer.setEstado(Boolean.parseBoolean(strSplit[5]));
+                        boolean status = programmer.setStatus(strSplit[5]);
+                        programmer.setEstado(status);
                         programmersLoad.add(programmer);
                     }
 
