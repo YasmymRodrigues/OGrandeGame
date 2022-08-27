@@ -57,11 +57,13 @@ public class GameManager {
             programmer.setId(id);
             programmer.setName(nome);
             String nomesLanguage = arr[2];
-            String[] arrayLanguage = nomesLanguage.split(",");
+            String[] arrayLanguage = nomesLanguage.split("[;,]");
+            List<Language> arrLang = new ArrayList<>();
             for (String lang : arrayLanguage) {
                 Language language1 = new Language(lang);
-                programmer.getLanguages().add(language1);
+                arrLang.add(language1);
             }
+            programmer.setLanguages(arrLang);
 
             if (arr[3].equals("Blue")) {
                 programmer.setColor(BLUE);
@@ -371,7 +373,8 @@ public class GameManager {
                 return "trap";
             }else{
                 //currentPlayer.getFerramentas();
-                currentPlayer.ferramentas.add((Ferramenta)obj);
+                currentPlayer.addFerramenta((Ferramenta)obj);
+                //currentPlayer.ferramentas.add((Ferramenta)obj);
                 changeTurn();
                 return "you got a tool";
             }
@@ -443,18 +446,23 @@ public class GameManager {
                         for (Programmer programmer : getProgrammers(false)) {
                             List<Language> languages = programmer.getLanguages();
                             String lang = programmer.converteArrayParaString(languages);
-                            String langTrim = lang.trim();
                             writer.write(programmer.getId() + "," +
                                     programmer.getName() + "," +
                                     programmer.getPos() + "," +
                                     lang + "," +
                                     programmer.getColor() +
                                     "," + programmer.getStatus() +
-                                    "," + programmer.getFerramentas() +
-                                    "," + programmer.getPosicoes() +
+                                    "," + programmer.getStringFerramentas() +
+                                    "," + programmer.getStringPosicoes() +
                                     "," + programmer.isHasTurn() +
                                     "\n");
                         }
+                        /*writer.write("PlayersTools" + "\n");
+                        for (Programmer programmer: getProgrammers(false)){
+                            List<Ferramenta> ferramentas = programmer.getFerramentas();
+                        }*/
+
+
                         writer.write("Abismos"+ "\n");
                         for (Abismo abismo : abismos) {
                             writer.write("" + "0" + "," + abismo.getId() + "," + abismo.getPos() + "\n");
@@ -509,6 +517,47 @@ public class GameManager {
                         }
                         boolean status = programmer.setStatus(strSplit[5]);
                         programmer.setEstado(status);
+
+                        String[] ferr = strSplit[6].split(";");
+                        for (String str: ferr){
+                            if (str.equals("Herança")){
+                                Ferramenta herança = new Heranca(0, 0);
+                                programmer.addFerramenta(herança);
+                            }
+                            else if (str.equals("Programação Funcional")){
+                                Ferramenta programacaoFuncional = new ProgramacaoFuncional(1, 0);
+                                programmer.addFerramenta(programacaoFuncional);
+                            }
+                            else if (str.equals("Testes unitários")){
+                                Ferramenta testesUnitários = new Unitarios(2, 0);
+                                programmer.addFerramenta(testesUnitários);
+                            }
+                            else if (str.equals("Tratamento de Excepções")){
+                                Ferramenta tratamento = new TratamentoDeExcepcoes(3, 0);
+                                programmer.addFerramenta(tratamento);
+                            }
+                            else if (str.equals("IDE")){
+                                Ferramenta IDE = new IDE(4, 0);
+                                programmer.addFerramenta(IDE);
+                            }
+                            else if (str.equals("Ajuda do Professor")){
+                                Ferramenta ajudaDoProfessor = new AjudaDoProfessor(5, 0);
+                                programmer.addFerramenta(ajudaDoProfessor);
+                            }
+                        }
+                        String[] posList = strSplit[7].split(";");
+                        List<Integer> posicoes = new ArrayList<>();
+                        for (String str: posList){
+                            int valuePos = Integer.parseInt(str);
+                            posicoes.add(valuePos);
+                        }
+                        programmer.setPosicoes(posicoes);
+                        if (strSplit[8].equals("true")){
+                            programmer.setHasTurn(true);
+                        }else if(strSplit[8].equals("false")) {
+                            programmer.setHasTurn(false);
+                        }
+
                         programmersLoad.add(programmer);
                     }
 
@@ -606,8 +655,6 @@ public class GameManager {
                     while(reader.hasNextLine() && (line = reader.nextLine()) != null){
                         worldSizeLoad = Integer.parseInt(line);
                     }
-
-
                     reader.close();
                 } catch (IOException e) {
                     return false;

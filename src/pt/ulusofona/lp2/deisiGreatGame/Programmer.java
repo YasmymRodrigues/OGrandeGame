@@ -81,6 +81,16 @@ public class Programmer {
         return ferramentas;
     }
 
+    /*public String stringFerramentas(){
+        String strFerramentas = "";
+        for (Ferramenta ferramenta: ferramentas){
+             strFerramentas += ferramenta + ", ";
+         }
+        return strFerramentas;
+    }*/
+
+    public void addFerramenta(Ferramenta ferramenta) { this.ferramentas.add(ferramenta);}
+
     public String getStringFerramentas(){
         String tool = "";
         for (int i = 0; i < ferramentas.size(); i++){
@@ -91,6 +101,18 @@ public class Programmer {
             }
         }
         return tool;
+    }
+
+    public String getStringPosicoes(){
+        String strPos = "";
+        for (int i = 0; i < posicoes.size(); i++){
+            if (i < posicoes.size() && i > 0){
+                strPos += ";" + posicoes.get(i);
+            }else{
+                strPos += posicoes.get(i);
+            }
+        }
+        return strPos;
     }
 
     public void setFerramentas(List<Ferramenta> ferramentas) {
@@ -141,7 +163,7 @@ public class Programmer {
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
         for (int i = 0; i < languages.size(); i++){
-            if (i < languages.size() && i < 0){
+            if (i < languages.size() && i > 0){
                 lang += ";" + languages.get(i);
             }else {
                 lang += languages.get(i);
@@ -160,6 +182,8 @@ public class Programmer {
         //lang.trim();
         return lang;
     }
+
+
 
     public String getStatus(){
         if(estado == true){
