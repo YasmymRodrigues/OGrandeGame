@@ -81,14 +81,6 @@ public class Programmer {
         return ferramentas;
     }
 
-    /*public String stringFerramentas(){
-        String strFerramentas = "";
-        for (Ferramenta ferramenta: ferramentas){
-             strFerramentas += ferramenta + ", ";
-         }
-        return strFerramentas;
-    }*/
-
     public void addFerramenta(Ferramenta ferramenta) { this.ferramentas.add(ferramenta);}
 
     public String getStringFerramentas(){
@@ -183,8 +175,6 @@ public class Programmer {
         return lang;
     }
 
-
-
     public String getStatus(){
         if(estado == true){
             return "Em Jogo";
@@ -215,6 +205,3 @@ public class Programmer {
             }
        }
 }
-
-//expected:<...tools | Common Lisp;[ ]PHP | Em Jogo>
-// but was:<...tools | Common Lisp;[]PHP | Em Jogo>

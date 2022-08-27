@@ -113,13 +113,13 @@ fun fazerComando(manager: GameManager, args: List<String>): String? {
 
 
         for (programmer in manager.getProgrammers(false)) {
-            println(programmer.name + ":" + programmer.getLanguages())
-            for (language in programmer.getLanguages()) {
-                var tmp = language.nome.split(";")
-                if (tmp.size > 1) {
-                    nameNrLang.put(programmer.name, tmp.size);
+            println(programmer.getLanguages())
+            //for (language in programmer.getLanguages()) {
+                //var tmp = language.getNome().split(", ")
+                if (programmer.getLanguages().size > 1) {
+                    nameNrLang.put(programmer.getName(), programmer.getLanguages().size)
                 }
-            }
+            //}
         }
         val resultMap = nameNrLang.entries.sortedBy { it.value }.associate { it.toPair() }
 
