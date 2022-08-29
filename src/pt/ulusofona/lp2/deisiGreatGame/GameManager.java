@@ -42,7 +42,7 @@ public class GameManager {
 
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
-        InvalidInitialBoardException ex = new InvalidInitialBoardException();
+        InvalidInitialBoardException ex = new InvalidInitialBoardException("Erro");
 
         int id;
         String nome;
@@ -96,19 +96,19 @@ public class GameManager {
 
         for (Programmer pro : programmers) {
             if (progId.add(pro.id) || pro.id <= 0) {      // não pode ter dois programadores com o mesmo ID
-                throw new InvalidInitialBoardException(); // id smaller than 0
+                throw new InvalidInitialBoardException("Erro"); // id smaller than 0
             }
             if ((pro.name == null) || (pro.name.isEmpty())) { //name == null
-                throw new InvalidInitialBoardException();     //name.isEmpty()
+                throw new InvalidInitialBoardException("Erro");     //name.isEmpty()
             }
             if (pro.color != BLUE && pro.color != PURPLE && pro.color != BROWN && pro.color != GREEN) {  //color be different of the 4 types
-                throw new InvalidInitialBoardException();
+                throw new InvalidInitialBoardException("Erro");
             }
             if (!progColor.add(pro.color)) { // add new colar means
-                throw new InvalidInitialBoardException();
+                throw new InvalidInitialBoardException("Erro");
             }
             if ((programmers.size() > 4) || (worldSize < (programmers.size() * 2))) {
-                throw new InvalidInitialBoardException();
+                throw new InvalidInitialBoardException("Tamanho inválido.");
             }
         }
 
@@ -195,23 +195,23 @@ public class GameManager {
 
                     //DONE: Validation ofAoA
                     if ((arr[0] == null)) {
-                        throw new InvalidInitialBoardException();
+                        throw new InvalidInitialBoardException("Erro");
                     }
                     if (type != 0 && type != 1) {
-                        throw new InvalidInitialBoardException();
+                        throw new InvalidInitialBoardException("Erro");
                     }
                     if (type == 0) {
                         if (idDoTipo < 0 || idDoTipo > 9) {
-                            throw new InvalidInitialBoardException();
+                            throw new InvalidInitialBoardException("Erro");
                         }
                     } else {
                         if (idDoTipo < 0 || idDoTipo > 5) {
-                            throw new InvalidInitialBoardException();
+                            throw new InvalidInitialBoardException("Erro");
                         }
                     }
                     // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
                     if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
-                        throw new InvalidInitialBoardException();
+                        throw new InvalidInitialBoardException("Erro");
                     }
                 }
             }
@@ -450,12 +450,11 @@ public class GameManager {
                                     programmer.getName() + "," +
                                     programmer.getPos() + "," +
                                     lang + "," +
-                                    programmer.getColor() +
-                                    "," + programmer.getStatus() +
-                                    "," + programmer.getStringFerramentas() +
-                                    "," + programmer.getStringPosicoes() +
-                                    "," + programmer.isHasTurn() +
-                                    "\n");
+                                    programmer.getColor() + "," +
+                                    programmer.getStatus() + "," +
+                                    programmer.getStringFerramentas() + "," +
+                                    programmer.getStringPosicoes() + "," +
+                                    programmer.isHasTurn() + "\n");
                         }
                         /*writer.write("PlayersTools" + "\n");
                         for (Programmer programmer: getProgrammers(false)){
@@ -557,8 +556,8 @@ public class GameManager {
                         }else if(strSplit[8].equals("false")) {
                             programmer.setHasTurn(false);
                         }
-
                         programmersLoad.add(programmer);
+                        programmers = programmersLoad;
                     }
 
                     while((line = reader.nextLine()) != null && !"Ferramentas".equals(line)){
@@ -611,11 +610,10 @@ public class GameManager {
                                 Abismo vamosFazerContas = new VamosFazerContas(10, position);
                                 abismosLoad.add(vamosFazerContas);
                                 mapLoad.put(position, vamosFazerContas);
-                            } else {
-                                System.out.println("Not an abismo found");
                             }
                         }
                    }
+                    abismos = abismosLoad;
 
                     while((line = reader.nextLine()) != null && !"WorldSize".equals(line)){
                         String[] strSplit = line.split(",");
@@ -647,14 +645,14 @@ public class GameManager {
                                 Ferramenta helpProf = new AjudaDoProfessor( 5, position);
                                 ferramentasLoad.add(helpProf);
                                 mapLoad.put(position, helpProf);
-                            } else {
-                                System.out.println("Not a tool found");
                             }
                         }
                     }
+                    ferramentas = ferramentasLoad;
                     while(reader.hasNextLine() && (line = reader.nextLine()) != null){
                         worldSizeLoad = Integer.parseInt(line);
                     }
+                    worldSize = worldSizeLoad;
                     reader.close();
                 } catch (IOException e) {
                     return false;

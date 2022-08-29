@@ -1,9 +1,12 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class InvalidInitialBoardException extends Exception {
-    int typeId;
+    protected String typeId;
 
-    InvalidInitialBoardException(){}
+    InvalidInitialBoardException(String message){
+        super(message);
+        typeId = "";
+    }
 
     @Override
     public String getMessage() {
@@ -12,12 +15,12 @@ public class InvalidInitialBoardException extends Exception {
         return "Erro teste";
     }
     boolean isInvalidAbyss(){
-        return true;
+        return false;
     }
     boolean isInvalidTool(){
-        return true;
+        return false;
     }
-    public int getTypeId(){
+    public String getTypeId(){
         return typeId;
     }
 }
