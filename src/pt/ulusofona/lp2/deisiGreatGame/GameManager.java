@@ -553,13 +553,19 @@ public class GameManager {
                         programmer.setPosicoes(posicoes);
                         if (strSplit[8].equals("true")){
                             programmer.setHasTurn(true);
+                            currentPlayer = programmer;
                         }else if(strSplit[8].equals("false")) {
                             programmer.setHasTurn(false);
                         }
                         programmersLoad.add(programmer);
-                        programmers = programmersLoad;
-                    }
 
+                    }
+                    programmers = programmersLoad;
+                    //Collections.sort(programmers, Comparator.comparing(Programmer::getId));
+                    //get the first position
+                    //currentPlayer = programmers.get(0);
+                    //the first programmer going to be call first
+                    //currentPlayer.setHasTurn(true);
                     while((line = reader.nextLine()) != null && !"Ferramentas".equals(line)){
                         String[] strSplit = line.split(",");
                         int type = Integer.parseInt(strSplit[0]);
@@ -653,11 +659,6 @@ public class GameManager {
                         worldSizeLoad = Integer.parseInt(line);
                     }
                     worldSize = worldSizeLoad;
-                    //Collections.sort(programmers, Comparator.comparing(Programmer::getId));
-                    //get the first position
-                    currentPlayer = programmers.get(0);
-                    //the first programmer going to be call first
-                    //currentPlayer.setHasTurn(true);
 
                     reader.close();
                 } catch (IOException e) {
