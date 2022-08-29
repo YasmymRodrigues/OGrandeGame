@@ -653,6 +653,12 @@ public class GameManager {
                         worldSizeLoad = Integer.parseInt(line);
                     }
                     worldSize = worldSizeLoad;
+                    Collections.sort(programmers, Comparator.comparing(Programmer::getId));
+                    //get the first position
+                    currentPlayer = programmers.get(0);
+                    //the first programmer going to be call first
+                    currentPlayer.setHasTurn(true);
+
                     reader.close();
                 } catch (IOException e) {
                     return false;
