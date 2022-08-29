@@ -443,7 +443,7 @@ public class GameManager {
 
                 try { //note: make validations
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                        for (Programmer programmer : getProgrammers(false)) {
+                        for (Programmer programmer : getProgrammers(true)) {
                             List<Language> languages = programmer.getLanguages();
                             String lang = programmer.converteArrayParaString(languages);
                             writer.write(programmer.getId() + "," +
