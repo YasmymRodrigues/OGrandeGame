@@ -195,14 +195,14 @@ public class GameManager {
 
                     //DONE: Validation ofAoA
                     if ((arr[0] == null)) {
-                        throw new InvalidInitialBoardException("Erro");
+                        throw new InvalidInitialBoardAbyssException("Primeira posição a null", Integer.parseInt(arr[0]));
                     }
                     if (type != 0 && type != 1) {
-                        throw new InvalidInitialBoardException("Erro");
+                        throw new InvalidInitialBoardToolException("Tool erro", type);
                     }
                     if (type == 0) {
                         if (idDoTipo < 0 || idDoTipo > 9) {
-                            throw new InvalidInitialBoardException("Erro");
+                            throw new InvalidInitialBoardToolException("Tool erro", type);
                         }
                     } else {
                         if (idDoTipo < 0 || idDoTipo > 5) {
