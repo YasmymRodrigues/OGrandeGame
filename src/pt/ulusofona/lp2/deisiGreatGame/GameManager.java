@@ -107,7 +107,12 @@ public class GameManager {
             if (!progColor.add(pro.color)) { // add new colar means
                 throw new InvalidInitialBoardException("Erro");
             }
-            if ((programmers.size() > 4) || (worldSize < (programmers.size() * 2))) {
+            //DONE: Number of players
+            if ((programmers.size() > 4) || programmers.size() < 2) {
+                throw new InvalidInitialBoardException("Número de jogadores inválido.");
+            }
+            //DONE:Validation worldSize
+            if ((worldSize < (programmers.size() * 2))){
                 throw new InvalidInitialBoardException("Tamanho inválido.");
             }
         }
@@ -308,7 +313,7 @@ public class GameManager {
         List<Programmer> activeProgrammers = getProgrammers(false);
 
         for (Programmer programmer: activeProgrammers){
-            if (!programmer.isHasTurn() && !programmer.wasATrap()){
+            if (!programmer.isHasTurn()){
                 programmer.setHasTurn(true);
                 currentPlayer = programmer;
 
@@ -439,7 +444,6 @@ public class GameManager {
         return null;
     }
         public boolean saveGame (File file){
-
 
                 try { //note: make validations
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
