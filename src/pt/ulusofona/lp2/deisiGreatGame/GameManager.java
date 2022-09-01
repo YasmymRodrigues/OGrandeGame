@@ -29,6 +29,7 @@ import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
 public class GameManager {
     int worldSize;
+    int countTurns = 0;
     List<Programmer> programmers = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
@@ -376,19 +377,25 @@ public class GameManager {
             if(obj.isAbismo()){
                 int newPos = obj.getReact(programmerActualPos, currentPlayer);
                 currentPlayer.setPos(newPos);
+                currentPlayer.setTeveTurno(1);
                 currentPlayer.addPosicoes(newPos);
                 currentPlayer.setWasATrap(true);
+                countTurns += 1;
                 changeTurn();
                 return "trap";
             }else{
                 //currentPlayer.getFerramentas();
                 currentPlayer.addFerramenta((Ferramenta)obj);
                 //currentPlayer.ferramentas.add((Ferramenta)obj);
+                currentPlayer.setTeveTurno(1);
+                countTurns ++;
                 changeTurn();
                 return "you got a tool";
             }
         }
 
+        currentPlayer.setTeveTurno(1);
+        countTurns ++;
         changeTurn();
         return null;
     }
@@ -408,6 +415,30 @@ public class GameManager {
 
     public List<String> getGameResults() {
         List<String> results = new ArrayList<String>();
+        String winner = "";
+        for (Programmer programmer: programmers){
+            if (programmer.getPos() == worldSize || programmers.size() == 1){
+                winner = programmer.getName();
+            }
+        }
+
+
+        results.add("O GRANDE JOGO DO DEISI");
+        results.add(" ");
+        results.add(" NR. DE TURNOS");
+        results.add(" " + countTurns); //numero de turnos todo
+        results.add(" ");
+        results.add(" VENCEDOR");
+        results.add(" " + winner); //name winner
+        results.add(" ");
+        results.add(" RESTANTES");
+
+        for (Programmer programmer: programmers){
+            if (programmer.getName() != winner){
+                results.add(" " + programmer.getName() +" "+ programmer.getTeveTurno()); //quantas vezes forem os players
+            }
+        }
+
 
         return results;
     }

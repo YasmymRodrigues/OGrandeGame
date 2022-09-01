@@ -17,6 +17,7 @@ public class Programmer {
     List<Integer> posicoes;
     boolean hasTurn = false;
     boolean wasATrap = false;
+    int teveTurno;
 
     Programmer() {
         this.languages = new ArrayList<>();
@@ -80,6 +81,14 @@ public class Programmer {
 
     public List<Ferramenta> getFerramentas() {
         return ferramentas;
+    }
+
+    public int getTeveTurno(){
+        return teveTurno;
+    }
+
+    public void setTeveTurno(int teveTurno){
+        this.teveTurno += teveTurno;
     }
 
     public void addFerramenta(Ferramenta ferramenta) { this.ferramentas.add(ferramenta);}
