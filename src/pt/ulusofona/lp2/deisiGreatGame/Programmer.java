@@ -157,7 +157,7 @@ public class Programmer {
 
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
-        Collections.reverse(languages);
+        //Collections.reverse(languages);
         for (int i = 0; i < languages.size(); i++){
             if (i < languages.size() && i > 0){
                 lang += "; " + languages.get(i);
