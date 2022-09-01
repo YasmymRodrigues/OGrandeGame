@@ -9,12 +9,12 @@ public class InvalidInitialBoardException extends Exception {
         typeId = "";
     }
 
-    @Override
-    public String getMessage() {
+    //@Override
+    /*public String getMessage() {
         //return super.getMessage();
         super.getMessage();
         return "Erro teste";
-    }
+    }*/
     boolean isInvalidAbyss(){
         return false;
     }
