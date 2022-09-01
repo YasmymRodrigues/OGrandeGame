@@ -1,28 +1,10 @@
-1,Joshua Bloch,11,Java;C;Python;C#,Purple,Em Jogo,Programação Funcional,1;3;8;11,true
-2,Guido van Rossum,9,Python;Common Lisp;C,Blue,Em Jogo,IDE,1;6;7;9,false
+1,Marcos,2,Python,Purple,Em Jogo,,1;4;5;2,true
+2,Lucas,1,Python,Blue,Em Jogo,,1;4;5;2,false
+3,Paulo,1,Python,Green,Em Jogo,,1;4;5;2,false
 Abismos
-0,3,66
-0,6,67
-0,9,74
-0,7,75
-0,8,43
-0,2,47
-0,0,50
-0,1,54
-0,4,59
-0,5,63
+0,2,5
+0,2,11
+0,2,10
 Ferramentas
-1,5,2
-1,4,35
-1,4,6
-1,1,11
-1,0,13
-1,3,15
-1,1,17
-1,5,18
-1,2,22
-1,0,28
-1,2,30
-1,3,31
 WorldSize
-79
+20

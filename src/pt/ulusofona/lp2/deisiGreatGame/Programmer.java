@@ -156,7 +156,7 @@ public class Programmer {
         String lang = "";
         for (int i = 0; i < languages.size(); i++){
             if (i < languages.size() && i > 0){
-                lang += ";" + languages.get(i);
+                lang += "; " + languages.get(i);
             }else {
                 lang += languages.get(i);
             }

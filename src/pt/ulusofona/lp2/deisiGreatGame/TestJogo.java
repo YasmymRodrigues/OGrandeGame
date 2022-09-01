@@ -6,6 +6,7 @@ import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
 import pt.ulusofona.lp2.deisiGreatGame.tools.Heranca;
 import pt.ulusofona.lp2.deisiGreatGame.tools.IDE;
 
+import java.io.File;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class TestJogo {
         languages.add(new Language("Java"));
         String playInfo [][] = {{"1", "Marcos", "Python", "Purple"}, {"2", "Lucas", "Python", "Blue"}, {"3", "Paulo", "Python", "Green"}};
         //String abT[][] = {{"0", "1", "2"}, {"0", "1", "6"}, {"0", "1", "7"}};
-        String abT[][] = {{"0", "10", "6"}, {"0", "10", "11"}, {"0", "10", "10"}};
+        String abT[][] = {{"0", "2", "5"}, {"0", "2", "11"}, {"0", "2", "10"}};
         int worldSize = 20;
         ArrayList<Integer> posicoes = new ArrayList<>();
         posicoes.add(1);
@@ -60,9 +61,6 @@ public class TestJogo {
         assertEquals(GREEN, programmerInPosition.get(2).color); //COLOR
         assertEquals(posicoes, programmerInPosition.get(2).posicoes);
 
-
-
-
         //Note: Test getCurrentPlayerID() class GM
         int res = game.getCurrentPlayerID();
         assertEquals(1, res);
@@ -77,18 +75,30 @@ public class TestJogo {
         assertEquals(1, res1);
         /*game.changeTurn();*/
 
-        //Note: moveCurrentPlayer()
-        Boolean move = game.moveCurrentPlayer(5);
+        //Note: moveCurrentPlayer() movimentos antes de salvar
+        Boolean move = game.moveCurrentPlayer(1);
         assertEquals(true, move);
+
+        //Note: saveGame()
+        Boolean save = game.saveGame(new File("C:\\Users\\Asus\\IdeaProjects\\OGrandeGame\\Jogo.txt"));
+        assertTrue("retornou true", save);
+
+        //Note: loadGame()
+        Boolean load = game.loadGame(new File("C:\\Users\\Asus\\IdeaProjects\\OGrandeGame\\Jogo.txt"));
+        assertTrue("load com sucesso", load);
+
+        //Note: moveCurrentPlayer() movimentos depois de realizar o load
+        Boolean moveToNull = game.moveCurrentPlayer(3);
+        assertTrue("not null", moveToNull);
 
         //Note: React
         String react = game.reactToAbyssOrTool();
-        assertEquals( "moved", react);
+        assertNotNull( "trap", react);
 
         //Note: getProgrammersInfo()
         String result = game.getProgrammersInfo();
         //String result2 = programmerInPosition.toString();
-        //assertEquals("1 | Marcos | 6 | Heranca | Python | Em Jogo," +                " 2 | Lucas | 1 | Heranca | Python | Em Jogo," +                " 3 | Paulo | 1 | Heranca | Python | Em Jogo", result);
+        //assertEquals("1 | Marcos | 6 | Heranca | Python | Em Jogo," + " 2 | Lucas | 1 | Heranca | Python | Em Jogo," + " 3 | Paulo | 1 | Heranca | Python | Em Jogo", result);
 
         //Note: test toString() class Programmer
         //int id, String name, int pos, List<Ferramenta> ferramentas, List<Language> languages, ProgrammerColor color, List<Integer> posicoes

@@ -663,7 +663,6 @@ public class GameManager {
                         worldSizeLoad = Integer.parseInt(line);
                     }
                     worldSize = worldSizeLoad;
-
                     reader.close();
                 } catch (IOException e) {
                     return false;
