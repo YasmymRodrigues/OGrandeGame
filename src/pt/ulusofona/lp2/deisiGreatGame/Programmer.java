@@ -165,7 +165,7 @@ public class Programmer {
                 lang += languages.get(i);
             }
         }
-        return lang + " ";
+        return lang;
     }
 
     public String getStatus(){
