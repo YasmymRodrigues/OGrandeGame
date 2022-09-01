@@ -418,9 +418,6 @@ public class GameManager {
         List<String> results = new ArrayList<String>();
         String winner = "";
 
-        if (programmers.size() == 1){
-
-        }
         for (Programmer programmer: programmers){
             if (programmer.getPos() == worldSize || programmers.size() == 1){
                 winner = programmer.getName();
@@ -440,13 +437,12 @@ public class GameManager {
         Collections.sort(programmers, Comparator.comparing(Programmer::getTeveTurno));
         Collections.reverse(programmers);
 
-        for (Programmer programmer: programmers){
-            if (programmer.getName() != winner){
-                results.add("" + programmer.getName() +" "+ programmer.getTeveTurno()); //quantas vezes forem os players
+        for (Programmer programmer : programmers) {
+            if (programmer.getName() != winner) {
+                results.add("" + programmer.getName() + " " + programmer.getPos()); //quantas vezes forem os players
             }
         }
-        //[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 6, , VENCEDOR, Morpheus, , RESTANTES, Trinity 4, Neo 2]
-        //[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 5, , VENCEDOR, Morpheus, , RESTANTES, Neo 2, Trinity 2]
+
 
         return results;
     }
