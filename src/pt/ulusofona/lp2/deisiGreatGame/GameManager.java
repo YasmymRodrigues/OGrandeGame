@@ -434,7 +434,7 @@ public class GameManager {
         results.add("RESTANTES");
 
         Collections.sort(programmers, Comparator.comparing(Programmer::getTeveTurno));
-        Collections.sort(programmers, Collections.reverseOrder());
+        Collections.reverse(programmers);
 
         for (Programmer programmer: programmers){
             if (programmer.getName() != winner){
