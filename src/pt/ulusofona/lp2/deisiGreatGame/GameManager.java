@@ -40,7 +40,7 @@ public class GameManager {
     public GameManager() {}
 
     public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
-
+        programmers.clear();
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
         InvalidInitialBoardException ex = new InvalidInitialBoardException("Erro");
@@ -388,14 +388,14 @@ public class GameManager {
                 currentPlayer.addFerramenta((Ferramenta)obj);
                 //currentPlayer.ferramentas.add((Ferramenta)obj);
                 currentPlayer.setTeveTurno(1);
-                countTurns ++;
+                countTurns += 1;
                 changeTurn();
                 return "you got a tool";
             }
         }
 
         currentPlayer.setTeveTurno(1);
-        countTurns ++;
+        countTurns += 1;
         changeTurn();
         return null;
     }
@@ -422,7 +422,6 @@ public class GameManager {
             }
         }
 
-
         results.add("O GRANDE JOGO DO DEISI");
         results.add("");
         results.add("NR. DE TURNOS");
@@ -436,11 +435,11 @@ public class GameManager {
         Collections.sort(programmers, Comparator.comparing(Programmer::getTeveTurno));
         for (Programmer programmer: programmers){
             if (programmer.getName() != winner){
-                results.add("" + programmer.getName() +""+ programmer.getTeveTurno()); //quantas vezes forem os players
+                results.add("" + programmer.getName() +" "+ programmer.getTeveTurno()); //quantas vezes forem os players
             }
         }
         //[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 6, , VENCEDOR, Morpheus, , RESTANTES, Trinity 4, Neo 2]
-        //[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 3, , VENCEDOR, Morpheus, , RESTANTES,  Neo 1,  Trinity 1]
+        //[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 3, , VENCEDOR, Morpheus, , RESTANTES, Neo 2, Trinity 2]
 
         return results;
     }
@@ -513,7 +512,9 @@ public class GameManager {
                             writer.write("" + "1" + "," + ferramenta.getId() + "," + ferramenta.getPos() + "\n");
                         }
                         writer.write("WorldSize" + "\n");
-                        writer.write(Integer.toString(worldSize));
+                        writer.write(Integer.toString(worldSize) + "\n");
+                        writer.write("Turnos" + "\n");
+                        writer.write(Integer.toString(countTurns));
                         writer.close();
                 } catch (IOException e) {
                     return false;
@@ -596,6 +597,7 @@ public class GameManager {
                             programmer.setHasTurn(false);
                         }
                         programmer.setTeveTurno(Integer.parseInt(strSplit[9]));
+                        //countTurns = countTurns;
                         programmers.add(programmer);
 
                     }
@@ -693,10 +695,12 @@ public class GameManager {
                         }
                     }
 
-                    while(reader.hasNextLine() && (line = reader.nextLine()) != null){
+                    while(reader.hasNextLine() && (line = reader.nextLine()) != null && !"Turnos".equals(line)){
                         worldSize = Integer.parseInt(line);
                     }
-
+                    while(reader.hasNextLine() && (line = reader.nextLine()) != null){
+                        countTurns = Integer.parseInt(line);
+                    }
                     reader.close();
                 } catch (IOException e) {
                     return false;

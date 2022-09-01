@@ -1,30 +1,30 @@
-1,Joshua Bloch,2,Java; C; Python; C#,Purple,Em Jogo,Tratamento de Excepções,1;2,true,1
-2,Guido van Rossum,6,Python; Common Lisp; C,Blue,Em Jogo,Herança,1;6,true,1
-3,Ada Lovelace,1,Ada; C; C#,Green,Em Jogo,,1,true,0
-4,John McCarthy,1,Lisp; C; C#,Brown,Em Jogo,,1,false,0
+1,Joshua Bloch,13,Java; C; Python; C#,Purple,Em Jogo,IDE,1;3;8;13,true,3
+2,Guido van Rossum,10,Python; Common Lisp; C,Blue,Em Jogo,Testes unitários,1;4;6;10,false,3
 Abismos
-0,0,67
-0,2,41
-0,8,42
-0,1,76
-0,7,78
-0,3,50
-0,5,51
-0,6,52
-0,9,60
-0,4,61
+0,3,64
+0,8,70
+0,5,39
+0,7,40
+0,1,41
+0,2,42
+0,0,44
+0,9,78
+0,4,48
+0,6,51
 Ferramentas
-1,4,33
-1,3,2
-1,0,6
-1,5,11
-1,4,12
-1,1,19
-1,2,21
-1,1,22
-1,3,23
-1,0,27
-1,5,28
-1,2,31
+1,0,33
+1,4,3
+1,1,37
+1,0,5
+1,2,6
+1,3,12
+1,3,17
+1,5,21
+1,2,23
+1,5,26
+1,1,27
+1,4,31
 WorldSize
 79
+Turnos
+6
