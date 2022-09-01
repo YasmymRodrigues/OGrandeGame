@@ -29,7 +29,7 @@ import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
 public class GameManager {
     int worldSize;
-    int countTurns = 1;
+    int countTurns;
     List<Programmer> programmers = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
