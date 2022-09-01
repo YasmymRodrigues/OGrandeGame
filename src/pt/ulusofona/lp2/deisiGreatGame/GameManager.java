@@ -29,7 +29,7 @@ import static pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor.*;
 
 public class GameManager {
     int worldSize;
-    int countTurns = 0;
+    int countTurns = 1;
     List<Programmer> programmers = new ArrayList<>();
     List<Ferramenta> ferramentas = new ArrayList<>();
     List<Abismo> abismos = new ArrayList<>();
@@ -41,6 +41,7 @@ public class GameManager {
 
     public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException {
         programmers.clear();
+        countTurns = 1;
         Set<Integer> progId = new HashSet<>();
         Set<ProgrammerColor> progColor = new HashSet<>();
         InvalidInitialBoardException ex = new InvalidInitialBoardException("Erro");
@@ -433,13 +434,15 @@ public class GameManager {
         results.add("RESTANTES");
 
         Collections.sort(programmers, Comparator.comparing(Programmer::getTeveTurno));
+        Collections.sort(programmers, Collections.reverseOrder());
+
         for (Programmer programmer: programmers){
             if (programmer.getName() != winner){
                 results.add("" + programmer.getName() +" "+ programmer.getTeveTurno()); //quantas vezes forem os players
             }
         }
         //[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 6, , VENCEDOR, Morpheus, , RESTANTES, Trinity 4, Neo 2]
-        //[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 3, , VENCEDOR, Morpheus, , RESTANTES, Neo 2, Trinity 2]
+        //[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 5, , VENCEDOR, Morpheus, , RESTANTES, Neo 2, Trinity 2]
 
         return results;
     }
@@ -694,7 +697,6 @@ public class GameManager {
                             }
                         }
                     }
-
                     while(reader.hasNextLine() && (line = reader.nextLine()) != null && !"Turnos".equals(line)){
                         worldSize = Integer.parseInt(line);
                     }
