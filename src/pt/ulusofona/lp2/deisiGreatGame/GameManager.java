@@ -273,6 +273,10 @@ public class GameManager {
                 }
             }
         }
+        if(position == worldSize) {
+            return "glory.png";
+        }
+
         return "blank.png";
     }
 
