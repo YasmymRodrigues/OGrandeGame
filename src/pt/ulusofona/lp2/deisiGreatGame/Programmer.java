@@ -87,9 +87,9 @@ public class Programmer {
         String tool = "";
         for (int i = 0; i < ferramentas.size(); i++){
             if (i < ferramentas.size() && i > 0){
-                tool += ";" + ferramentas.get(i).toString();
+                tool += "; " + ferramentas.get(i);
             }else{
-                tool += ferramentas.get(i).toString();
+                tool += ferramentas.get(i);
             }
         }
         return tool;
@@ -162,16 +162,6 @@ public class Programmer {
             }
         }
 
-        /*for(Language language: languages){
-            if(languages.size() == 1) {
-                lang += language.nome;
-            }else{
-                //language.nome.trim();
-                lang += language.nome.trim() + ";";
-
-            }
-        }*/
-        //lang.trim();
         return lang;
     }
 
@@ -198,10 +188,18 @@ public class Programmer {
         if (ferramentas.size() < 1) {
             return "" + id + " | " + name + " | " + pos + " | " + "No tools " + "| " + converteArrayParaString(languages) + " | " + getStatus();
         } else {
-                for (Ferramenta ferramenta : ferramentas) {
+                /*for (int i = 0; i < ferramentas.size(); i++){
+                    if (i < ferramentas.size() && i > 0){
+                        tools += "; " + ferramentas.get(i);
+                    }else{
+                        tools += ferramentas.get(i);
+                    }
+                }*/
+
+                /*for (Ferramenta ferramenta : ferramentas) {
                     tools += ferramenta.toString() + ";";
-                }
-                return "" + id + " | " + name + " | " + pos + " | " + tools + "| " + converteArrayParaString(languages) + " | " + getStatus();
+                }*/
+                return "" + id + " | " + name + " | " + pos + " | " + getStringFerramentas() + "| " + converteArrayParaString(languages) + " | " + getStatus();
             }
        }
 }

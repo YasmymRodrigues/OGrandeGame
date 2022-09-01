@@ -426,7 +426,7 @@ public class GameManager {
             if (!programmer.getFerramentas().isEmpty()) {
                 resultado += "" + programmer.getName() + " : " + programmer.getStringFerramentas() + " | ";
             }else {
-                resultado += "" + programmer.getName() + " : No tools";
+                resultado += "" + programmer.getName() + " : No tools | ";
             }
         }
         return resultado;
