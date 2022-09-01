@@ -203,20 +203,20 @@ public class GameManager {
                         throw new InvalidInitialBoardAbyssException("Primeira posição a null", Integer.parseInt(arr[0]));
                     }
                     if (type != 0 && type != 1) {
-                        throw new InvalidInitialBoardToolException("Tool erro", type);
+                        throw new InvalidInitialBoardToolException("Erro no tipo: Abismo ou Ferramenta", type);
                     }
                     if (type == 0) {
-                        if (idDoTipo < 0 || idDoTipo > 9) {
-                            throw new InvalidInitialBoardToolException("Tool erro", type);
+                        if (idDoTipo < 0 || idDoTipo > 10) {
+                            throw new InvalidInitialBoardToolException("Erro no tipo de Abismo", type);
                         }
                     } else {
                         if (idDoTipo < 0 || idDoTipo > 5) {
-                            throw new InvalidInitialBoardException("Erro");
+                            throw new InvalidInitialBoardException("Erro no tipo de Ferramenta ");
                         }
                     }
                     // DONE: posicao do tabuleiro onde se encontra o Abismo ou a Ferramenta
                     if ((worldSize < position) || (arr[2] == null) || (position < 0)) {
-                        throw new InvalidInitialBoardException("Erro");
+                        throw new InvalidInitialBoardException("Erro no tamanho do mapa");
                     }
                 }
             }

@@ -24,7 +24,8 @@ public class TestJogo {
         languages.add(new Language("Java"));
         String playInfo [][] = {{"1", "Marcos", "Python", "Purple"}, {"2", "Lucas", "Python", "Blue"}, {"3", "Paulo", "Python", "Green"}};
         //String abT[][] = {{"0", "1", "2"}, {"0", "1", "6"}, {"0", "1", "7"}};
-        String abT[][] = {{"0", "2", "5"}, {"0", "2", "11"}, {"0", "2", "10"}};
+        //String abT[][] = {{"0", "2", "5"}, {"0", "2", "11"}, {"0", "2", "10"}};
+        String abT[][] = {{"0", "10", "5"}, {"0", "10", "11"}, {"0", "10", "10"}};
         int worldSize = 20;
         ArrayList<Integer> posicoes = new ArrayList<>();
         posicoes.add(1);

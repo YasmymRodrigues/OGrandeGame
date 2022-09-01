@@ -138,9 +138,11 @@ fun fazerComando(manager: GameManager, args: List<String>): String? {
     }
 
 
-        fun postPlayer(manager: GameManager, args: List<String>): String? {
-            return null
-        }
+
+
+    fun postPlayer(manager: GameManager, args: List<String>): String? {
+        return null
+    }
 
 
         //val manager = GameManager()
