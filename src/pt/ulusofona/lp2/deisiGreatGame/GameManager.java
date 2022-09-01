@@ -424,21 +424,23 @@ public class GameManager {
 
 
         results.add("O GRANDE JOGO DO DEISI");
-        results.add(" ");
-        results.add(" NR. DE TURNOS");
-        results.add(" " + countTurns); //numero de turnos todo
-        results.add(" ");
-        results.add(" VENCEDOR");
-        results.add(" " + winner); //name winner
-        results.add(" ");
-        results.add(" RESTANTES");
+        results.add("");
+        results.add("NR. DE TURNOS");
+        results.add("" + countTurns); //numero de turnos
+        results.add("");
+        results.add("VENCEDOR");
+        results.add("" + winner); //name winner
+        results.add("");
+        results.add("RESTANTES");
 
+        Collections.sort(programmers, Comparator.comparing(Programmer::getTeveTurno));
         for (Programmer programmer: programmers){
             if (programmer.getName() != winner){
-                results.add(" " + programmer.getName() +" "+ programmer.getTeveTurno()); //quantas vezes forem os players
+                results.add("" + programmer.getName() +""+ programmer.getTeveTurno()); //quantas vezes forem os players
             }
         }
-
+        //[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 6, , VENCEDOR, Morpheus, , RESTANTES, Trinity 4, Neo 2]
+        //[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 3, , VENCEDOR, Morpheus, , RESTANTES,  Neo 1,  Trinity 1]
 
         return results;
     }
@@ -493,7 +495,8 @@ public class GameManager {
                                     programmer.getStatus() + "," +
                                     programmer.getStringFerramentas() + "," +
                                     programmer.getStringPosicoes() + "," +
-                                    programmer.isHasTurn() + "\n");
+                                    programmer.isHasTurn() + "," +
+                                    programmer.getTeveTurno() + "\n");
                         }
                         /*writer.write("PlayersTools" + "\n");
                         for (Programmer programmer: getProgrammers(false)){
@@ -592,6 +595,7 @@ public class GameManager {
                         }else if(strSplit[8].equals("false")) {
                             programmer.setHasTurn(false);
                         }
+                        programmer.setTeveTurno(Integer.parseInt(strSplit[9]));
                         programmers.add(programmer);
 
                     }
