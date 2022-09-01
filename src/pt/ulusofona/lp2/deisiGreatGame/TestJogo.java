@@ -152,7 +152,7 @@ public class TestJogo {
         languages.add(new Language("Python"));
         languages.add(new Language("Java"));
 
-        assertEquals("Python;Java;", programmer.converteArrayParaString(languages));
+        assertEquals("Python; Java", programmer.converteArrayParaString(languages));
     }
 
 

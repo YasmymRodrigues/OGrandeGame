@@ -417,6 +417,10 @@ public class GameManager {
     public List<String> getGameResults() {
         List<String> results = new ArrayList<String>();
         String winner = "";
+
+        if (programmers.size() == 1){
+
+        }
         for (Programmer programmer: programmers){
             if (programmer.getPos() == worldSize || programmers.size() == 1){
                 winner = programmer.getName();
