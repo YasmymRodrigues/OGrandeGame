@@ -1,6 +1,6 @@
-1,Marcos,2,Python,Purple,Em Jogo,,1;4;5;2,true
-2,Lucas,1,Python,Blue,Em Jogo,,1;4;5;2,false
-3,Paulo,1,Python,Green,Em Jogo,,1;4;5;2,false
+1,Marcos,2,Python,Purple,Em Jogo,,1;2,true
+2,Lucas,1,Python,Blue,Em Jogo,,1;2,false
+3,Paulo,1,Python,Green,Em Jogo,,1;2,false
 Abismos
 0,2,5
 0,2,11

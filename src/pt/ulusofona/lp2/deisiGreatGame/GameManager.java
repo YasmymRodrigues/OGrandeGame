@@ -489,11 +489,7 @@ public class GameManager {
 
 
         public boolean loadGame (File file){
-        List<Programmer> programmersLoad = new ArrayList<>();
-        List<Ferramenta> ferramentasLoad = new ArrayList<>();
-        List<Abismo> abismosLoad = new ArrayList<>();
-        HashMap<Integer, Object> mapLoad = new HashMap<>(); // array com os espaços do mapa
-        int worldSizeLoad = 0;
+
 
                 try {
                     Scanner reader = new Scanner(file);
@@ -565,10 +561,9 @@ public class GameManager {
                         }else if(strSplit[8].equals("false")) {
                             programmer.setHasTurn(false);
                         }
-                        programmersLoad.add(programmer);
+                        programmers.add(programmer);
 
                     }
-                    programmers = programmersLoad;
                     //Collections.sort(programmers, Comparator.comparing(Programmer::getId));
                     //get the first position
                     //currentPlayer = programmers.get(0);
@@ -582,52 +577,52 @@ public class GameManager {
                         if (type == 0) {
                             if (idDoTipo == 0) {
                                 Abismo erroDeSintaxe = new ErroDeSintaxe(0, position);
-                                abismosLoad.add(erroDeSintaxe);
-                                mapLoad.put(position, erroDeSintaxe);
+                                abismos.add(erroDeSintaxe);
+                                map.put(position, erroDeSintaxe);
                             } else if (idDoTipo == 1) {
                                 Abismo erroDeLogica = new ErroDeLogica(1, position);
-                                abismosLoad.add(erroDeLogica);
-                                mapLoad.put(position, erroDeLogica);
+                                abismos.add(erroDeLogica);
+                                map.put(position, erroDeLogica);
                             } else if (idDoTipo == 2) {
                                 Abismo exception = new Exception( 2, position);
-                                abismosLoad.add(exception);
-                                mapLoad.put(position, exception);
+                                abismos.add(exception);
+                                map.put(position, exception);
                             } else if (idDoTipo == 3) {
                                 Abismo fileNotFoundException = new FileNotFoundException( 3, position);
-                                abismosLoad.add(fileNotFoundException);
-                                mapLoad.put(position, fileNotFoundException);
+                                abismos.add(fileNotFoundException);
+                                map.put(position, fileNotFoundException);
                             } else if (idDoTipo == 4) {
                                 Abismo crash = new Crash(4, position);
-                                abismosLoad.add(crash);
-                                mapLoad.put(position, crash);
+                                abismos.add(crash);
+                                map.put(position, crash);
                             } else if (idDoTipo == 5) {
                                 Abismo duplicatedCode = new DuplicatedCode( 5, position);
-                                abismosLoad.add(duplicatedCode);
-                                mapLoad.put(position, duplicatedCode);
+                                abismos.add(duplicatedCode);
+                                map.put(position, duplicatedCode);
                             } else if (idDoTipo == 6) {
                                 Abismo efeitosSecundarios = new EfeitosSecundarios( 6, position);
-                                abismosLoad.add(efeitosSecundarios);
-                                mapLoad.put(position, efeitosSecundarios);
+                                abismos.add(efeitosSecundarios);
+                                map.put(position, efeitosSecundarios);
                             } else if (idDoTipo == 7) {
                                 Abismo bsod = new BSOD( 7, position);
-                                abismosLoad.add(bsod);
-                                mapLoad.put(position, bsod);
+                                abismos.add(bsod);
+                                map.put(position, bsod);
                             } else if (idDoTipo == 8) {
                                 Abismo cicloInfinito = new CicloInfinito( 8, position);
-                                abismosLoad.add(cicloInfinito);
-                                mapLoad.put(position, cicloInfinito);
+                                abismos.add(cicloInfinito);
+                                map.put(position, cicloInfinito);
                             } else if (idDoTipo == 9) {
                                 Abismo segF = new SegmentationFault(9, position);
-                                abismosLoad.add(segF);
-                                mapLoad.put(position, segF);
+                                abismos.add(segF);
+                                map.put(position, segF);
                             } else if (idDoTipo == 10) {
                                 Abismo vamosFazerContas = new VamosFazerContas(10, position);
-                                abismosLoad.add(vamosFazerContas);
-                                mapLoad.put(position, vamosFazerContas);
+                                abismos.add(vamosFazerContas);
+                                map.put(position, vamosFazerContas);
                             }
                         }
                    }
-                    abismos = abismosLoad;
+
 
                     while((line = reader.nextLine()) != null && !"WorldSize".equals(line)){
                         String[] strSplit = line.split(",");
@@ -637,36 +632,36 @@ public class GameManager {
                         if (type == 1) {
                             if (idDoTipo == 0) {
                                 Ferramenta heranca = new Heranca(0, position);
-                                ferramentasLoad.add(heranca);
-                                mapLoad.put(position, heranca);
+                                ferramentas.add(heranca);
+                                map.put(position, heranca);
                             } else if (idDoTipo == 1) {
                                 Ferramenta progF = new ProgramacaoFuncional( 1, position);
-                                ferramentasLoad.add(progF);
-                                mapLoad.put(position, progF);
+                                ferramentas.add(progF);
+                                map.put(position, progF);
                             } else if (idDoTipo == 2) {
                                 Ferramenta unitarios = new Unitarios( 2, position);
-                                ferramentasLoad.add(unitarios);
-                                mapLoad.put(position, unitarios);
+                                ferramentas.add(unitarios);
+                                map.put(position, unitarios);
                             } else if (idDoTipo == 3) {
                                 Ferramenta tratEx = new TratamentoDeExcepcoes( 3, position);
-                                ferramentasLoad.add(tratEx);
-                                mapLoad.put(position, tratEx);
+                                ferramentas.add(tratEx);
+                                map.put(position, tratEx);
                             } else if (idDoTipo == 4) {
                                 Ferramenta ide = new IDE( 4, position);
-                                ferramentasLoad.add(ide);
-                                mapLoad.put(position, ide);
+                                ferramentas.add(ide);
+                                map.put(position, ide);
                             } else if (idDoTipo == 5) {
                                 Ferramenta helpProf = new AjudaDoProfessor( 5, position);
-                                ferramentasLoad.add(helpProf);
-                                mapLoad.put(position, helpProf);
+                                ferramentas.add(helpProf);
+                                map.put(position, helpProf);
                             }
                         }
                     }
-                    ferramentas = ferramentasLoad;
+
                     while(reader.hasNextLine() && (line = reader.nextLine()) != null){
-                        worldSizeLoad = Integer.parseInt(line);
+                        worldSize = Integer.parseInt(line);
                     }
-                    worldSize = worldSizeLoad;
+
                     reader.close();
                 } catch (IOException e) {
                     return false;

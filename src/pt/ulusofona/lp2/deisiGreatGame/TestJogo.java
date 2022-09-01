@@ -24,13 +24,13 @@ public class TestJogo {
         languages.add(new Language("Java"));
         String playInfo [][] = {{"1", "Marcos", "Python", "Purple"}, {"2", "Lucas", "Python", "Blue"}, {"3", "Paulo", "Python", "Green"}};
         //String abT[][] = {{"0", "1", "2"}, {"0", "1", "6"}, {"0", "1", "7"}};
-        //String abT[][] = {{"0", "2", "5"}, {"0", "2", "11"}, {"0", "2", "10"}};
-        String abT[][] = {{"0", "10", "5"}, {"0", "10", "11"}, {"0", "10", "10"}};
+        String abT[][] = {{"0", "2", "5"}, {"0", "2", "11"}, {"0", "2", "10"}};
+        //String abT[][] = {{"0", "10", "5"}, {"0", "10", "11"}, {"0", "10", "10"}};
         int worldSize = 20;
         ArrayList<Integer> posicoes = new ArrayList<>();
         posicoes.add(1);
-        posicoes.add(4);
-        posicoes.add(5);
+        //posicoes.add(4);
+        //posicoes.add(5);
 
         //Note: test function createInitialBoard()
         game.createInitialBoard(playInfo, worldSize, abT); // Resultado Esperado
@@ -63,7 +63,7 @@ public class TestJogo {
         assertEquals(posicoes, programmerInPosition.get(2).posicoes);
 
         //Note: Test getCurrentPlayerID() class GM
-        int res = game.getCurrentPlayerID();
+        /*int res = game.getCurrentPlayerID();
         assertEquals(1, res);
         game.changeTurn();
         int res2 = game.getCurrentPlayerID();
@@ -73,7 +73,7 @@ public class TestJogo {
         assertEquals(3, res3);
         game.changeTurn();
         int res1 = game.getCurrentPlayerID();
-        assertEquals(1, res1);
+        assertEquals(1, res1);*/
         /*game.changeTurn();*/
 
         //Note: moveCurrentPlayer() movimentos antes de salvar

@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame
 
+import java.awt.PageAttributes.PrintQualityType
+
 
 enum class CommandType{GET, POST}
 
@@ -19,6 +21,10 @@ fun postCommand(): (GameManager, List<String>) -> String? {
 
 fun fazerComandoPost(manager: GameManager, args: List<String>): String? {
     return null
+   /* when (args[0]) {
+        "POST" -> postAbyss(manager, args)
+    }
+    return null*/
 }
 
 
@@ -33,6 +39,7 @@ fun fazerComando(manager: GameManager, args: List<String>): String? {
         "PLAYERS_BY_LANGUAGE" -> return getPlayersByLanguage(manager, args)
         "POLYGLOTS" -> return getPolyglots(manager, args)
         "POST" -> return null
+        //"POST" -> postAbyss(manager, args)
     }
 
     return null
@@ -137,6 +144,15 @@ fun fazerComando(manager: GameManager, args: List<String>): String? {
         return strNameNrLang
     }
 
+    fun postAbyss(manager: GameManager, args: List<String>): String? {
+        var mapa:HashMap<Integer, Object> = HashMap()
+        println("hi")
+        manager.map.forEach{
+            (key,value) -> key.equals(args[1])
+            println(key)
+        }
+        return "Position is occupied"
+    }
 
 
 
