@@ -3,6 +3,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import pt.ulusofona.lp2.deisiGreatGame.tools.Ferramenta;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Programmer {
@@ -85,6 +86,7 @@ public class Programmer {
 
     public String getStringFerramentas(){
         String tool = "";
+
         for (int i = 0; i < ferramentas.size(); i++){
             if (i < ferramentas.size() && i > 0){
                 tool += "; " + ferramentas.get(i);
@@ -92,6 +94,7 @@ public class Programmer {
                 tool += ferramentas.get(i);
             }
         }
+
         return tool;
     }
 
@@ -154,6 +157,7 @@ public class Programmer {
 
     public String converteArrayParaString(List<Language> languages){
         String lang = "";
+        Collections.reverse(languages);
         for (int i = 0; i < languages.size(); i++){
             if (i < languages.size() && i > 0){
                 lang += "; " + languages.get(i);
@@ -161,7 +165,6 @@ public class Programmer {
                 lang += languages.get(i);
             }
         }
-
         return lang;
     }
 
