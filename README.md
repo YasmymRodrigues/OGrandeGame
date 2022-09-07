@@ -2,5 +2,6 @@
 21810092
 
 
-![DraftUMLLP2_2 drawio](https://user-images.githubusercontent.com/32282214/188942192-92b2c285-61d7-417f-95ef-71c28a452af0.png)
-![21810092_UMLLP2_](https://user-images.githubusercontent.com/32282214/188942200-e5115269-1728-4033-b40b-c4256776bfb6.png)
+
+![21810092_UML_LP2_2](https://user-images.githubusercontent.com/32282214/188950792-177ef40e-0b89-4515-9e26-1534ad925a13.png)
+![DraftUMLLP2_2](https://user-images.githubusercontent.com/32282214/188951099-31bc365f-64ce-4a7b-adcc-04a99889b7cd.jpg)
